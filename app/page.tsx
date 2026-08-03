@@ -253,8 +253,8 @@ function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title: string
 function BrandLogo() {
   return (
     <span className="brand-lockup">
-      <span className="brand-mark" aria-hidden="true"><i /><i /><i /></span>
-      <span className="brand-name"><b>SMMA</b><em>/OS</em></span>
+      <span className="focus-wordmark"><i>F</i>ocus</span>
+      <span className="brand-signature">PROPULSÉ PAR <b>BILOUX</b></span>
     </span>
   );
 }
@@ -297,7 +297,7 @@ export default function Home() {
   return (
     <main>
       <header className="topbar">
-        <a className="brand" href="#top" aria-label="SMMA OS, retour en haut"><BrandLogo /></a>
+        <a className="brand" href="#top" aria-label="Focus, propulsé par Biloux, retour en haut"><BrandLogo /></a>
         <nav className={menuOpen ? "nav-links open" : "nav-links"}>
           <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
           <a href="#prospection" onClick={() => setMenuOpen(false)}>Prospection</a>
