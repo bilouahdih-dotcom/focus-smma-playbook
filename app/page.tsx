@@ -147,7 +147,7 @@ const modules = [
   ["08", "Terrain", "Entrer, diagnostiquer et repartir avec une suite."],
   ["09", "Closing", "Conduire un diagnostic et proposer proprement."],
   ["10", "Objections", "Répondre sans réciter ni argumenter dans le vide."],
-  ["11", "Livraison", "Onboarding, KPI, reporting et fidélisation."],
+  ["11", "Livraison", "Accueil du client, chiffres à suivre, bilan et fidélisation."],
   ["12", "Plan 90 jours", "Construire les premières preuves et signer."],
   ["13", "Mon agence", "Remplir et copier son plan d’exécution."],
 ];
@@ -208,7 +208,7 @@ const trainingWeeks = [
   ["S1", "Fondations", "Choisir un service, une cible et un résultat. Comprendre le parcours du prospect jusqu’à la vente."],
   ["S2", "Outil", "Suivre la ressource officielle du canal et reproduire deux exercices guidés."],
   ["S3", "Projet test", "Créer une campagne, un lot de vidéos, une fiche locale ou un pipeline sur un cas fictif réaliste."],
-  ["S4", "Mesure", "Construire un tableau de bord et expliquer chaque KPI en langage client."],
+  ["S4", "Mesure", "Construire un tableau de bord et expliquer chaque chiffre important en langage simple."],
   ["S5", "Preuve", "Réaliser un audit réel et proposer un pilote à un contact de confiance ou une association."],
   ["S6", "Vente", "Répéter 20 ouvertures, 10 diagnostics et toutes les objections à voix haute."],
 ];
@@ -439,11 +439,11 @@ export default function Home() {
           <article className="service-panel">
             <div className="service-head"><div><span>Niveau · {service.level}</span><h3>{service.name}</h3></div><div className="service-price"><small>PRIX CONSEILLÉS POUR DÉMARRER</small><b>{service.price}</b></div></div>
             <p className="service-result">“{service.result}”</p>
-            <div className="detail-grid"><div><small>À QUI LE VENDRE</small><p>{service.clients}</p></div><div><small>COMMENT SE FORMER</small><p>{service.learn}</p></div><div><small>OUTILS À UTILISER</small><div className="tool-list">{service.tools.map(item => <span key={item}>{item}</span>)}</div></div><div><small>PREMIÈRE OFFRE À PROPOSER</small><p>{service.start}</p></div><div><small>LIVRABLES</small><ul>{service.deliverables.map(item => <li key={item}>{item}</li>)}</ul></div><div><small>KPI À SUIVRE</small><p>{service.kpis}</p></div></div>
+            <div className="detail-grid"><div><small>À QUI LE VENDRE</small><p>{service.clients}</p></div><div><small>COMMENT SE FORMER</small><p>{service.learn}</p></div><div><small>OUTILS À UTILISER</small><div className="tool-list">{service.tools.map(item => <span key={item}>{item}</span>)}</div></div><div><small>PREMIÈRE OFFRE À PROPOSER</small><p>{service.start}</p></div><div><small>LIVRABLES</small><ul>{service.deliverables.map(item => <li key={item}>{item}</li>)}</ul></div><div><small>CHIFFRES À SUIVRE</small><p>{service.kpis}</p></div></div>
             {service.id === "website" && <div className="wow-stack"><header><div><small>STACK DESIGN PREMIUM</small><h4>Créer l’effet wow sans casser le site.</h4></div><span>DA × MOTION × PERFORMANCE</span></header><div><article><b>01 · INSPIRATION</b><p>Awwwards, Godly et Mobbin pour analyser les compositions, pas pour copier.</p></article><article><b>02 · UI & ASSETS</b><p>21st.dev, HorizonX, shadcn/ui, Aceternity et Magic UI pour accélérer une base qualitative.</p></article><article><b>03 · MOUVEMENT</b><p>Motion ou GSAP pour les transitions, le scroll, les reveals et les micro-interactions.</p></article><article><b>04 · IMMERSION</b><p>Rive pour l’illustration interactive, Spline ou Three.js pour une 3D légère et utile.</p></article><article><b>05 · FINITION</b><p>Typographie, rythme, contrastes, images, responsive précis et cohérence du design system.</p></article><article><b>06 · CONTRÔLE</b><p>PageSpeed, accessibilité et test mobile : un effet wow lent ou illisible n’est pas premium.</p></article></div></div>}
           </article>
         </div>
-        <div className="decision-strip"><b>Règle de choix</b><span>Si tu ne peux pas expliquer le résultat, les livrables, les KPI et le délai en 60 secondes, l’offre n’est pas encore prête.</span></div>
+        <div className="decision-strip"><b>Règle de choix</b><span>Si tu ne peux pas expliquer le résultat, les livrables, les chiffres à suivre et le délai en 60 secondes, l’offre n’est pas encore prête.</span></div>
       </section>
 
       <section className="cream-section" id="formation">
@@ -543,7 +543,7 @@ export default function Home() {
         <div className="section-wrap">
           <SectionTitle eyebrow="11 — Livrer & fidéliser" title="La rétention commence le premier jour." text="Un client reste quand il sait ce qui se passe, voit les progrès et comprend les prochaines décisions." />
           <div className="delivery-grid"><article><span>J0–J2</span><h3>Onboarding</h3><p>Objectif, accès, interlocuteurs, délais, validation et responsabilités.</p></article><article><span>SEMAINE 1</span><h3>Baseline</h3><p>Photo des chiffres avant intervention et plan d’action priorisé.</p></article><article><span>CHAQUE SEMAINE</span><h3>Signal court</h3><p>Fait, chiffre, apprentissage, blocage et action suivante.</p></article><article><span>CHAQUE MOIS</span><h3>Revue business</h3><p>Résultats, qualité commerciale, tests et recommandation du mois.</p></article></div>
-          <div className="kpi-table"><div className="table-head"><span>TYPE DE SERVICE</span><span>KPI MARKETING</span><span>KPI BUSINESS</span></div><div><b>Acquisition payante</b><span>Coût par demande</span><span>RDV + ventes attribuées</span></div><div><b>Contenu vidéo</b><span>Rétention + portée locale</span><span>Demandes entrantes</span></div><div><b>Visibilité locale</b><span>Positions + actions fiche</span><span>Appels + itinéraires</span></div><div><b>Réactivation</b><span>Taux de contact</span><span>RDV + revenu récupéré</span></div><div><b>Landing + CRM</b><span>Taux de conversion</span><span>Présence + taux de vente</span></div></div>
+          <div className="kpi-table"><div className="table-head"><span>TYPE DE SERVICE</span><span>CHIFFRE MARKETING À REGARDER</span><span>RÉSULTAT COMMERCIAL À REGARDER</span></div><div><b>Publicité payante</b><span>Coût par demande</span><span>Rendez-vous + ventes obtenues</span></div><div><b>Contenu vidéo</b><span>Temps de visionnage + portée locale</span><span>Demandes entrantes</span></div><div><b>Visibilité locale</b><span>Positions + actions sur la fiche</span><span>Appels + demandes d’itinéraire</span></div><div><b>Réactivation</b><span>Pourcentage de contacts joints</span><span>Rendez-vous + revenu récupéré</span></div><div><b>Page de vente + suivi</b><span>Pourcentage de visiteurs qui contactent</span><span>Présence aux rendez-vous + ventes</span></div></div>
         </div>
       </section>
 
