@@ -28,7 +28,7 @@ const services: Service[] = [
     start: "Audit gratuit puis maquette de la page d’accueil",
     level: "Débutant +",
     tools: ["WordPress + Bricks", "Webflow ou Framer", "Figma", "Google Search Console", "Calendly ou Tally", "Plausible ou GA4"],
-    price: "900–2 500 € le site · 49–149 €/mois de maintenance",
+    price: "One page 300–500 € · Vitrine 600–1 000 € · E-commerce starter 1 200–2 000 €",
   },
   {
     id: "nfc",
@@ -41,7 +41,7 @@ const services: Service[] = [
     start: "Démonstration physique puis pack pilote sur un établissement",
     level: "Débutant",
     tools: ["NFC Tools", "Puce NTAG215/216", "Canva ou Figma", "Carrd ou Framer", "Google Business Profile", "Bitly ou Dub.co"],
-    price: "150–500 € par établissement · 500–1 500 € en pack multi-sites",
+    price: "Plaque standard 40–60 € · Personnalisée 70–120 € · Pack de 5 : 180–300 €",
   },
   {
     id: "branding",
@@ -54,7 +54,7 @@ const services: Service[] = [
     start: "Atelier de positionnement de 90 minutes",
     level: "Intermédiaire",
     tools: ["Figma", "Illustrator ou Affinity", "Canva Pro", "Coolors", "Fontshare", "Notion"],
-    price: "600–2 500 € l’identité · 1 500–5 000 € pour un système complet",
+    price: "Logo simple 80–150 € · Logo pro 180–350 € · Identité starter 350–700 €",
   },
   {
     id: "automation",
@@ -67,7 +67,7 @@ const services: Service[] = [
     start: "Audit de 45 minutes sur une tâche répétée chaque semaine",
     level: "Intermédiaire",
     tools: ["Make", "Zapier ou n8n", "Airtable", "Notion", "Google Workspace", "Loom"],
-    price: "800–4 000 € l’installation · 100–600 €/mois de suivi",
+    price: "Workflow simple 50–120 € · Standard 150–350 € · Système complet 400–900 €",
   },
   {
     id: "landing",
@@ -80,7 +80,7 @@ const services: Service[] = [
     start: "Sprint de 7 jours sur une seule offre",
     level: "Débutant +",
     tools: ["Framer ou Webflow", "Systeme.io", "Tally", "Calendly", "Google Tag Manager", "Microsoft Clarity"],
-    price: "500–1 500 € la page · 49–199 €/mois d’optimisation",
+    price: "Template adapté 250–400 € · Sur-mesure 450–800 € · Petit tunnel 800–1 200 €",
   },
   {
     id: "maps",
@@ -93,7 +93,7 @@ const services: Service[] = [
     start: "Mise à niveau en 14 jours puis suivi mensuel",
     level: "Débutant",
     tools: ["Google Business Profile", "Local Falcon ou Localo", "Google Search Console", "PlePer", "Canva", "Looker Studio"],
-    price: "300–900 € l’optimisation · 150–500 €/mois de suivi",
+    price: "Optimisation 150–250 € · Avec système d’avis 250–400 € · Suivi 79–199 €/mois",
   },
   {
     id: "reactivation",
@@ -106,7 +106,7 @@ const services: Service[] = [
     start: "Sprint de 10 jours sur un segment dormant",
     level: "Intermédiaire",
     tools: ["HubSpot ou Pipedrive", "Airtable", "Aircall", "Twilio", "Calendly", "Make"],
-    price: "750–2 500 € le sprint · 200–800 €/mois de gestion",
+    price: "Pipeline 200–400 € · Sprint réactivation 350–700 € · Suivi 150–300 €/mois",
   },
   {
     id: "video",
@@ -119,7 +119,7 @@ const services: Service[] = [
     start: "Pack de 8 vidéos tournées en une demi-journée",
     level: "Débutant",
     tools: ["Smartphone", "DJI Mic ou Rode", "CapCut ou Premiere Pro", "Canva", "Notion", "Google Drive"],
-    price: "600–2 500 €/mois selon volume, tournage et montage",
+    price: "4 vidéos 200–350 € · 8 vidéos 400–700 € · 12 vidéos 700–1 100 €",
   },
   {
     id: "google",
@@ -132,7 +132,7 @@ const services: Service[] = [
     start: "Audit + campagne sur une zone et un service précis",
     level: "Intermédiaire",
     tools: ["Google Ads", "Keyword Planner", "Google Tag Manager", "GA4", "CallRail", "Looker Studio"],
-    price: "500–1 500 € de setup · 400–1 500 €/mois hors budget média",
+    price: "Setup 200–400 € · Gestion 250–500 €/mois · Budget média payé par le client",
   },
 ];
 
@@ -360,12 +360,13 @@ export default function Home() {
 
       <section className="content-section" id="services">
         <SectionTitle eyebrow="02 — Choisir un service" title="Neuf services réellement vendables." text="Commence avec un seul service principal. Pour chacun, tu trouveras la cible, les outils, la formation, les livrables et une fourchette de prix indicative." />
+        <div className="pricing-context"><b>POSITIONNEMENT DÉBUTANT · FRANCE</b><span>Ces prix correspondent à une offre bien cadrée avec peu de références. Ils sont indicatifs, généralement hors achats, hébergement, impression, logiciels et budget publicitaire. Après 3 à 5 preuves solides, augmente progressivement tes tarifs.</span></div>
         <div className="service-layout">
           <div className="service-tabs" role="tablist">
             {services.map((item, index) => <button className={activeService === item.id ? "active" : ""} key={item.id} onClick={() => setActiveService(item.id)} type="button"><span>0{index + 1}</span>{item.name}</button>)}
           </div>
           <article className="service-panel">
-            <div className="service-head"><div><span>Niveau · {service.level}</span><h3>{service.name}</h3></div><div className="service-price"><small>TARIF INDICATIF</small><b>{service.price}</b></div></div>
+            <div className="service-head"><div><span>Niveau · {service.level}</span><h3>{service.name}</h3></div><div className="service-price"><small>PRIX CONSEILLÉS POUR DÉMARRER</small><b>{service.price}</b></div></div>
             <p className="service-result">“{service.result}”</p>
             <div className="detail-grid"><div><small>À QUI LE VENDRE</small><p>{service.clients}</p></div><div><small>COMMENT SE FORMER</small><p>{service.learn}</p></div><div><small>OUTILS À UTILISER</small><div className="tool-list">{service.tools.map(item => <span key={item}>{item}</span>)}</div></div><div><small>PREMIÈRE OFFRE À PROPOSER</small><p>{service.start}</p></div><div><small>LIVRABLES</small><ul>{service.deliverables.map(item => <li key={item}>{item}</li>)}</ul></div><div><small>KPI À SUIVRE</small><p>{service.kpis}</p></div></div>
           </article>
