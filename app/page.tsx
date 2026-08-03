@@ -27,7 +27,7 @@ const services: Service[] = [
     kpis: "Demandes reçues, appels, conversion des formulaires, vitesse et positions locales",
     start: "Audit gratuit puis maquette de la page d’accueil",
     level: "Débutant +",
-    tools: ["Claude", "Codex", "LM Arena", "GitHub", "WordPress + Bricks", "Webflow ou Framer", "Figma", "Google Search Console", "Calendly ou Tally", "Plausible ou GA4"],
+    tools: ["Claude", "Codex", "Arena.ai", "GitHub", "WordPress + Bricks", "Webflow ou Framer", "Figma", "Google Search Console", "Calendly ou Tally", "Plausible ou GA4"],
     price: "One page 300–500 € · Vitrine 600–1 000 € · E-commerce starter 1 200–2 000 €",
   },
   {
@@ -53,7 +53,7 @@ const services: Service[] = [
     kpis: "Cohérence des supports, délai de production, utilisation du kit et perception client",
     start: "Un pack défini par les supports réellement nécessaires : logo, charte, flyer et modèles",
     level: "Intermédiaire",
-    tools: ["Figma", "Illustrator ou Affinity", "Canva Pro", "Recraft ou Ideogram", "Adobe Firefly", "Coolors", "Fontshare", "LM Arena"],
+    tools: ["Figma", "Illustrator ou Affinity", "Canva Pro", "GPT Image 2", "Recraft ou Ideogram", "Adobe Firefly", "Coolors", "Fontshare", "Arena.ai"],
     price: "Logo seul 80–200 € · Identité visuelle 250–500 € · Pack charte + supports 500–900 €",
   },
   {
@@ -310,6 +310,12 @@ export default function Home() {
         </div>
       </header>
 
+      <a className="arena-top-banner" href="https://arena.ai/leaderboard" target="_blank" rel="noreferrer" aria-label="Ouvrir le classement des modèles IA sur Arena.ai">
+        <span className="arena-live"><i /> CLASSEMENT EN DIRECT</span>
+        <span className="arena-title"><b>ARENA.AI</b><em>Compare les meilleurs modèles IA du moment pour le texte, le code, l’image et la vision.</em></span>
+        <strong>VOIR LE LEADERBOARD ↗</strong>
+      </a>
+
       <section className="guide-cover" id="top">
         <div className="guide-dots" />
         <div className="cover-shell">
@@ -390,15 +396,6 @@ export default function Home() {
             {trainingWeeks.map(item => <article key={item[0]}><span>{item[0]}</span><div><h3>{item[1]}</h3><p>{item[2]}</p></div></article>)}
           </div>
           <div className="resource-row"><div><b>Webflow University</b><span>Pour les sites, le responsive et les interactions</span></div><div><b>Make Academy</b><span>Pour les automatisations et les scénarios</span></div><div><b>Figma Learn</b><span>Pour le branding, les maquettes et les systèmes visuels</span></div><div><b>Google + HubSpot</b><span>Skillshop pour Ads, Academy pour CRM et vente</span></div></div>
-          <article className="ai-live-card">
-            <div className="ai-live-head">
-              <span className="live-badge"><i /> EN DIRECT</span>
-              <div><small>MODÈLES IA EN TEMPS RÉEL</small><h3>LM Arena</h3></div>
-              <a href="https://lmarena.ai/leaderboard" target="_blank" rel="noreferrer">VOIR LE CLASSEMENT ↗</a>
-            </div>
-            <p>Les meilleurs modèles changent vite. Consulte les classements, puis compare deux modèles avec ton propre brief avant de choisir. Le classement est un repère communautaire, pas une vérité absolue : le meilleur outil dépend toujours de la tâche.</p>
-            <div className="ai-use-grid"><span><b>WEBDEV</b>Sites et code</span><span><b>VISION</b>Audits et analyse</span><span><b>IMAGE</b>Branding et visuels</span><span><b>TEXTE</b>Offres et scripts</span></div>
-          </article>
         </div>
       </section>
 
