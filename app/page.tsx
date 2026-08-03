@@ -22,12 +22,12 @@ const services: Service[] = [
     name: "Site internet",
     result: "Transformer la présence en ligne en outil de confiance et de prise de contact.",
     clients: "Artisans, restaurants, cabinets, indépendants, salles de sport, commerces et entreprises dont le site est absent, lent ou dépassé.",
-    learn: "Maîtriser une plateforme, reproduire trois sites, apprendre responsive, copywriting, SEO local et mise en ligne. Utiliser Claude ou Codex pour générer, expliquer, corriger et vérifier le code sans négliger les bases.",
-    deliverables: ["Arborescence + maquette", "Site 4 à 7 pages", "Formulaire ou réservation", "SEO technique de base"],
+    learn: "Maîtriser composition, grilles, typographie, couleurs, direction d’image, responsive, copywriting et SEO. Puis apprendre les micro-interactions, le scroll animé, la 3D légère et les transitions avec Motion, GSAP, Rive ou Spline. Utiliser Claude ou Codex pour produire et vérifier le code, sans sacrifier vitesse, lisibilité ni conversion.",
+    deliverables: ["Direction artistique + maquette", "Design system + micro-interactions", "Site 4 à 7 pages responsive", "SEO, performance + tracking"],
     kpis: "Demandes reçues, appels, conversion des formulaires, vitesse et positions locales",
-    start: "Audit gratuit puis maquette de la page d’accueil",
+    start: "Audit puis concept de page d’accueil avec un hero fort et une interaction signature",
     level: "Débutant +",
-    tools: ["Claude", "Codex", "Arena.ai", "GitHub", "WordPress + Bricks", "Webflow ou Framer", "Figma", "Google Search Console", "Calendly ou Tally", "Plausible ou GA4"],
+    tools: ["Claude", "Codex", "Arena.ai", "21st.dev", "HorizonX", "Figma", "Framer ou Webflow", "shadcn/ui", "Aceternity UI", "Magic UI", "Motion", "GSAP", "Rive", "Spline", "Three.js", "Awwwards", "Godly", "Mobbin", "GitHub", "PageSpeed Insights"],
     price: "One page 300–500 € · Vitrine 600–1 000 € · E-commerce starter 1 200–2 000 €",
   },
   {
@@ -384,6 +384,7 @@ export default function Home() {
             <div className="service-head"><div><span>Niveau · {service.level}</span><h3>{service.name}</h3></div><div className="service-price"><small>PRIX CONSEILLÉS POUR DÉMARRER</small><b>{service.price}</b></div></div>
             <p className="service-result">“{service.result}”</p>
             <div className="detail-grid"><div><small>À QUI LE VENDRE</small><p>{service.clients}</p></div><div><small>COMMENT SE FORMER</small><p>{service.learn}</p></div><div><small>OUTILS À UTILISER</small><div className="tool-list">{service.tools.map(item => <span key={item}>{item}</span>)}</div></div><div><small>PREMIÈRE OFFRE À PROPOSER</small><p>{service.start}</p></div><div><small>LIVRABLES</small><ul>{service.deliverables.map(item => <li key={item}>{item}</li>)}</ul></div><div><small>KPI À SUIVRE</small><p>{service.kpis}</p></div></div>
+            {service.id === "website" && <div className="wow-stack"><header><div><small>STACK DESIGN PREMIUM</small><h4>Créer l’effet wow sans casser le site.</h4></div><span>DA × MOTION × PERFORMANCE</span></header><div><article><b>01 · INSPIRATION</b><p>Awwwards, Godly et Mobbin pour analyser les compositions, pas pour copier.</p></article><article><b>02 · UI & ASSETS</b><p>21st.dev, HorizonX, shadcn/ui, Aceternity et Magic UI pour accélérer une base qualitative.</p></article><article><b>03 · MOUVEMENT</b><p>Motion ou GSAP pour les transitions, le scroll, les reveals et les micro-interactions.</p></article><article><b>04 · IMMERSION</b><p>Rive pour l’illustration interactive, Spline ou Three.js pour une 3D légère et utile.</p></article><article><b>05 · FINITION</b><p>Typographie, rythme, contrastes, images, responsive précis et cohérence du design system.</p></article><article><b>06 · CONTRÔLE</b><p>PageSpeed, accessibilité et test mobile : un effet wow lent ou illisible n’est pas premium.</p></article></div></div>}
           </article>
         </div>
         <div className="decision-strip"><b>Règle de choix</b><span>Si tu ne peux pas expliquer le résultat, les livrables, les KPI et le délai en 60 secondes, l’offre n’est pas encore prête.</span></div>
