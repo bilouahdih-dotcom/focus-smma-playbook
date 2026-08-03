@@ -24,9 +24,9 @@ p { line-height: 1.65; }
 
 .topbar { height: 92px; padding: 0 3.2vw; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; background: rgba(255,253,249,.94); border-bottom: 1px solid rgba(0,0,0,.08); backdrop-filter: blur(14px); }
 .brand { display: inline-flex; align-items: center; line-height: 1; }
-.brand-lockup { display: inline-flex; align-items: center; gap: 13px; }
-.focus-wordmark { position: relative; display: inline-flex; align-items: baseline; color: #050505; font-size: 31px; font-weight: 900; letter-spacing: -.075em; }.focus-wordmark i { position: relative; font-style: normal; }.focus-wordmark i::after { content: ""; position: absolute; width: 8px; height: 8px; left: 1px; bottom: -5px; background: #050505; clip-path: polygon(0 0,100% 0,0 100%); }
-.brand-signature { padding-left: 13px; border-left: 1px solid #d8d3ca; color: #8a857c; font: 700 8px/1.25 var(--font-geist-mono); letter-spacing: .08em; }.brand-signature b { display: block; margin-top: 3px; color: var(--gold-dark); font-size: 10px; }
+.brand-lockup { display: inline-flex; align-items: center; gap: 13px; white-space: nowrap; }
+.focus-wordmark { display: inline-block; color: #050505; font: 900 31px/.9 "Arial Black", Arial, Helvetica, sans-serif; letter-spacing: -.065em; }
+.brand-signature { padding-left: 13px; border-left: 1px solid #d8d3ca; color: #8a857c; font: 700 8px/1.25 var(--font-geist-mono); letter-spacing: .08em; white-space: nowrap; }.brand-signature b { display: block; margin-top: 3px; color: var(--gold-dark); font-size: 10px; }
 .nav-links { display: flex; gap: 30px; font-size: 14px; font-weight: 720; }
 .nav-links a { position: relative; }
 .nav-links a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -8px; height: 2px; background: var(--gold); transition: .25s; }

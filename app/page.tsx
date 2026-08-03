@@ -253,7 +253,7 @@ function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title: string
 function BrandLogo() {
   return (
     <span className="brand-lockup">
-      <span className="focus-wordmark"><i>F</i>ocus</span>
+      <span className="focus-wordmark">Focus</span>
       <span className="brand-signature">PROPULSÉ PAR <b>BILOUX</b></span>
     </span>
   );
