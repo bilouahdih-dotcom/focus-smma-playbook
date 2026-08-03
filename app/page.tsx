@@ -250,6 +250,15 @@ function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title: string
   );
 }
 
+function BrandLogo() {
+  return (
+    <span className="brand-lockup">
+      <span className="brand-mark" aria-hidden="true"><i /><i /><i /></span>
+      <span className="brand-name"><b>SMMA</b><em>/OS</em></span>
+    </span>
+  );
+}
+
 export default function Home() {
   const [activeService, setActiveService] = useState("website");
   const [objectionFilter, setObjectionFilter] = useState("Tous");
@@ -283,12 +292,12 @@ export default function Home() {
     window.localStorage.setItem("focus-smma-plan", JSON.stringify(next));
   };
 
-  const planText = `MON PLAN D'AGENCE — FOCUS\n\nService : ${plan.service || "À définir"}\nCible : ${plan.cible || "À définir"}\nPromesse : ${plan.promesse || "À définir"}\nPrix pilote : ${plan.prix || "À définir"}\nVolume hebdomadaire : ${plan.volume || "À définir"}\nDate de lancement : ${plan.date || "À définir"}\n\nRègle : une offre, une cible, 90 jours d'exécution.`;
+  const planText = `MON PLAN D'AGENCE — SMMA/OS\n\nService : ${plan.service || "À définir"}\nCible : ${plan.cible || "À définir"}\nPromesse : ${plan.promesse || "À définir"}\nPrix pilote : ${plan.prix || "À définir"}\nVolume hebdomadaire : ${plan.volume || "À définir"}\nDate de lancement : ${plan.date || "À définir"}\n\nRègle : une offre, une cible, 90 jours d'exécution.`;
 
   return (
     <main>
       <header className="topbar">
-        <a className="brand" href="#top" aria-label="Focus, retour en haut"><span>F</span>ocus</a>
+        <a className="brand" href="#top" aria-label="SMMA OS, retour en haut"><BrandLogo /></a>
         <nav className={menuOpen ? "nav-links open" : "nav-links"}>
           <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
           <a href="#prospection" onClick={() => setMenuOpen(false)}>Prospection</a>
@@ -305,12 +314,12 @@ export default function Home() {
         <div className="guide-dots" />
         <div className="cover-shell">
           <aside className="cover-spine" aria-label="Informations du guide">
-            <span>FOCUS</span>
+            <span>SMMA/OS</span>
             <strong>PLAYBOOK<br/>SMMA</strong>
             <small>ÉDITION 2026 · FR</small>
           </aside>
           <div className="cover-main">
-            <div className="cover-breadcrumb"><span>RESSOURCE FOCUS</span><i>•</i><span>GUIDE OPÉRATIONNEL</span></div>
+            <div className="cover-breadcrumb"><span>SMMA/OS</span><i>•</i><span>GUIDE OPÉRATIONNEL</span></div>
             <h1>Construis une agence<br/><em>qui sait vendre.</em></h1>
             <p>Un système complet pour choisir ton service, te former, cibler les bonnes entreprises, prospecter par téléphone ou sur le terrain, closer et livrer proprement.</p>
             <div className="cover-actions">
@@ -484,7 +493,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="footer"><a className="brand" href="#top"><span>F</span>ocus</a><p>Playbook SMMA · Une ressource opérationnelle, pas une promesse de résultat.</p><a href="#top">RETOUR EN HAUT ↑</a></footer>
+      <footer className="footer"><a className="brand" href="#top"><BrandLogo /></a><p>Playbook SMMA · Une ressource opérationnelle, pas une promesse de résultat.</p><a href="#top">RETOUR EN HAUT ↑</a></footer>
     </main>
   );
 }
