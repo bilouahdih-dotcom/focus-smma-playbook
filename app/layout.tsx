@@ -3,18 +3,18 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bilouahdih-dotcom.github.io/focus-smma-playbook/"),
-  title: "SMMA/OS — Le Playbook SMMA complet",
-  description: "Services, formation, ciblage, cold call, démarchage physique, objections, closing, livraison et plan 90 jours.",
+  title: "SMMA/OS — Le Playbook SMMA complet pour débutants",
+  description: "Le guide SMMA sans prérequis : services, formation, ciblage, cold call, démarchage physique, objections, vente et livraison.",
   icons: { icon: "./favicon.svg", shortcut: "./favicon.svg" },
   openGraph: {
-    title: "SMMA/OS — Le Playbook SMMA complet",
-    description: "Une offre. Une cible. Une méthode. Le guide opérationnel pour construire une agence vendable.",
+    title: "SMMA/OS — Le Playbook SMMA pour débutants",
+    description: "Aucun prérequis. Une offre, une cible et une méthode expliquées depuis zéro pour construire une agence vendable.",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "SMMA/OS — Le Playbook SMMA complet",
-    description: "Services, scripts, objections, closing et plan 90 jours.",
+    title: "SMMA/OS — Le Playbook SMMA pour débutants",
+    description: "Le guide sans prérequis : services, scripts, objections, vente et plan d’action.",
   },
 };
 

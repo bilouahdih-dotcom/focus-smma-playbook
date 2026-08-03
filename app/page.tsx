@@ -376,17 +376,17 @@ export default function Home() {
             <small>ÉDITION 2026 · FR</small>
           </aside>
           <div className="cover-main">
-            <div className="cover-breadcrumb"><span>SMMA/OS</span><i>•</i><span>GUIDE OPÉRATIONNEL</span></div>
+            <div className="cover-breadcrumb"><span>SMMA/OS</span><i>•</i><span>GUIDE OPÉRATIONNEL</span><strong>SPÉCIAL DÉBUTANTS</strong></div>
             <h1>Construis une agence<br/><em>qui sait vendre.</em></h1>
-            <p>Un système complet pour choisir ton service, te former, cibler les bonnes entreprises, prospecter par téléphone ou sur le terrain, closer et livrer proprement.</p>
+            <p>Un guide conçu pour les débutants, sans prérequis : chaque service, outil et étape est expliqué depuis zéro pour apprendre à prospecter, vendre et livrer proprement.</p>
             <div className="cover-actions">
               <a className="gold-button" href="#modules">COMMENCER LE GUIDE <span>→</span></a>
               <a className="text-link" href="#objections">ALLER AUX OBJECTIONS ↓</a>
             </div>
-            <div className="cover-meta"><span><b>13</b> modules</span><span><b>{services.length}</b> services</span><span><b>16</b> objections</span><span><b>90</b> jours d’exécution</span></div>
+            <div className="cover-meta"><span><b>13</b> modules</span><span><b>{services.length}</b> services</span><span><b>16</b> objections</span><span><b>0</b> prérequis</span></div>
           </div>
           <article className="start-panel">
-            <header><span>01</span><b>COMMENCE ICI</b><i>GUIDE</i></header>
+            <header><span>01</span><b>COMMENCE ICI</b><i>DÉBUTANT</i></header>
             <h2>Ta première semaine.</h2>
             <ol>
               <li><span>01</span><p><b>Choisis un seul service</b><small>Celui que tu peux apprendre et montrer.</small></p></li>
@@ -400,7 +400,7 @@ export default function Home() {
       </section>
 
       <section className="content-section intro" id="modules">
-        <SectionTitle eyebrow="00 — Mode d’emploi" title="Le chemin le plus court vers une agence vendable." text="Coche chaque module après l’avoir compris et appliqué. Ta progression reste enregistrée sur cet appareil." />
+        <SectionTitle eyebrow="00 — Mode d’emploi pour débutants" title="Le chemin le plus court vers une agence vendable." text="Aucun prérequis : avance dans l’ordre, applique les exemples et coche chaque module après l’avoir compris. Ta progression reste enregistrée sur cet appareil." />
         <div className="progress-dashboard">
           <div className="progress-ring" style={{ background: `conic-gradient(var(--gold) ${progress * 3.6}deg, #292929 0deg)` }}><div><strong>{progress}%</strong><span>COMPLÉTÉ</span></div></div>
           <div className="progress-summary"><small>SAUVEGARDE AUTOMATIQUE ACTIVE</small><h3>{progress === 100 ? "Playbook terminé." : nextModule ? `Prochaine étape : ${nextModule[1]}` : "Choisis ta prochaine étape."}</h3><p>{lastSaved ? `Dernière sauvegarde : ${new Date(lastSaved).toLocaleString("fr-FR", { dateStyle: "medium", timeStyle: "short" })}` : "Ta progression sera sauvegardée dès que tu valides un module."}</p><div className="progress-track"><div style={{ width: `${progress}%` }} /></div></div>
