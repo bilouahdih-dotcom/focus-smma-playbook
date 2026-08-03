@@ -259,18 +259,35 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="hero" id="top">
-        <div className="dot-grid" />
-        <div className="float-card card-green"><span className="live">OBJECTIF</span><b>15 appels</b><small>PAR JOUR</small><i>→ 3 conversations</i><i>→ 1 rendez-vous</i></div>
-        <div className="float-card card-black"><span className="terminal-dots">● ● ●</span><code>$ init_focus()</code><strong>✓ Prêt à vendre</strong></div>
-        <div className="float-card card-blue"><span className="live">TERRAIN</span><b>10 visites</b><small>PAR SEMAINE</small><div className="mini-line" /></div>
-        <div className="float-card card-gold"><span>PIPELINE</span><b>50 → 10 → 3</b><small>PROSPECTS · RDV · CLIENTS</small><div className="bars"><i/><i/><i/><i/><i/><i/></div></div>
-        <div className="hero-copy">
-          <span className="kicker">Le guide complet offert après le live</span>
-          <h1><span>SMMA</span><em>PLAYBOOK.</em></h1>
-          <p><strong>Une offre. Une cible. Une méthode.</strong> Des compétences jusqu’au premier client — sans blabla.</p>
-          <a className="gold-button" href="#modules">OUVRIR LE PLAYBOOK <span>→</span></a>
-          <div className="hero-stats"><div><b>7</b><span>SERVICES</span></div><div><b>13</b><span>MODULES</span></div><div><b>16</b><span>OBJECTIONS</span></div><div><b>90</b><span>JOURS</span></div></div>
+      <section className="guide-cover" id="top">
+        <div className="guide-dots" />
+        <div className="cover-shell">
+          <aside className="cover-spine" aria-label="Informations du guide">
+            <span>FOCUS</span>
+            <strong>PLAYBOOK<br/>SMMA</strong>
+            <small>ÉDITION 2026 · FR</small>
+          </aside>
+          <div className="cover-main">
+            <div className="cover-breadcrumb"><span>RESSOURCE FOCUS</span><i>•</i><span>GUIDE OPÉRATIONNEL</span></div>
+            <h1>Construis une agence<br/><em>qui sait vendre.</em></h1>
+            <p>Un système complet pour choisir ton service, te former, cibler les bonnes entreprises, prospecter par téléphone ou sur le terrain, closer et livrer proprement.</p>
+            <div className="cover-actions">
+              <a className="gold-button" href="#modules">COMMENCER LE GUIDE <span>→</span></a>
+              <a className="text-link" href="#objections">ALLER AUX OBJECTIONS ↓</a>
+            </div>
+            <div className="cover-meta"><span><b>13</b> modules</span><span><b>7</b> services</span><span><b>16</b> objections</span><span><b>90</b> jours d’exécution</span></div>
+          </div>
+          <article className="start-panel">
+            <header><span>01</span><b>COMMENCE ICI</b><i>GUIDE</i></header>
+            <h2>Ta première semaine.</h2>
+            <ol>
+              <li><span>01</span><p><b>Choisis un seul service</b><small>Celui que tu peux apprendre et montrer.</small></p></li>
+              <li><span>02</span><p><b>Choisis une cible précise</b><small>Avec un problème visible et rentable.</small></p></li>
+              <li><span>03</span><p><b>Construis une preuve</b><small>Audit, cas test ou pilote encadré.</small></p></li>
+              <li><span>04</span><p><b>Lance les conversations</b><small>Warm call, cold call et terrain.</small></p></li>
+            </ol>
+            <footer><span>PROGRESSION ACTUELLE</span><b>{progress}%</b><div><i style={{ width: `${progress}%` }} /></div></footer>
+          </article>
         </div>
       </section>
 
