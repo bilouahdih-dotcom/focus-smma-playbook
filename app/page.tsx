@@ -12,85 +12,127 @@ type Service = {
   kpis: string;
   start: string;
   level: string;
+  tools: string[];
+  price: string;
 };
 
 const services: Service[] = [
   {
-    id: "meta",
-    name: "Meta Ads",
-    result: "Générer des demandes qualifiées et mesurables.",
-    clients: "Cliniques, salles de sport, artisans à panier élevé, beauté premium, centres de formation.",
-    learn: "Meta Blueprint, création publicitaire, tracking, lecture des chiffres et qualification des leads.",
-    deliverables: ["Audit du compte", "Campagnes + créas", "Suivi hebdomadaire", "Tableau de bord"],
-    kpis: "Coût par lead, taux de contact, taux de RDV, ventes attribuées",
-    start: "Pilote 30 jours + budget média payé par le client",
-    level: "Intermédiaire",
-  },
-  {
-    id: "google",
-    name: "Google Ads",
-    result: "Capter les prospects qui cherchent déjà la prestation.",
-    clients: "Plombiers, serruriers, avocats, déménageurs, garages, dentistes, services locaux urgents.",
-    learn: "Google Skillshop, mots-clés, pages d’atterrissage, appels suivis et exclusions de recherche.",
-    deliverables: ["Étude des requêtes", "Campagnes Search", "Suivi des appels", "Optimisation mensuelle"],
-    kpis: "Coût par appel, taux de conversion, part d’impressions, chiffre d’affaires",
-    start: "Audit + campagne locale sur une zone précise",
-    level: "Intermédiaire",
-  },
-  {
-    id: "video",
-    name: "Vidéos courtes",
-    result: "Créer une présence régulière qui nourrit la confiance.",
-    clients: "Restaurants, salles de sport, agents immobiliers, commerces, coachs, métiers visuels.",
-    learn: "Hook, storyboard, tournage smartphone, montage rythmé, sous-titres et analyse de rétention.",
-    deliverables: ["Calendrier éditorial", "1 journée de tournage", "8 à 16 vidéos", "Bilan mensuel"],
-    kpis: "Rétention, portée locale, visites profil, demandes entrantes",
-    start: "Pack de 8 vidéos tournées en une demi-journée",
-    level: "Débutant",
-  },
-  {
-    id: "creative",
-    name: "Créatives publicitaires",
-    result: "Donner aux campagnes de nouvelles publicités qui convertissent.",
-    clients: "E-commerce, infopreneurs, marques locales, cliniques et annonceurs déjà actifs.",
-    learn: "Angles, hooks, scripts UGC, montage direct-response, bibliothèque de tests et reporting créatif.",
-    deliverables: ["Recherche d’angles", "Scripts", "8 à 20 variations", "Rapport gagnants/perdants"],
-    kpis: "CTR, coût par résultat, taux d’arrêt, durée de vie des créas",
-    start: "Sprint de 10 variations sur 3 angles",
+    id: "website",
+    name: "Site internet",
+    result: "Transformer la présence en ligne en outil de confiance et de prise de contact.",
+    clients: "Artisans, restaurants, cabinets, indépendants, salles de sport, commerces et entreprises dont le site est absent, lent ou dépassé.",
+    learn: "Maîtriser une seule plateforme, reproduire trois sites, apprendre responsive, copywriting, SEO local, formulaires et mise en ligne.",
+    deliverables: ["Arborescence + maquette", "Site 4 à 7 pages", "Formulaire ou réservation", "SEO technique de base"],
+    kpis: "Demandes reçues, appels, conversion des formulaires, vitesse et positions locales",
+    start: "Audit gratuit puis maquette de la page d’accueil",
     level: "Débutant +",
+    tools: ["WordPress + Bricks", "Webflow ou Framer", "Figma", "Google Search Console", "Calendly ou Tally", "Plausible ou GA4"],
+    price: "900–2 500 € le site · 49–149 €/mois de maintenance",
+  },
+  {
+    id: "nfc",
+    name: "Plaques NFC & avis",
+    result: "Faciliter les avis Google, le partage de coordonnées ou l’accès à une carte digitale en un geste.",
+    clients: "Restaurants, hôtels, coiffeurs, instituts, garages, cabinets, agents immobiliers, événements et commerces physiques.",
+    learn: "Comprendre les puces NTAG, programmer une URL, créer une page mobile, installer un parcours d’avis conforme et tester sur iOS/Android.",
+    deliverables: ["Plaque ou support NFC", "QR code de secours", "Page mobile", "Installation + mode d’emploi"],
+    kpis: "Scans, clics, nouveaux avis, note moyenne et taux de conversion de la page",
+    start: "Démonstration physique puis pack pilote sur un établissement",
+    level: "Débutant",
+    tools: ["NFC Tools", "Puce NTAG215/216", "Canva ou Figma", "Carrd ou Framer", "Google Business Profile", "Bitly ou Dub.co"],
+    price: "150–500 € par établissement · 500–1 500 € en pack multi-sites",
+  },
+  {
+    id: "branding",
+    name: "Branding & identité",
+    result: "Rendre l’entreprise reconnaissable et cohérente sur tous ses points de contact.",
+    clients: "Nouvelles entreprises, restaurants, marques e-commerce, cabinets, artisans premium et commerces en repositionnement.",
+    learn: "Étudier stratégie de marque, moodboards, typographie, couleur, composition, systèmes de logo et présentation client.",
+    deliverables: ["Positionnement + moodboard", "Logo et variantes", "Palette + typographies", "Mini charte + modèles"],
+    kpis: "Cohérence des supports, délai de production, utilisation du kit et perception client",
+    start: "Atelier de positionnement de 90 minutes",
+    level: "Intermédiaire",
+    tools: ["Figma", "Illustrator ou Affinity", "Canva Pro", "Coolors", "Fontshare", "Notion"],
+    price: "600–2 500 € l’identité · 1 500–5 000 € pour un système complet",
+  },
+  {
+    id: "automation",
+    name: "Automatisation de tâches",
+    result: "Supprimer les tâches répétitives et éviter les oublis entre les outils de l’entreprise.",
+    clients: "Agences, cabinets, recruteurs, organismes de formation, entreprises de services, e-commerce et équipes administratives.",
+    learn: "Cartographier un processus, apprendre webhooks et API sans code, construire des scénarios, gérer erreurs, sécurité et documentation.",
+    deliverables: ["Audit des processus", "1 à 3 automatisations", "Journal d’erreurs", "Documentation + formation"],
+    kpis: "Heures économisées, erreurs évitées, délai de traitement et taux de réussite des scénarios",
+    start: "Audit de 45 minutes sur une tâche répétée chaque semaine",
+    level: "Intermédiaire",
+    tools: ["Make", "Zapier ou n8n", "Airtable", "Notion", "Google Workspace", "Loom"],
+    price: "800–4 000 € l’installation · 100–600 €/mois de suivi",
+  },
+  {
+    id: "landing",
+    name: "Landing page & tunnel",
+    result: "Transformer une offre précise en demandes, réservations ou appels qualifiés.",
+    clients: "Coachs, centres de formation, artisans à panier élevé, cabinets, agences et entreprises lançant une offre.",
+    learn: "Copywriting, hiérarchie de page, formulaires, calendrier, preuve, analytics et tests de conversion.",
+    deliverables: ["Page de conversion", "Formulaire qualifiant", "Calendrier", "Tracking + tableau de bord"],
+    kpis: "Taux de conversion, coût par demande, présence au rendez-vous et ventes",
+    start: "Sprint de 7 jours sur une seule offre",
+    level: "Débutant +",
+    tools: ["Framer ou Webflow", "Systeme.io", "Tally", "Calendly", "Google Tag Manager", "Microsoft Clarity"],
+    price: "500–1 500 € la page · 49–199 €/mois d’optimisation",
   },
   {
     id: "maps",
     name: "Visibilité Google locale",
     result: "Faire remonter l’établissement dans Maps et convertir les recherches locales.",
     clients: "Restaurants, garages, coiffeurs, instituts, cabinets, artisans et commerces de proximité.",
-    learn: "Google Business Profile, catégories, avis, photos, citations locales et pages de zone.",
-    deliverables: ["Audit fiche", "Optimisation complète", "Système d’avis", "Suivi des positions"],
-    kpis: "Appels, itinéraires, positions locales, nouveaux avis",
+    learn: "Google Business Profile, catégories, avis, photos, citations locales, pages de zone et lecture des statistiques.",
+    deliverables: ["Audit de la fiche", "Optimisation complète", "Système d’avis", "Suivi des positions"],
+    kpis: "Appels, itinéraires, clics site, positions locales et nouveaux avis",
     start: "Mise à niveau en 14 jours puis suivi mensuel",
     level: "Débutant",
+    tools: ["Google Business Profile", "Local Falcon ou Localo", "Google Search Console", "PlePer", "Canva", "Looker Studio"],
+    price: "300–900 € l’optimisation · 150–500 €/mois de suivi",
   },
   {
     id: "reactivation",
-    name: "Réactivation clients",
-    result: "Transformer l’ancienne base clients en nouveaux rendez-vous.",
-    clients: "Instituts, garages, salles de sport, cabinets, centres de formation et entreprises avec un fichier client.",
-    learn: "Segmentation CRM, offre de retour, appels de réactivation, SMS conforme et prise de rendez-vous.",
-    deliverables: ["Nettoyage de base", "Segmentation", "Script d’appel/SMS", "Suivi des réservations"],
-    kpis: "Contacts joints, RDV pris, taux de retour, revenu réactivé",
-    start: "Sprint 10 jours sur un segment dormant",
-    level: "Débutant",
+    name: "CRM & réactivation",
+    result: "Transformer les contacts oubliés en rendez-vous et structurer le suivi commercial.",
+    clients: "Instituts, garages, salles de sport, cabinets, centres de formation et entreprises possédant déjà une base clients.",
+    learn: "Pipeline CRM, nettoyage et segmentation, scripts d’appel, SMS conforme, rappels, prise de rendez-vous et attribution des ventes.",
+    deliverables: ["Pipeline configuré", "Base segmentée", "Scripts appel/SMS", "Campagne + suivi des RDV"],
+    kpis: "Contacts joints, rendez-vous, taux de retour, ventes et revenu réactivé",
+    start: "Sprint de 10 jours sur un segment dormant",
+    level: "Intermédiaire",
+    tools: ["HubSpot ou Pipedrive", "Airtable", "Aircall", "Twilio", "Calendly", "Make"],
+    price: "750–2 500 € le sprint · 200–800 €/mois de gestion",
   },
   {
-    id: "funnel",
-    name: "Landing page + CRM",
-    result: "Ne plus perdre les prospects entre le clic, l’appel et le rendez-vous.",
-    clients: "Prestataires à panier élevé qui génèrent déjà du trafic ou des demandes.",
-    learn: "Copywriting, formulaire, calendrier, pipeline CRM, automatisations et mesure de conversion.",
-    deliverables: ["Page de conversion", "Formulaire qualifiant", "Pipeline", "Relances automatisées"],
-    kpis: "Conversion de page, délai de rappel, présence au RDV, taux de closing",
-    start: "Installation facturée + maintenance légère",
+    id: "video",
+    name: "Vidéos courtes",
+    result: "Créer une présence régulière qui montre le savoir-faire et nourrit la confiance.",
+    clients: "Restaurants, salles de sport, agents immobiliers, commerces, coachs et métiers visuels.",
+    learn: "Hooks, storyboard, tournage smartphone, lumière, son, montage rythmé, sous-titres et analyse de rétention.",
+    deliverables: ["Calendrier éditorial", "Journée de tournage", "8 à 16 vidéos", "Bilan mensuel"],
+    kpis: "Rétention, portée locale, visites du profil et demandes entrantes",
+    start: "Pack de 8 vidéos tournées en une demi-journée",
+    level: "Débutant",
+    tools: ["Smartphone", "DJI Mic ou Rode", "CapCut ou Premiere Pro", "Canva", "Notion", "Google Drive"],
+    price: "600–2 500 €/mois selon volume, tournage et montage",
+  },
+  {
+    id: "google",
+    name: "Google Ads Search",
+    result: "Capter les prospects qui recherchent déjà la prestation.",
+    clients: "Plombiers, serruriers, avocats, déménageurs, garages, dentistes et services locaux à forte intention.",
+    learn: "Google Skillshop, mots-clés, annonces, pages d’atterrissage, conversions, appels suivis et exclusions de recherche.",
+    deliverables: ["Étude des requêtes", "Campagnes Search", "Tracking des appels", "Optimisation mensuelle"],
+    kpis: "Coût par appel, taux de conversion, part d’impressions et ventes attribuées",
+    start: "Audit + campagne sur une zone et un service précis",
     level: "Intermédiaire",
+    tools: ["Google Ads", "Keyword Planner", "Google Tag Manager", "GA4", "CallRail", "Looker Studio"],
+    price: "500–1 500 € de setup · 400–1 500 €/mois hors budget média",
   },
 ];
 
@@ -209,7 +251,7 @@ function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title: string
 }
 
 export default function Home() {
-  const [activeService, setActiveService] = useState("meta");
+  const [activeService, setActiveService] = useState("website");
   const [objectionFilter, setObjectionFilter] = useState("Tous");
   const [checked, setChecked] = useState<number[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -275,7 +317,7 @@ export default function Home() {
               <a className="gold-button" href="#modules">COMMENCER LE GUIDE <span>→</span></a>
               <a className="text-link" href="#objections">ALLER AUX OBJECTIONS ↓</a>
             </div>
-            <div className="cover-meta"><span><b>13</b> modules</span><span><b>7</b> services</span><span><b>16</b> objections</span><span><b>90</b> jours d’exécution</span></div>
+            <div className="cover-meta"><span><b>13</b> modules</span><span><b>{services.length}</b> services</span><span><b>16</b> objections</span><span><b>90</b> jours d’exécution</span></div>
           </div>
           <article className="start-panel">
             <header><span>01</span><b>COMMENCE ICI</b><i>GUIDE</i></header>
@@ -317,15 +359,15 @@ export default function Home() {
       </section>
 
       <section className="content-section" id="services">
-        <SectionTitle eyebrow="02 — Choisir un service" title="Sept services réellement vendables." text="Commence avec un seul service principal. Choisis-le selon la demande du marché, ta capacité à le livrer et la vitesse à laquelle tu peux produire une preuve." />
+        <SectionTitle eyebrow="02 — Choisir un service" title="Neuf services réellement vendables." text="Commence avec un seul service principal. Pour chacun, tu trouveras la cible, les outils, la formation, les livrables et une fourchette de prix indicative." />
         <div className="service-layout">
           <div className="service-tabs" role="tablist">
             {services.map((item, index) => <button className={activeService === item.id ? "active" : ""} key={item.id} onClick={() => setActiveService(item.id)} type="button"><span>0{index + 1}</span>{item.name}</button>)}
           </div>
           <article className="service-panel">
-            <div className="service-head"><div><span>Niveau · {service.level}</span><h3>{service.name}</h3></div><b>{service.start}</b></div>
+            <div className="service-head"><div><span>Niveau · {service.level}</span><h3>{service.name}</h3></div><div className="service-price"><small>TARIF INDICATIF</small><b>{service.price}</b></div></div>
             <p className="service-result">“{service.result}”</p>
-            <div className="detail-grid"><div><small>À QUI LE VENDRE</small><p>{service.clients}</p></div><div><small>COMMENT SE FORMER</small><p>{service.learn}</p></div><div><small>LIVRABLES</small><ul>{service.deliverables.map(item => <li key={item}>{item}</li>)}</ul></div><div><small>KPI À SUIVRE</small><p>{service.kpis}</p></div></div>
+            <div className="detail-grid"><div><small>À QUI LE VENDRE</small><p>{service.clients}</p></div><div><small>COMMENT SE FORMER</small><p>{service.learn}</p></div><div><small>OUTILS À UTILISER</small><div className="tool-list">{service.tools.map(item => <span key={item}>{item}</span>)}</div></div><div><small>PREMIÈRE OFFRE À PROPOSER</small><p>{service.start}</p></div><div><small>LIVRABLES</small><ul>{service.deliverables.map(item => <li key={item}>{item}</li>)}</ul></div><div><small>KPI À SUIVRE</small><p>{service.kpis}</p></div></div>
           </article>
         </div>
         <div className="decision-strip"><b>Règle de choix</b><span>Si tu ne peux pas expliquer le résultat, les livrables, les KPI et le délai en 60 secondes, l’offre n’est pas encore prête.</span></div>
@@ -337,7 +379,7 @@ export default function Home() {
           <div className="timeline">
             {trainingWeeks.map(item => <article key={item[0]}><span>{item[0]}</span><div><h3>{item[1]}</h3><p>{item[2]}</p></div></article>)}
           </div>
-          <div className="resource-row"><div><b>Google Skillshop</b><span>Pour Google Ads et Analytics</span></div><div><b>Meta Blueprint</b><span>Pour l’écosystème publicitaire Meta</span></div><div><b>HubSpot Academy</b><span>Pour CRM, vente et inbound</span></div><div><b>Pratique délibérée</b><span>Un cas test + une restitution orale par semaine</span></div></div>
+          <div className="resource-row"><div><b>Webflow University</b><span>Pour les sites, le responsive et les interactions</span></div><div><b>Make Academy</b><span>Pour les automatisations et les scénarios</span></div><div><b>Figma Learn</b><span>Pour le branding, les maquettes et les systèmes visuels</span></div><div><b>Google + HubSpot</b><span>Skillshop pour Ads, Academy pour CRM et vente</span></div></div>
         </div>
       </section>
 
@@ -432,7 +474,7 @@ export default function Home() {
             <label>Mon service principal<input value={plan.service} onChange={e => updatePlan("service", e.target.value)} placeholder="Ex. Google Ads local" /></label>
             <label>Ma cible<input value={plan.cible} onChange={e => updatePlan("cible", e.target.value)} placeholder="Ex. garages indépendants" /></label>
             <label className="wide">Ma promesse<textarea value={plan.promesse} onChange={e => updatePlan("promesse", e.target.value)} placeholder="J’aide [cible] à [résultat] grâce à [mécanisme]." /></label>
-            <label>Mon prix pilote<input value={plan.prix} onChange={e => updatePlan("prix", e.target.value)} placeholder="Ex. 750 € + budget média" /></label>
+            <label>Mon prix pilote<input value={plan.prix} onChange={e => updatePlan("prix", e.target.value)} placeholder="Ex. 1 200 € + 79 €/mois" /></label>
             <label>Mon volume hebdomadaire<input value={plan.volume} onChange={e => updatePlan("volume", e.target.value)} placeholder="Ex. 75 appels + 10 visites" /></label>
             <label className="wide">Ma date de lancement<input value={plan.date} onChange={e => updatePlan("date", e.target.value)} placeholder="Ex. lundi prochain à 9 h" /></label>
           </div>
