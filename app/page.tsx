@@ -27,7 +27,7 @@ const services: Service[] = [
     kpis: "Demandes reçues, appels, conversion des formulaires, vitesse et positions locales",
     start: "Audit gratuit puis maquette de la page d’accueil",
     level: "Débutant +",
-    tools: ["Claude", "Codex", "GitHub", "WordPress + Bricks", "Webflow ou Framer", "Figma", "Google Search Console", "Calendly ou Tally", "Plausible ou GA4"],
+    tools: ["Claude", "Codex", "LM Arena", "GitHub", "WordPress + Bricks", "Webflow ou Framer", "Figma", "Google Search Console", "Calendly ou Tally", "Plausible ou GA4"],
     price: "One page 300–500 € · Vitrine 600–1 000 € · E-commerce starter 1 200–2 000 €",
   },
   {
@@ -48,13 +48,13 @@ const services: Service[] = [
     name: "Branding & identité",
     result: "Rendre l’entreprise reconnaissable et cohérente sur tous ses points de contact.",
     clients: "Nouvelles entreprises, restaurants, marques e-commerce, cabinets, artisans premium et commerces en repositionnement.",
-    learn: "Étudier stratégie de marque, moodboards, typographie, couleur, composition, systèmes de logo et présentation client.",
-    deliverables: ["Positionnement + moodboard", "Logo et variantes", "Palette + typographies", "Mini charte + modèles"],
+    learn: "Étudier stratégie de marque, moodboards, typographie, couleur, composition, déclinaisons print et digitales, exports et présentation client. Construire une identité cohérente, pas seulement générer un logo.",
+    deliverables: ["Logo + déclinaisons", "Palette + typographies", "Charte graphique", "Flyer, carte et modèles"],
     kpis: "Cohérence des supports, délai de production, utilisation du kit et perception client",
-    start: "Atelier de positionnement de 90 minutes",
+    start: "Un pack défini par les supports réellement nécessaires : logo, charte, flyer et modèles",
     level: "Intermédiaire",
-    tools: ["Figma", "Illustrator ou Affinity", "Canva Pro", "Coolors", "Fontshare", "Notion"],
-    price: "Logo simple 80–150 € · Logo pro 180–350 € · Identité starter 350–700 €",
+    tools: ["Figma", "Illustrator ou Affinity", "Canva Pro", "Recraft ou Ideogram", "Adobe Firefly", "Coolors", "Fontshare", "LM Arena"],
+    price: "Logo seul 80–200 € · Identité visuelle 250–500 € · Pack charte + supports 500–900 €",
   },
   {
     id: "automation",
@@ -390,6 +390,15 @@ export default function Home() {
             {trainingWeeks.map(item => <article key={item[0]}><span>{item[0]}</span><div><h3>{item[1]}</h3><p>{item[2]}</p></div></article>)}
           </div>
           <div className="resource-row"><div><b>Webflow University</b><span>Pour les sites, le responsive et les interactions</span></div><div><b>Make Academy</b><span>Pour les automatisations et les scénarios</span></div><div><b>Figma Learn</b><span>Pour le branding, les maquettes et les systèmes visuels</span></div><div><b>Google + HubSpot</b><span>Skillshop pour Ads, Academy pour CRM et vente</span></div></div>
+          <article className="ai-live-card">
+            <div className="ai-live-head">
+              <span className="live-badge"><i /> EN DIRECT</span>
+              <div><small>MODÈLES IA EN TEMPS RÉEL</small><h3>LM Arena</h3></div>
+              <a href="https://lmarena.ai/leaderboard" target="_blank" rel="noreferrer">VOIR LE CLASSEMENT ↗</a>
+            </div>
+            <p>Les meilleurs modèles changent vite. Consulte les classements, puis compare deux modèles avec ton propre brief avant de choisir. Le classement est un repère communautaire, pas une vérité absolue : le meilleur outil dépend toujours de la tâche.</p>
+            <div className="ai-use-grid"><span><b>WEBDEV</b>Sites et code</span><span><b>VISION</b>Audits et analyse</span><span><b>IMAGE</b>Branding et visuels</span><span><b>TEXTE</b>Offres et scripts</span></div>
+          </article>
         </div>
       </section>
 
