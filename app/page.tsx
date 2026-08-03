@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 
 type Service = {
   id: string;
@@ -263,14 +263,21 @@ export default function Home() {
   const [activeService, setActiveService] = useState("website");
   const [objectionFilter, setObjectionFilter] = useState("Tous");
   const [checked, setChecked] = useState<number[]>([]);
+  const [lastSaved, setLastSaved] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [plan, setPlan] = useState({ service: "", cible: "", promesse: "", prix: "", volume: "", date: "" });
+  const backupInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const saved = window.localStorage.getItem("focus-smma-progress");
     const savedPlan = window.localStorage.getItem("focus-smma-plan");
-    if (saved) setChecked(JSON.parse(saved));
+    const savedAt = window.localStorage.getItem("focus-smma-last-saved");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      setChecked(Array.isArray(parsed) ? parsed : parsed.checked ?? []);
+    }
     if (savedPlan) setPlan(JSON.parse(savedPlan));
+    if (savedAt) setLastSaved(savedAt);
   }, []);
 
   const service = services.find((item) => item.id === activeService) ?? services[0];
@@ -279,17 +286,61 @@ export default function Home() {
     [objectionFilter],
   );
   const progress = Math.round((checked.length / modules.length) * 100);
+  const nextModule = modules.find((_, index) => !checked.includes(index));
+
+  const markSaved = () => {
+    const timestamp = new Date().toISOString();
+    setLastSaved(timestamp);
+    window.localStorage.setItem("focus-smma-last-saved", timestamp);
+  };
 
   const toggleModule = (index: number) => {
     const next = checked.includes(index) ? checked.filter((item) => item !== index) : [...checked, index];
     setChecked(next);
-    window.localStorage.setItem("focus-smma-progress", JSON.stringify(next));
+    window.localStorage.setItem("focus-smma-progress", JSON.stringify({ version: 2, checked: next }));
+    markSaved();
   };
 
   const updatePlan = (key: keyof typeof plan, value: string) => {
     const next = { ...plan, [key]: value };
     setPlan(next);
     window.localStorage.setItem("focus-smma-plan", JSON.stringify(next));
+    markSaved();
+  };
+
+  const exportBackup = () => {
+    const backup = JSON.stringify({ version: 2, exportedAt: new Date().toISOString(), checked, plan }, null, 2);
+    const url = URL.createObjectURL(new Blob([backup], { type: "application/json" }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `focus-smma-progression-${new Date().toISOString().slice(0, 10)}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const importBackup = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    try {
+      const backup = JSON.parse(await file.text());
+      const restoredChecked = Array.isArray(backup.checked) ? backup.checked.filter((item: unknown) => Number.isInteger(item) && Number(item) >= 0 && Number(item) < modules.length) : [];
+      const restoredPlan = backup.plan && typeof backup.plan === "object" ? { ...plan, ...backup.plan } : plan;
+      setChecked(restoredChecked);
+      setPlan(restoredPlan);
+      window.localStorage.setItem("focus-smma-progress", JSON.stringify({ version: 2, checked: restoredChecked }));
+      window.localStorage.setItem("focus-smma-plan", JSON.stringify(restoredPlan));
+      markSaved();
+    } catch {
+      window.alert("Cette sauvegarde n’est pas valide.");
+    }
+    event.target.value = "";
+  };
+
+  const resetProgress = () => {
+    if (!window.confirm("Réinitialiser les 13 modules ? Ton plan d’agence sera conservé.")) return;
+    setChecked([]);
+    window.localStorage.setItem("focus-smma-progress", JSON.stringify({ version: 2, checked: [] }));
+    markSaved();
   };
 
   const planText = `MON PLAN D'AGENCE — SMMA/OS\n\nService : ${plan.service || "À définir"}\nCible : ${plan.cible || "À définir"}\nPromesse : ${plan.promesse || "À définir"}\nPrix pilote : ${plan.prix || "À définir"}\nVolume hebdomadaire : ${plan.volume || "À définir"}\nDate de lancement : ${plan.date || "À définir"}\n\nRègle : une offre, une cible, 90 jours d'exécution.`;
@@ -350,11 +401,16 @@ export default function Home() {
 
       <section className="content-section intro" id="modules">
         <SectionTitle eyebrow="00 — Mode d’emploi" title="Le chemin le plus court vers une agence vendable." text="Coche chaque module après l’avoir compris et appliqué. Ta progression reste enregistrée sur cet appareil." />
-        <div className="progress-track"><div style={{ width: `${progress}%` }} /><span>{checked.length}/{modules.length} modules</span></div>
+        <div className="progress-dashboard">
+          <div className="progress-ring" style={{ background: `conic-gradient(var(--gold) ${progress * 3.6}deg, #292929 0deg)` }}><div><strong>{progress}%</strong><span>COMPLÉTÉ</span></div></div>
+          <div className="progress-summary"><small>SAUVEGARDE AUTOMATIQUE ACTIVE</small><h3>{progress === 100 ? "Playbook terminé." : nextModule ? `Prochaine étape : ${nextModule[1]}` : "Choisis ta prochaine étape."}</h3><p>{lastSaved ? `Dernière sauvegarde : ${new Date(lastSaved).toLocaleString("fr-FR", { dateStyle: "medium", timeStyle: "short" })}` : "Ta progression sera sauvegardée dès que tu valides un module."}</p><div className="progress-track"><div style={{ width: `${progress}%` }} /></div></div>
+          <div className="progress-stats"><div><b>{checked.length}</b><span>TERMINÉS</span></div><div><b>{modules.length - checked.length}</b><span>RESTANTS</span></div></div>
+          <div className="progress-actions"><button onClick={exportBackup} type="button">TÉLÉCHARGER LA SAUVEGARDE ↓</button><button onClick={() => backupInput.current?.click()} type="button">RESTAURER ↑</button><button className="reset-progress" onClick={resetProgress} type="button">RÉINITIALISER</button><input ref={backupInput} onChange={importBackup} type="file" accept="application/json,.json" hidden /></div>
+        </div>
         <div className="module-grid">
           {modules.map((item, index) => (
-            <button className={checked.includes(index) ? "module-card done" : "module-card"} key={item[0]} onClick={() => toggleModule(index)} type="button">
-              <span className="module-number">{item[0]}</span><div><b>{item[1]}</b><p>{item[2]}</p></div><i>{checked.includes(index) ? "✓" : "+"}</i>
+            <button aria-pressed={checked.includes(index)} className={checked.includes(index) ? "module-card done" : "module-card"} key={item[0]} onClick={() => toggleModule(index)} type="button">
+              <span className="module-number"><small>MODULE</small>{item[0]}</span><div><em>{checked.includes(index) ? "TERMINÉ" : "À FAIRE"}</em><b>{item[1]}</b><p>{item[2]}</p></div><i>{checked.includes(index) ? "✓" : "→"}</i>
             </button>
           ))}
         </div>
