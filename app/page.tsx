@@ -343,7 +343,7 @@ export default function Home() {
     markSaved();
   };
 
-  const planText = `MON PLAN D'AGENCE — SMMA/OS\n\nService : ${plan.service || "À définir"}\nCible : ${plan.cible || "À définir"}\nPromesse : ${plan.promesse || "À définir"}\nPrix pilote : ${plan.prix || "À définir"}\nVolume hebdomadaire : ${plan.volume || "À définir"}\nDate de lancement : ${plan.date || "À définir"}\n\nRègle : une offre, une cible, 90 jours d'exécution.`;
+  const planText = `MON PLAN D'AGENCE — FOCUS\n\nService : ${plan.service || "À définir"}\nCible : ${plan.cible || "À définir"}\nPromesse : ${plan.promesse || "À définir"}\nPrix pilote : ${plan.prix || "À définir"}\nVolume hebdomadaire : ${plan.volume || "À définir"}\nDate de lancement : ${plan.date || "À définir"}\n\nRègle : une offre, une cible, 90 jours d'exécution.`;
 
   return (
     <main>
@@ -371,12 +371,12 @@ export default function Home() {
         <div className="guide-dots" />
         <div className="cover-shell">
           <aside className="cover-spine" aria-label="Informations du guide">
-            <span>SMMA/OS</span>
+            <span>FOCUS</span>
             <strong>PLAYBOOK<br/>SMMA</strong>
             <small>ÉDITION 2026 · FR</small>
           </aside>
           <div className="cover-main">
-            <div className="cover-breadcrumb"><span>SMMA/OS</span><i>•</i><span>GUIDE OPÉRATIONNEL</span><strong>SPÉCIAL DÉBUTANTS</strong></div>
+            <div className="cover-breadcrumb"><span>FOCUS</span><i>•</i><span>GUIDE SMMA</span><strong>SPÉCIAL DÉBUTANTS</strong></div>
             <h1>Construis une agence<br/><em>qui sait vendre.</em></h1>
             <p>Un guide conçu pour les débutants, sans prérequis : chaque service, outil et étape est expliqué depuis zéro pour apprendre à prospecter, vendre et livrer proprement.</p>
             <div className="cover-actions">
@@ -569,7 +569,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="footer"><a className="brand" href="#top"><BrandLogo /></a><p>Playbook SMMA · Une ressource opérationnelle, pas une promesse de résultat.</p><a href="#top">RETOUR EN HAUT ↑</a></footer>
+      <footer className="footer"><a className="brand" href="#top"><BrandLogo /></a><p>Guide SMMA Focus · Propulsé par Biloux · Une ressource opérationnelle, pas une promesse de résultat.</p><a href="#top">RETOUR EN HAUT ↑</a></footer>
     </main>
   );
 }

@@ -3,18 +3,20 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bilouahdih-dotcom.github.io/focus-smma-playbook/"),
-  title: "SMMA/OS — Le Playbook SMMA complet pour débutants",
-  description: "Le guide SMMA sans prérequis : services, formation, ciblage, cold call, démarchage physique, objections, vente et livraison.",
+  applicationName: "Focus",
+  title: "Focus — Le guide SMMA complet pour débutants",
+  description: "Le guide SMMA de Focus, propulsé par Biloux : services, prospection, vente et livraison expliqués depuis zéro.",
   icons: { icon: "./favicon.svg", shortcut: "./favicon.svg" },
   openGraph: {
-    title: "SMMA/OS — Le Playbook SMMA pour débutants",
-    description: "Aucun prérequis. Une offre, une cible et une méthode expliquées depuis zéro pour construire une agence vendable.",
+    siteName: "Focus",
+    title: "Focus — Le guide SMMA pour débutants",
+    description: "La fiche complète de Focus, propulsée par Biloux. Apprends depuis zéro à choisir un service, prospecter, vendre et livrer.",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "SMMA/OS — Le Playbook SMMA pour débutants",
-    description: "Le guide sans prérequis : services, scripts, objections, vente et plan d’action.",
+    title: "Focus — Le guide SMMA pour débutants",
+    description: "La fiche complète de Focus, propulsée par Biloux : services, prospection, vente et plan d’action.",
   },
 };
 
