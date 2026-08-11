@@ -240,6 +240,9 @@ const modules = [
   ["22", "Contrôle qualité", "Vérifier chaque vente et chaque livraison avant envoi."],
   ["23", "Diagnostic terrain", "Relier un problème visible à une offre et à une preuve."],
   ["24", "Premier projet", "Piloter les quatorze premiers jours sans improviser."],
+  ["25", "Audit express", "Analyser une entreprise avec une grille simple et factuelle."],
+  ["26", "Preuve & portfolio", "Montrer sa compétence sans inventer de résultats."],
+  ["27", "Renouvellement", "Fidéliser, recommander et développer seulement ce qui est utile."],
 ];
 
 const quickChapters = [
@@ -256,6 +259,9 @@ const quickChapters = [
   { id: "qualite", number: "10", label: "Contrôle final" },
   { id: "diagnostic-terrain", number: "11", label: "Cas pratiques" },
   { id: "premier-projet", number: "12", label: "Premier projet" },
+  { id: "audit-express", number: "13", label: "Audit express" },
+  { id: "preuve-portfolio", number: "14", label: "Preuve" },
+  { id: "renouvellement", number: "15", label: "Renouvellement" },
 ];
 
 const marketStats = [
@@ -606,6 +612,104 @@ const firstProjectSprint = [
   { day: "J10–12", title: "Corriger", text: "Appliquer uniquement les retours compris dans le périmètre et faire valider par écrit.", output: "Version validée" },
   { day: "J13–14", title: "Lancer & transmettre", text: "Mettre en service, vérifier les premières actions, former le client et fixer la date du premier bilan.", output: "Livraison + suite" },
 ];
+
+const auditScorecard = [
+  { area: "Offre", zero: "On ne comprend pas ce qui est vendu.", one: "L’offre existe mais reste générale.", two: "Public, résultat et prochaine action sont clairs.", proof: "Titre, prestations, prix ou demande de devis" },
+  { area: "Confiance", zero: "Aucune preuve vérifiable.", one: "Quelques avis ou réalisations anciennes.", two: "Avis récents, cas, photos et informations cohérentes.", proof: "Avis, réalisations, mentions, coordonnées" },
+  { area: "Mobile", zero: "Le parcours est cassé ou illisible.", one: "Le site fonctionne mais demande des efforts.", two: "Lecture, navigation et action sont simples au téléphone.", proof: "Test sur un vrai téléphone, pas seulement une maquette" },
+  { area: "Visibilité", zero: "L’entreprise est difficile à trouver.", one: "Présence irrégulière ou mal renseignée.", two: "Fiches, pages et contenus correspondent aux recherches utiles.", proof: "Google, Maps, réseaux, recherches locales" },
+  { area: "Prise de contact", zero: "Aucun chemin évident.", one: "Un formulaire ou numéro peu visible.", two: "Une action principale claire, courte et testée.", proof: "Appel, formulaire, réservation ou visite" },
+  { area: "Vitesse de réponse", zero: "Les demandes restent sans réponse.", one: "Le suivi dépend d’une personne et de sa mémoire.", two: "Responsable, délai et rappels sont définis.", proof: "Test réel, historique CRM ou appels manqués" },
+  { area: "Vente", zero: "Aucun suivi après le premier échange.", one: "Relances manuelles et irrégulières.", two: "Étapes, prochaines actions et raisons de perte sont suivies.", proof: "Tableau, CRM, devis et relances" },
+  { area: "Mesure", zero: "Aucun chiffre de départ.", one: "Des chiffres existent mais ne guident pas les décisions.", two: "Quelques chiffres fiables sont revus à date fixe.", proof: "Demandes, rendez-vous, ventes, temps ou satisfaction" },
+];
+
+const proofLadder = [
+  { level: "01", name: "Exercice", status: "Sans client", action: "Reproduire un cas réaliste sur une entreprise fictive et expliquer chaque choix.", canSay: "Projet d’entraînement", neverSay: "Travail réalisé pour une vraie marque" },
+  { level: "02", name: "Audit public", status: "Sans accès privé", action: "Analyser uniquement ce qui est visible et distinguer les faits des hypothèses.", canSay: "Audit externe non commandé", neverSay: "J’ai identifié la cause certaine" },
+  { level: "03", name: "Démonstration", status: "Prototype", action: "Créer une petite version testable : page, automatisation, tableau ou identité.", canSay: "Concept conçu pour montrer la méthode", neverSay: "Résultat commercial obtenu" },
+  { level: "04", name: "Pilote", status: "Périmètre limité", action: "Travailler avec un vrai utilisateur, une durée courte, un objectif et des limites écrites.", canSay: "Pilote réalisé dans ce cadre", neverSay: "Résultat généralisable à tous" },
+  { level: "05", name: "Étude de cas", status: "Résultat documenté", action: "Comparer le point de départ, les actions, le résultat et les facteurs extérieurs.", canSay: "Résultat observé sur la période", neverSay: "Résultat garanti pour le prochain client" },
+  { level: "06", name: "Recommandation", status: "Confiance transférée", action: "Obtenir l’autorisation de citer le client, son témoignage et les éléments vérifiables.", canSay: "Témoignage authentique et autorisé", neverSay: "Logo ou citation utilisés sans accord" },
+];
+
+const renewalRhythm = [
+  { moment: "J7", title: "Rassurer", action: "Montrer ce qui a été fait, ce qui bloque et la prochaine étape.", decision: "Le projet suit-il le bon cap ?" },
+  { moment: "J30", title: "Apprendre", action: "Comparer au point de départ et expliquer les premiers signaux sans surinterpréter.", decision: "Que faut-il garder, corriger ou arrêter ?" },
+  { moment: "J60", title: "Consolider", action: "Documenter ce qui fonctionne, corriger les faiblesses et simplifier la livraison.", decision: "La méthode devient-elle fiable ?" },
+  { moment: "J90", title: "Décider", action: "Présenter résultats, limites, apprentissages et trois options honnêtes pour la suite.", decision: "Arrêter, maintenir ou développer ?" },
+];
+
+const expansionRules = [
+  { trigger: "Le site reçoit des visites mais peu de demandes", next: "Amélioration du parcours ou page d’offre", condition: "Le trafic est pertinent et mesuré" },
+  { trigger: "Les demandes arrivent mais sont oubliées", next: "CRM simple, rappels ou automatisation", condition: "Le processus de vente est défini" },
+  { trigger: "Les clients locaux sont satisfaits mais la preuve manque", next: "Fiche Google, collecte d’avis ou plaque NFC", condition: "La collecte respecte les règles et reste honnête" },
+  { trigger: "La marque est incohérente sur tous les supports", next: "Identité, charte et modèles de production", condition: "Le positionnement et les supports prioritaires sont clairs" },
+  { trigger: "Une boutique vend mais perd au panier", next: "Audit du parcours et amélioration e-commerce", condition: "Les données et le volume permettent une analyse" },
+  { trigger: "L’équipe répète les mêmes tâches chaque semaine", next: "Cartographie puis automatisation ciblée", condition: "La tâche est stable, documentée et rentable à automatiser" },
+];
+
+const auditTemplate = `AUDIT EXPRESS — [ENTREPRISE]
+
+Objectif déclaré :
+Public prioritaire :
+Action principale attendue :
+
+OFFRE : 0 / 1 / 2 — preuve observée :
+CONFIANCE : 0 / 1 / 2 — preuve observée :
+MOBILE : 0 / 1 / 2 — preuve observée :
+VISIBILITÉ : 0 / 1 / 2 — preuve observée :
+PRISE DE CONTACT : 0 / 1 / 2 — preuve observée :
+VITESSE DE RÉPONSE : 0 / 1 / 2 — preuve observée :
+VENTE : 0 / 1 / 2 — preuve observée :
+MESURE : 0 / 1 / 2 — preuve observée :
+
+Score indicatif : /16
+Priorité n°1 :
+Conséquence probable :
+Information manquante à demander :
+Petite action recommandée :
+Preuve attendue après l’action :
+
+Note : ce score organise les observations. Il ne prouve pas à lui seul la cause d’un problème.`;
+
+const caseStudyTemplate = `ÉTUDE DE CAS HONNÊTE
+
+Client et contexte autorisés :
+Période observée :
+Situation de départ vérifiable :
+Objectif convenu :
+Contraintes importantes :
+Travail réellement réalisé :
+Éléments fournis par le client :
+Résultat observé :
+Ce que nous pouvons attribuer au travail :
+Ce que nous ne pouvons pas attribuer :
+Ce qui n’a pas fonctionné :
+Prochaine amélioration recommandée :
+Autorisation de publication obtenue le :`;
+
+const renewalTemplate = `BILAN ET DÉCISION DE SUITE
+
+Objectif de la période :
+Point de départ :
+Résultat observé :
+Ce qui a progressé :
+Ce qui bloque encore :
+Décisions prises :
+
+OPTION 1 — ARRÊTER
+Ce qui est transmis et clôturé :
+
+OPTION 2 — MAINTENIR
+Périmètre, rythme et prix :
+
+OPTION 3 — DÉVELOPPER
+Nouveau problème confirmé :
+Preuve qui justifie l’extension :
+Périmètre, durée et prix :
+
+Décision attendue avant le :`;
 
 function CopyButton({ text, label = "Copier" }: { text: string; label?: string }) {
   const [copied, setCopied] = useState(false);
@@ -1321,7 +1425,37 @@ export default function Home() {
           <div><small>UNE ERREUR EST DÉCOUVERTE</small><b>Préviens vite, limite l’impact, corrige puis documente comment éviter sa répétition.</b></div>
           <div><small>LE RÉSULTAT EST FAIBLE</small><b>Compare au point zéro, sépare faits et hypothèses, puis propose le prochain test mesurable.</b></div>
         </div>
-        <div className="master-rule"><small>RÈGLE FINALE</small><h3>Ne développe pas le chaos.</h3><p>Avant d’ajouter des clients, des outils ou des sous-traitants, assure-toi que l’offre est rentable, la livraison est documentée et la satisfaction est mesurée.</p><a href="#modules">REVOIR LES 24 MODULES ↑</a></div>
+      </section>
+
+      <section className="dark-section audit-lab-section" id="audit-express">
+        <div className="section-wrap">
+          <SectionTitle eyebrow="25 — Audit express" title="Huit contrôles. Trente minutes. Zéro diagnostic inventé." text="Cette grille aide un débutant à organiser ses observations. Note uniquement ce que tu peux vérifier, écris ce qui manque et transforme le score en questions — jamais en vérité absolue." />
+          <div className="audit-scale"><div><b>0</b><span>Absent, cassé ou impossible à vérifier</span></div><div><b>1</b><span>Présent mais faible, irrégulier ou confus</span></div><div><b>2</b><span>Clair, fonctionnel, suivi et cohérent</span></div><strong>MAXIMUM · 16 POINTS</strong></div>
+          <div className="audit-scorecard" role="table" aria-label="Grille d’audit express">
+            <div className="audit-scorecard-head" role="row"><span role="columnheader">ZONE</span><span role="columnheader">0 POINT</span><span role="columnheader">1 POINT</span><span role="columnheader">2 POINTS</span><span role="columnheader">PREUVE À REGARDER</span></div>
+            {auditScorecard.map((item, index) => <article role="row" key={item.area}><header role="cell"><i>{String(index + 1).padStart(2, "0")}</i><b>{item.area}</b></header><p role="cell" data-score="0">{item.zero}</p><p role="cell" data-score="1">{item.one}</p><p role="cell" data-score="2">{item.two}</p><small role="cell">{item.proof}</small></article>)}
+          </div>
+          <div className="audit-conclusion"><div><small>0–5</small><b>Fondations fragiles</b><span>Choisir un seul problème prioritaire.</span></div><div><small>6–11</small><b>Parcours améliorable</b><span>Vérifier où la valeur se perd vraiment.</span></div><div><small>12–16</small><b>Base structurée</b><span>Chercher les optimisations avec des données.</span></div><p>Un score élevé ne garantit pas les ventes. Un score faible ne prouve pas non plus qu’une refonte est nécessaire.</p></div>
+          <div className="copy-workbench"><div><small>MODÈLE PRÊT À REMPLIR</small><h3>Transforme l’observation en recommandation.</h3><p>Copie cette fiche, complète les preuves, puis demande les informations auxquelles tu n’as pas accès.</p></div><CopyButton label="COPIER LA FICHE D’AUDIT" text={auditTemplate} /></div>
+        </div>
+      </section>
+
+      <section className="content-section proof-section" id="preuve-portfolio">
+        <SectionTitle eyebrow="26 — Preuve & portfolio" title="Montre ton niveau sans jouer au faux expert." text="Tu peux prouver une méthode avant d’avoir beaucoup de clients. Le niveau de preuve doit simplement être nommé avec honnêteté : exercice, audit, démonstration, pilote ou résultat réel." />
+        <div className="proof-ladder">
+          {proofLadder.map((item, index) => <article key={item.level}><header><span>{item.level}</span><small>{item.status}</small></header><h3>{item.name}</h3><p>{item.action}</p><div><small>TU PEUX DIRE</small><b>“{item.canSay}”</b></div><footer><small>NE DIS JAMAIS</small><span>“{item.neverSay}”</span></footer><i style={{ width: `${((index + 1) / proofLadder.length) * 100}%` }} /></article>)}
+        </div>
+        <div className="case-study-anatomy"><header><small>ANATOMIE D’UNE BONNE ÉTUDE DE CAS</small><h3>Contexte → point de départ → travail → résultat → limites → suite.</h3></header><div><span><b>01</b>Nommer la période et les données utilisées.</span><span><b>02</b>Séparer ton travail de celui du client.</span><span><b>03</b>Montrer aussi ce qui n’a pas fonctionné.</span><span><b>04</b>Obtenir l’autorisation avant publication.</span></div><CopyButton label="COPIER LE MODÈLE" text={caseStudyTemplate} /></div>
+      </section>
+
+      <section className="dark-section renewal-section" id="renouvellement">
+        <div className="section-wrap">
+          <SectionTitle eyebrow="27 — Renouvellement & développement" title="Le bon service suivant résout le prochain vrai problème." text="La fidélisation n’est pas un abonnement forcé. À chaque bilan, aide le client à choisir entre arrêter proprement, maintenir ce qui fonctionne ou développer un nouveau périmètre justifié." />
+          <div className="renewal-rhythm">{renewalRhythm.map((item, index) => <article key={item.moment}><header><span>{item.moment}</span><i>{String(index + 1).padStart(2, "0")}</i></header><h3>{item.title}</h3><p>{item.action}</p><footer><small>DÉCISION</small><b>{item.decision}</b></footer></article>)}</div>
+          <div className="expansion-map"><header><div><small>CARTE D’EXTENSION</small><h3>Propose une suite uniquement si le signal est confirmé.</h3></div><span>PROBLÈME → SERVICE → CONDITION</span></header><div>{expansionRules.map((item, index) => <article key={item.trigger}><span>{String(index + 1).padStart(2, "0")}</span><p>{item.trigger}</p><i>→</i><b>{item.next}</b><small>{item.condition}</small></article>)}</div></div>
+          <div className="renewal-options"><article><span>01</span><b>ARRÊTER</b><p>Objectif atteint, priorité changée ou mission devenue inutile. Transmettre et clôturer proprement.</p></article><article><span>02</span><b>MAINTENIR</b><p>Le système fonctionne et demande un suivi régulier clairement défini.</p></article><article className="featured"><span>03</span><b>DÉVELOPPER</b><p>Un nouveau problème rentable est prouvé et le client a la capacité de l’absorber.</p></article><CopyButton label="COPIER LE BILAN" text={renewalTemplate} /></div>
+          <div className="master-rule"><small>RÈGLE FINALE</small><h3>Ne multiplie pas le chaos.</h3><p>Avant d’ajouter des clients, des outils ou des sous-traitants, assure-toi que l’offre est rentable, la livraison est documentée et la satisfaction est mesurée.</p><a href="#modules">REVOIR LES 27 MODULES ↑</a></div>
+        </div>
       </section>
 
       <footer className="footer"><a aria-label="BS IA, retour en haut" className="brand" href="#top"><BrandLogo /></a><p>BS IA · SMMA Masterbook · Édition premium 2026 · Créé par Biloux.</p><a href="#top">RETOUR EN HAUT ↑</a></footer>

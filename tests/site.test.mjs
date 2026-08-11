@@ -31,8 +31,8 @@ test("publishes the corrected market data and current service count", async () =
   const layout = await read("app/layout.tsx");
   assert.match(page, /value: "27 %"/);
   assert.doesNotMatch(page, /value: "37 %"/);
-  assert.match(layout, /22 modules, 15 services/);
-  assert.doesNotMatch(layout, /22 modules, 9 services/);
+  assert.match(layout, /27 modules, 15 services/);
+  assert.doesNotMatch(layout, /27 modules, 9 services/);
   assert.match(page, /String\(index \+ 1\)\.padStart\(2, "0"\)/);
 });
 

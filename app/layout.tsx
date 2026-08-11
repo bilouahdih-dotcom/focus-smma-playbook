@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://focus-smma-playbook.vercel.app/"),
   applicationName: "BS IA",
   title: "BS IA — SMMA Masterbook 2026",
-  description: "Le guide SMMA premium de BS IA : 22 modules pour choisir un service, prospecter, vendre, livrer et structurer une agence depuis zéro.",
+  description: "Le guide SMMA premium de BS IA : 27 modules pour choisir un service, prospecter, vendre, livrer et structurer une agence depuis zéro.",
   alternates: { canonical: "/" },
   authors: [{ name: "BS IA" }, { name: "Biloux" }],
   category: "business",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "BS IA",
     title: "BS IA — SMMA Masterbook 2026",
-    description: "22 modules, 15 services, scripts de vente, modèles copiables, calculateur et système complet pour lancer une agence SMMA.",
+    description: "27 modules, 15 services, scripts de vente, modèles copiables, calculateur et système complet pour lancer une agence SMMA.",
     type: "website",
     locale: "fr_FR",
     url: "/",
