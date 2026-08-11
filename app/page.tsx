@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 
 type Service = {
@@ -295,9 +296,9 @@ const marketStats = [
     url: "https://www.fevad.com/bilan-du-e-commerce-en-france-les-francais-ont-depense-pres-de-200-milliards-deuros-sur-internet-en-2025/",
   },
   {
-    value: "37 %",
-    label: "proposent la vente ou le paiement en ligne",
-    change: "TPE-PME françaises · données 2025",
+    value: "27 %",
+    label: "disposent d’au moins une solution de vente en ligne",
+    change: "dont 17 % avec un site marchand · France Num 2025",
     insight: "Catalogue, réservation, acompte ou paiement : pars du parcours réel du client, pas de la technologie à placer.",
     source: "France Num",
     url: "https://www.francenum.gouv.fr/files/2025-09/Barom%C3%A8tre%20France%20Num%202025%20-%20Infographie%20VF.pdf",
@@ -469,6 +470,13 @@ const glossary = [
   { term: "CTR / taux de clic", category: "Publicité", meaning: "Pourcentage des personnes exposées qui cliquent sur l’annonce ou le lien.", example: "50 clics pour 5 000 affichages représentent un CTR de 1 %." },
   { term: "ROAS", category: "Publicité", meaning: "Chiffre d’affaires attribué à la publicité divisé par le budget publicitaire.", example: "2 000 € de ventes attribuées pour 500 € de publicité donnent un ROAS de 4." },
   { term: "Pixel de suivi", category: "Outils", meaning: "Petit code placé sur un site pour mesurer certaines actions, sous réserve des règles de consentement applicables.", example: "Mesurer l’envoi d’un formulaire après une campagne." },
+  { term: "NFC", category: "Outils", meaning: "Technologie sans contact qui ouvre un lien lorsqu’un téléphone compatible est approché d’une plaque ou d’une carte.", example: "Une plaque posée à la caisse ouvre directement la page d’avis Google." },
+  { term: "QR code", category: "Outils", meaning: "Carré à scanner avec l’appareil photo d’un téléphone pour ouvrir une page ou une action.", example: "Le QR code de secours ouvre le même lien que la puce NFC." },
+  { term: "GA4 / Google Analytics 4", category: "Mesure", meaning: "Outil de Google qui aide à comprendre les visites et les actions réalisées sur un site, avec un paramétrage respectueux du consentement.", example: "Mesurer combien de visiteurs atteignent la page de réservation." },
+  { term: "Google Tag Manager", category: "Mesure", meaning: "Outil qui centralise l’installation de balises de mesure sans modifier le code du site à chaque changement.", example: "Ajouter une mesure de formulaire après validation technique et juridique." },
+  { term: "UGC", category: "Contenu", meaning: "Contenu créé dans un style naturel par un client, un créateur ou un utilisateur pour présenter un produit.", example: "Une courte vidéo montrant l’ouverture et l’utilisation d’un produit." },
+  { term: "Chatbot / assistant conversationnel", category: "IA", meaning: "Interface qui répond à des questions à partir de règles ou de documents définis.", example: "Un assistant répond aux questions fréquentes puis transmet les demandes complexes à une personne." },
+  { term: "Prompt / consigne IA", category: "IA", meaning: "Instruction donnée à un modèle d’intelligence artificielle avec le contexte, le résultat attendu et les limites.", example: "Résume ces avis clients sans inventer de faits et classe les problèmes par fréquence." },
 ];
 
 const professionalSteps = [
@@ -506,7 +514,7 @@ const aiWorkflows = [
   { title: "Scripts", tool: "ChatGPT ou Claude", use: "Créer plusieurs ouvertures puis les adapter au langage naturel du vendeur.", guardrail: "Lire à voix haute et supprimer toute phrase robotique." },
   { title: "Proposition", tool: "Claude, ChatGPT + modèle maison", use: "Organiser les notes du rendez-vous dans une proposition cohérente.", guardrail: "Ne jamais laisser l’IA inventer prix, références ou résultats." },
   { title: "Production web", tool: "Codex, Claude Code, v0 ou 21st.dev", use: "Créer, corriger et tester plus vite une interface à partir d’une maquette.", guardrail: "Contrôler mobile, accessibilité, vitesse et sécurité avant livraison." },
-  { title: "Création visuelle", tool: "GPT Image, Recraft, Ideogram ou Firefly", use: "Explorer des directions, produire des éléments et préparer des variantes.", guardrail: "Vérifier droits, cohérence de marque, textes et détails visuels." },
+  { title: "Création visuelle", tool: "GPT Image 2, Recraft, Ideogram ou Firefly", use: "Explorer des directions, produire des éléments et préparer des variantes.", guardrail: "Vérifier droits, cohérence de marque, textes et détails visuels." },
   { title: "Automatisation", tool: "Make, n8n ou Zapier + assistant IA", use: "Construire le scénario, documenter les champs et prévoir les erreurs.", guardrail: "Tester avec de fausses données avant de connecter le compte client." },
   { title: "Contrôle qualité", tool: "Deux modèles différents + contrôle humain", use: "Faire relire une proposition, un script ou une procédure avec une grille fixe.", guardrail: "Le second modèle détecte des risques, il ne remplace pas la validation." },
 ];
@@ -595,18 +603,26 @@ export default function Home() {
   const readingProgress = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem("focus-smma-progress");
-    const savedPlan = window.localStorage.getItem("focus-smma-plan");
-    const savedAt = window.localStorage.getItem("focus-smma-last-saved");
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      const previousChecked = Array.isArray(parsed) ? parsed : parsed.checked ?? [];
-      const migratedChecked = !Array.isArray(parsed) && parsed.version >= 3 ? previousChecked : previousChecked.map((index: number) => index >= 11 ? index + 1 : index);
-      setChecked(migratedChecked);
-      window.localStorage.setItem("focus-smma-progress", JSON.stringify({ version: 3, checked: migratedChecked }));
-    }
-    if (savedPlan) setPlan(JSON.parse(savedPlan));
-    if (savedAt) setLastSaved(savedAt);
+    queueMicrotask(() => {
+      try {
+        const saved = window.localStorage.getItem("focus-smma-progress");
+        const savedPlan = window.localStorage.getItem("focus-smma-plan");
+        const savedAt = window.localStorage.getItem("focus-smma-last-saved");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          const previousChecked = Array.isArray(parsed) ? parsed : parsed.checked ?? [];
+          const migratedChecked = !Array.isArray(parsed) && parsed.version >= 3 ? previousChecked : previousChecked.map((index: number) => index >= 11 ? index + 1 : index);
+          setChecked(migratedChecked);
+          window.localStorage.setItem("focus-smma-progress", JSON.stringify({ version: 3, checked: migratedChecked }));
+        }
+        if (savedPlan) setPlan(JSON.parse(savedPlan));
+        if (savedAt) setLastSaved(savedAt);
+      } catch {
+        window.localStorage.removeItem("focus-smma-progress");
+        window.localStorage.removeItem("focus-smma-plan");
+        window.localStorage.removeItem("focus-smma-last-saved");
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -817,12 +833,14 @@ export default function Home() {
   const planText = `MON PLAN D'AGENCE — BS IA\n\nService : ${plan.service || "À définir"}\nCible : ${plan.cible || "À définir"}\nPromesse : ${plan.promesse || "À définir"}\nPrix pilote : ${plan.prix || "À définir"}\nVolume hebdomadaire : ${plan.volume || "À définir"}\nDate de lancement : ${plan.date || "À définir"}\n\nRègle : une offre, une cible, 90 jours d'exécution.`;
 
   return (
-    <main>
+    <>
+      <a className="skip-link" href="#main-content">Aller directement au contenu</a>
+      <main id="main-content" tabIndex={-1}>
       <div className="reading-progress" aria-hidden="true"><i ref={readingProgress} /></div>
       <div className="cursor-glow" aria-hidden="true" />
       <header className="topbar">
         <a className="brand" href="#top" aria-label="BS IA, retour en haut"><BrandLogo /></a>
-        <nav className={menuOpen ? "nav-links open" : "nav-links"}>
+        <nav aria-label="Navigation principale" className={menuOpen ? "nav-links open" : "nav-links"} id="primary-navigation">
           <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
           <a href="#prospection" onClick={() => setMenuOpen(false)}>Prospection</a>
           <a href="#objections" onClick={() => setMenuOpen(false)}>Objections</a>
@@ -830,8 +848,8 @@ export default function Home() {
           <a href="#modeles" onClick={() => setMenuOpen(false)}>Modèles</a>
         </nav>
         <div className="header-actions">
-          <a className="progress-pill" href="#modules"><span>{progress}%</span> complété</a>
-          <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Ouvrir le menu" type="button">☰</button>
+          <a className="progress-pill" href="#modules"><span>{progress}%</span><em> complété</em></a>
+          <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-controls="primary-navigation" aria-expanded={menuOpen} aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"} type="button">☰</button>
         </div>
       </header>
 
@@ -842,11 +860,11 @@ export default function Home() {
       </a>
 
       <aside className={`quick-nav${quickNavOpen ? " open" : ""}${footerVisible ? " footer-visible" : ""}`} aria-label="Navigation rapide du guide">
-        <button data-magnetic type="button" onClick={() => setQuickNavOpen((open) => !open)} aria-expanded={quickNavOpen} aria-label="Ouvrir la navigation des chapitres">
+        <button data-magnetic type="button" onClick={() => setQuickNavOpen((open) => !open)} aria-controls="quick-navigation" aria-expanded={quickNavOpen} aria-label={quickNavOpen ? "Fermer la navigation des chapitres" : "Ouvrir la navigation des chapitres"}>
           <span>{quickChapters.find((chapter) => chapter.id === activeChapter)?.number ?? "00"}</span>
           <span className="quick-nav-icon" aria-hidden="true"><i /><i /><i /></span>
         </button>
-        <nav>
+        <nav id="quick-navigation" aria-hidden={!quickNavOpen}>
           <header><small>INDEX RAPIDE</small><b>Va droit à l’essentiel.</b></header>
           {quickChapters.map((chapter) => (
               <a data-magnetic className={activeChapter === chapter.id ? "active" : ""} href={`#${chapter.id}`} key={chapter.id} onClick={() => setQuickNavOpen(false)}>
@@ -873,13 +891,13 @@ export default function Home() {
               <a className="text-link" href="#objections">ALLER AUX OBJECTIONS ↓</a>
             </div>
             <div className="cover-meta"><span><b>{modules.length}</b> modules</span><span><b>{services.length}</b> services</span><span><b>{templateLibrary.length}</b> modèles</span><span><b>0</b> prérequis</span></div>
-            <div className="signal-ticker" aria-label="Les piliers de la méthode BS IA">
+            <div className="signal-ticker" aria-label="Les piliers de la méthode BS IA" role="group">
               <div><span>OFFRE</span><i>✦</i><span>PREUVE</span><i>✦</i><span>CONVERSATION</span><i>✦</i><span>LIVRAISON</span><i>✦</i><span>SYSTÈME</span><i>✦</i><span>MARGE</span><i>✦</i></div>
               <div aria-hidden="true"><span>OFFRE</span><i>✦</i><span>PREUVE</span><i>✦</i><span>CONVERSATION</span><i>✦</i><span>LIVRAISON</span><i>✦</i><span>SYSTÈME</span><i>✦</i><span>MARGE</span><i>✦</i></div>
             </div>
           </div>
           <article className="start-panel">
-            <img className="cover-logo" src="./bs-ia-logo.webp" alt="Logo BS IA" decoding="async" fetchPriority="high" />
+            <Image className="cover-logo" src="/bs-ia-logo.webp" alt="Logo BS IA" width={1254} height={1254} priority sizes="(max-width: 680px) 100vw, 390px" />
             <header><span>01</span><b>PROTOCOLE DE DÉPART</b><i>DÉBUTANT</i></header>
             <h2>Ta première semaine.</h2>
             <ol>
@@ -899,7 +917,7 @@ export default function Home() {
           <div className="progress-ring" style={{ background: `conic-gradient(var(--gold) ${progress * 3.6}deg, #292929 0deg)` }}><div><strong>{progress}%</strong><span>COMPLÉTÉ</span></div></div>
           <div className="progress-summary"><small>SAUVEGARDE AUTOMATIQUE ACTIVE</small><h3>{progress === 100 ? "Playbook terminé." : nextModule ? `Prochaine étape : ${nextModule[1]}` : "Choisis ta prochaine étape."}</h3><p>{lastSaved ? `Dernière sauvegarde : ${new Date(lastSaved).toLocaleString("fr-FR", { dateStyle: "medium", timeStyle: "short" })}` : "Ta progression sera sauvegardée dès que tu valides un module."}</p><div className="progress-track"><div style={{ width: `${progress}%` }} /></div></div>
           <div className="progress-stats"><div><b>{checked.length}</b><span>TERMINÉS</span></div><div><b>{modules.length - checked.length}</b><span>RESTANTS</span></div></div>
-          <div className="progress-actions"><button onClick={exportBackup} type="button">TÉLÉCHARGER LA SAUVEGARDE ↓</button><button onClick={() => backupInput.current?.click()} type="button">RESTAURER ↑</button><button className="reset-progress" onClick={resetProgress} type="button">RÉINITIALISER</button><input ref={backupInput} onChange={importBackup} type="file" accept="application/json,.json" hidden /></div>
+          <div className="progress-actions"><button onClick={exportBackup} type="button">TÉLÉCHARGER LA SAUVEGARDE ↓</button><button onClick={() => backupInput.current?.click()} type="button">RESTAURER ↑</button><button className="reset-progress" onClick={resetProgress} type="button">RÉINITIALISER</button><input ref={backupInput} onChange={importBackup} type="file" accept="application/json,.json" aria-label="Importer une sauvegarde JSON" hidden /></div>
         </div>
         <div className="module-grid">
           {modules.map((item, index) => (
@@ -925,12 +943,12 @@ export default function Home() {
 
       <section className="content-section" id="services">
         <SectionTitle eyebrow="02 — Choisir un service" title="Quinze services réellement vendables." text="Commence avec un seul service principal. Pour chacun, tu trouveras la cible, les outils, la formation, les livrables et une fourchette de prix indicative." />
-        <div className="pricing-context"><b>POSITIONNEMENT DÉBUTANT · FRANCE</b><span>Ces prix correspondent à une offre bien cadrée avec peu de références. Ils sont indicatifs, généralement hors achats, hébergement, impression, logiciels et budget publicitaire. Après 3 à 5 preuves solides, augmente progressivement tes tarifs.</span></div>
+        <div className="pricing-context"><b>POSITIONNEMENT DÉBUTANT · FRANCE · AOÛT 2026</b><span>Ces repères éditoriaux BS IA correspondent à une offre bien cadrée avec peu de références. Ils sont indicatifs, généralement hors achats, hébergement, impression, logiciels et budget publicitaire. Compare toujours trois offres proches dans ta niche et ta ville avant de fixer ton prix.</span></div>
         <div className="service-layout">
-          <div className="service-tabs" role="tablist">
-            {services.map((item, index) => <button className={activeService === item.id ? "active" : ""} key={item.id} onClick={() => setActiveService(item.id)} type="button"><span>0{index + 1}</span>{item.name}</button>)}
+          <div className="service-tabs" role="tablist" aria-label="Choisir un service SMMA">
+            {services.map((item, index) => <button aria-controls="service-panel" aria-selected={activeService === item.id} className={activeService === item.id ? "active" : ""} id={`service-tab-${item.id}`} key={item.id} onClick={() => setActiveService(item.id)} role="tab" tabIndex={activeService === item.id ? 0 : -1} type="button"><span>{String(index + 1).padStart(2, "0")}</span>{item.name}</button>)}
           </div>
-          <article className="service-panel">
+          <article aria-labelledby={`service-tab-${service.id}`} className="service-panel" id="service-panel" role="tabpanel" tabIndex={0}>
             <div className="service-head"><div><span>Niveau · {service.level}</span><h3>{service.name}</h3></div><div className="service-price"><small>PRIX CONSEILLÉS POUR DÉMARRER</small><b>{service.price}</b></div></div>
             <p className="service-result">“{service.result}”</p>
             <div className="detail-grid"><div><small>À QUI LE VENDRE</small><p>{service.clients}</p></div><div><small>COMMENT SE FORMER</small><p>{service.learn}</p></div><div><small>OUTILS À UTILISER</small><div className="tool-list">{service.tools.map(item => <span key={item}>{item}</span>)}</div></div><div><small>PREMIÈRE OFFRE À PROPOSER</small><p>{service.start}</p></div><div><small>LIVRABLES</small><ul>{service.deliverables.map(item => <li key={item}>{item}</li>)}</ul></div><div><small>CHIFFRES À SUIVRE</small><p>{service.kpis}</p></div></div>
@@ -960,7 +978,7 @@ export default function Home() {
               {digitalDemandSignals.map((signal) => (
                 <article key={signal.label}>
                   <div><b>{signal.value} %</b><span>{signal.label}</span></div>
-                  <div className="data-bar" aria-label={`${signal.value} pour cent`}><i style={{ width: `${signal.value}%` }} /></div>
+                  <div className="data-bar" aria-label={`${signal.value} pour cent`} role="img"><i style={{ width: `${signal.value}%` }} /></div>
                   <p>{signal.detail}</p>
                 </article>
               ))}
@@ -1095,7 +1113,7 @@ export default function Home() {
         <div className="section-wrap">
           <SectionTitle eyebrow="11 — Livrer & fidéliser" title="La fidélisation commence le premier jour." text="Un client reste quand il sait ce qui se passe, voit les progrès et comprend les prochaines décisions." />
           <div className="delivery-grid"><article><span>J0–J2</span><h3>Démarrage client</h3><p>Objectif, accès, interlocuteurs, délais, validation et responsabilités.</p></article><article><span>SEMAINE 1</span><h3>Point de départ chiffré</h3><p>Photo des chiffres avant intervention et plan d’action classé par priorité.</p></article><article><span>CHAQUE SEMAINE</span><h3>Résumé court</h3><p>Fait, chiffre, apprentissage, blocage et action suivante.</p></article><article><span>CHAQUE MOIS</span><h3>Bilan commercial</h3><p>Résultats, qualité des demandes, tests et recommandation du mois.</p></article></div>
-          <div className="kpi-table"><div className="table-head"><span>TYPE DE SERVICE</span><span>CHIFFRE MARKETING À REGARDER</span><span>RÉSULTAT COMMERCIAL À REGARDER</span></div><div><b>Publicité payante</b><span>Coût par demande</span><span>Rendez-vous + ventes obtenues</span></div><div><b>Contenu vidéo</b><span>Temps de visionnage + portée locale</span><span>Demandes entrantes</span></div><div><b>Visibilité locale</b><span>Positions + actions sur la fiche</span><span>Appels + demandes d’itinéraire</span></div><div><b>Réactivation</b><span>Pourcentage de contacts joints</span><span>Rendez-vous + revenu récupéré</span></div><div><b>Page de vente + suivi</b><span>Pourcentage de visiteurs qui contactent</span><span>Présence aux rendez-vous + ventes</span></div></div>
+          <div aria-label="Tableau des chiffres à suivre selon le service" className="kpi-table" role="region" tabIndex={0}><div className="table-head"><span>TYPE DE SERVICE</span><span>CHIFFRE MARKETING À REGARDER</span><span>RÉSULTAT COMMERCIAL À REGARDER</span></div><div><b>Publicité payante</b><span>Coût par demande</span><span>Rendez-vous + ventes obtenues</span></div><div><b>Contenu vidéo</b><span>Temps de visionnage + portée locale</span><span>Demandes entrantes</span></div><div><b>Visibilité locale</b><span>Positions + actions sur la fiche</span><span>Appels + demandes d’itinéraire</span></div><div><b>Réactivation</b><span>Pourcentage de contacts joints</span><span>Rendez-vous + revenu récupéré</span></div><div><b>Page de vente + suivi</b><span>Pourcentage de visiteurs qui contactent</span><span>Présence aux rendez-vous + ventes</span></div></div>
         </div>
       </section>
 
@@ -1148,7 +1166,7 @@ export default function Home() {
         <div className="professional-grid">{professionalSteps.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p><small>{item.proof}</small></article>)}</div>
         <div className="official-links">
           <b>SOURCES OFFICIELLES À CONSERVER</b>
-          <a href="https://www.cnil.fr/fr/la-prospection-commerciale-par-courrier-electronique" target="_blank" rel="noreferrer">CNIL · Prospection B2B et opposition ↗</a>
+          <a href="https://www.cnil.fr/fr/prospection-commerciale-par-telephone-hors-automate-dappel-quelles-sont-les-regles" target="_blank" rel="noreferrer">CNIL · Prospection téléphonique B2B et opposition ↗</a>
           <a href="https://www.legifrance.gouv.fr/codes/id/LEGIARTI000051830285/2026-08-11" target="_blank" rel="noreferrer">Légifrance · Appels aux consommateurs depuis le 11/08/2026 ↗</a>
           <a href="https://www.service-public.fr/entreprendre/vosdroits/F31808" target="_blank" rel="noreferrer">Service Public · Mentions obligatoires sur une facture ↗</a>
           <a href="https://entreprendre.service-public.fr/actualites/A15683" target="_blank" rel="noreferrer">Service Public · Calendrier de la facture électronique ↗</a>
@@ -1197,7 +1215,7 @@ export default function Home() {
 
       <section className="content-section ai-section" id="ia-agence">
         <SectionTitle eyebrow="20 — IA pour l’agence" title="L’IA accélère un système. Elle ne remplace pas le jugement." text="Utilise-la pour préparer, structurer, produire des variantes et contrôler. Le client paie toujours pour une recommandation juste et une exécution fiable." />
-        <div className="ai-principle"><img src="./bs-ia-logo.webp" alt="BS IA" loading="lazy" decoding="async" /><div><small>PROTOCOLE BS IA</small><h3>Contexte → consigne → contraintes → exemple → contrôle humain.</h3><p>Ne demande jamais seulement « fais-moi une stratégie ». Donne les informations du client, le résultat attendu, les limites, les sources et la grille de validation.</p></div><a href="https://lmarena.ai/leaderboard/text" target="_blank" rel="noreferrer">COMPARER LES MODÈLES ↗</a></div>
+        <div className="ai-principle"><Image src="/bs-ia-logo.webp" alt="BS IA" width={1254} height={1254} loading="lazy" sizes="(max-width: 680px) 100vw, 190px" /><div><small>PROTOCOLE BS IA</small><h3>Contexte → consigne → contraintes → exemple → contrôle humain.</h3><p>Ne demande jamais seulement « fais-moi une stratégie ». Donne les informations du client, le résultat attendu, les limites, les sources et la grille de validation.</p></div><a href="https://lmarena.ai/leaderboard/text" target="_blank" rel="noreferrer">COMPARER LES MODÈLES ↗</a></div>
         <div className="ai-workflow-grid">{aiWorkflows.map((item, index) => <article key={item.title}><span>0{index + 1}</span><small>{item.tool}</small><h3>{item.title}</h3><p>{item.use}</p><em>CONTRÔLE · {item.guardrail}</em></article>)}</div>
         <div className="prompt-framework"><span>PROMPT DE TRAVAIL</span><CopyButton label="COPIER LE PROMPT" text="Rôle : tu es mon assistant d’agence SMMA.\nContexte client : [activité, cible, offre, zone, chiffres connus].\nObjectif : [résultat unique].\nTâche : [action précise].\nContraintes : [ton, format, limites, éléments interdits].\nSources : utilise uniquement [documents/liens fournis] et signale ce qui manque.\nSortie attendue : [structure exacte].\nContrôle final : liste les hypothèses, les risques et les points à vérifier humainement." /><pre>Rôle · Contexte client · Objectif · Tâche · Contraintes · Sources · Format · Contrôle final</pre></div>
       </section>
@@ -1215,7 +1233,8 @@ export default function Home() {
         <div className="master-rule"><small>RÈGLE FINALE</small><h3>Ne scale pas le chaos.</h3><p>Avant d’ajouter des clients, des outils ou des sous-traitants, assure-toi que l’offre est rentable, la livraison est documentée et la satisfaction est mesurée.</p><a href="#modules">REVOIR LES 22 MODULES ↑</a></div>
       </section>
 
-      <footer className="footer"><a className="brand" href="#top"><BrandLogo /></a><p>BS IA · SMMA Masterbook · Édition premium 2026 · Créé par Biloux.</p><a href="#top">RETOUR EN HAUT ↑</a></footer>
-    </main>
+      <footer className="footer"><a aria-label="BS IA, retour en haut" className="brand" href="#top"><BrandLogo /></a><p>BS IA · SMMA Masterbook · Édition premium 2026 · Créé par Biloux.</p><a href="#top">RETOUR EN HAUT ↑</a></footer>
+      </main>
+    </>
   );
 }

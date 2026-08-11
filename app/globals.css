@@ -483,3 +483,53 @@ body::before { content: ""; position: fixed; inset: 0; z-index: 200; pointer-eve
   .cover-main h1 { gap: .14em; font-size: clamp(43px,13vw,62px); line-height: 1; }
   .cover-logo { height: clamp(210px,55vw,380px); object-position: center 40%; }
 }
+
+/* Accessibility, mobile reliability and rendering performance */
+body { overflow-x: clip; }
+main { min-width: 0; }
+main:focus { outline: none; }
+main > section:not(.guide-cover) { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+
+.skip-link { position: fixed; top: 10px; left: 10px; z-index: 200; padding: 12px 16px; color: #08040e; background: #f0c8ff; border: 2px solid white; border-radius: 10px; font-weight: 850; transform: translateY(-150%); transition: transform .18s ease; }
+.skip-link:focus { transform: none; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible, [role="tabpanel"]:focus-visible { outline: 3px solid #e3b5ff; outline-offset: 3px; }
+.progress-pill { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; white-space: nowrap; }
+.progress-pill em { font-style: normal; }
+.menu-button, .copy-button, .progress-actions button, .objection-filters button { min-height: 44px; }
+.official-links a, .market-radar > header a, .sector-data > header a, .ecommerce-pulse > header a, .data-offer-matrix > header a { min-height: 44px; display: inline-flex; align-items: center; }
+.footer .bs-wordmark small { color: #a99db7; }
+
+.cover-main, .cover-main > *, .cover-actions, .cover-meta, .signal-ticker { min-width: 0; max-width: 100%; }
+.cover-main { width: 100%; }
+.cover-main h1 { overflow-wrap: anywhere; }
+
+.quick-nav { pointer-events: none; }
+.quick-nav > button { pointer-events: auto; }
+.quick-nav nav { pointer-events: none; }
+.quick-nav.open nav { pointer-events: auto; }
+
+@media (max-width: 680px) {
+  .topbar { gap: 10px; }
+  .header-actions { min-width: 0; gap: 8px; }
+  .progress-pill { padding-inline: 10px; }
+  .cover-main { overflow: hidden; }
+  .cover-main h1 { width: 100%; font-size: clamp(40px,12.3vw,54px); letter-spacing: -.05em; }
+  .cover-main > p { width: 100%; }
+  .cover-actions .gold-button { width: 100%; justify-content: space-between; white-space: normal; }
+  .cover-meta { width: 100%; }
+  .signal-ticker { width: 100%; }
+
+  .service-tabs { position: relative; top: auto; display: flex; flex-direction: row; gap: 9px; width: 100%; max-width: 100%; padding: 2px 2px 10px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-inline: contain; scroll-snap-type: x proximity; scrollbar-width: thin; }
+  .service-tabs button { flex: 0 0 156px; width: 156px; min-height: 58px; scroll-snap-align: start; }
+  .service-panel { scroll-margin-top: 92px; }
+}
+
+@media (max-width: 420px) {
+  .topbar { padding-inline: 12px; }
+  .bs-wordmark { font-size: 16px; }
+  .bs-wordmark small { font-size: 6px; }
+  .progress-pill em { display: none; }
+  .progress-pill { min-width: 50px; justify-content: center; }
+  .cover-main { padding-inline: 18px; }
+  .cover-meta { grid-template-columns: 1fr 1fr; }
+}
