@@ -161,6 +161,19 @@ const modules = [
   ["22", "Contrôle qualité", "Vérifier chaque vente et chaque livraison avant envoi."],
 ];
 
+const quickChapters = [
+  { id: "top", number: "00", label: "Couverture" },
+  { id: "modules", number: "01", label: "Parcours" },
+  { id: "services", number: "02", label: "Services" },
+  { id: "prospection", number: "03", label: "Prospection" },
+  { id: "objections", number: "04", label: "Objections" },
+  { id: "cadre-pro", number: "05", label: "Cadre pro" },
+  { id: "finance", number: "06", label: "Finance" },
+  { id: "ia-agence", number: "07", label: "IA agence" },
+  { id: "modeles", number: "08", label: "Modèles" },
+  { id: "qualite", number: "09", label: "Contrôle final" },
+];
+
 const objections = [
   { type: "Appel", ask: "Je ne suis pas intéressé.", answer: "Je comprends. Pour ne pas vous relancer inutilement : c’est parce que le sujet n’est pas prioritaire, ou parce que vous avez déjà une solution qui fonctionne ?", next: "Identifier la vraie raison, puis proposer un diagnostic de 15 minutes seulement si un écart existe." },
   { type: "Appel", ask: "Je n’ai pas le temps.", answer: "Je vais être bref. Donnez-moi 20 secondes : si ce n’est pas pertinent, on raccroche. Aujourd’hui, comment obtenez-vous vos nouveaux clients ?", next: "Tenir réellement les 20 secondes et poser une seule question." },
@@ -410,6 +423,9 @@ export default function Home() {
   const [lastSaved, setLastSaved] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [glossaryQuery, setGlossaryQuery] = useState("");
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeChapter, setActiveChapter] = useState("top");
+  const [quickNavOpen, setQuickNavOpen] = useState(false);
   const [plan, setPlan] = useState({ service: "", cible: "", promesse: "", prix: "", volume: "", date: "" });
   const [economics, setEconomics] = useState({ revenue: 3000, monthlyPrice: 600, closeRate: 25, showRate: 70, bookingRate: 20 });
   const backupInput = useRef<HTMLInputElement>(null);
@@ -427,6 +443,97 @@ export default function Home() {
     }
     if (savedPlan) setPlan(JSON.parse(savedPlan));
     if (savedAt) setLastSaved(savedAt);
+  }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("main > section"));
+    const chapterTargets = quickChapters
+      .map(({ id }) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section));
+    let scrollFrame = 0;
+
+    root.classList.add("motion-ready");
+    revealTargets.forEach((section, index) => {
+      section.classList.add("reveal-ready");
+      if (index === 0 || reduceMotion) section.classList.add("in-view");
+    });
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          revealObserver.unobserve(entry.target);
+        }
+      }),
+      { threshold: 0.06, rootMargin: "0px 0px -9%" },
+    );
+    if (!reduceMotion) revealTargets.slice(1).forEach((section) => revealObserver.observe(section));
+
+    const chapterObserver = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setActiveChapter(visible.target.id);
+      },
+      { threshold: [0.08, 0.2, 0.45], rootMargin: "-18% 0px -62%" },
+    );
+    chapterTargets.forEach((section) => chapterObserver.observe(section));
+
+    const updateScroll = () => {
+      cancelAnimationFrame(scrollFrame);
+      scrollFrame = requestAnimationFrame(() => {
+        const available = document.documentElement.scrollHeight - window.innerHeight;
+        setScrollProgress(available > 0 ? Math.min(100, Math.max(0, (window.scrollY / available) * 100)) : 0);
+      });
+    };
+
+    const updatePointer = (event: PointerEvent) => {
+      root.style.setProperty("--cursor-x", `${event.clientX}px`);
+      root.style.setProperty("--cursor-y", `${event.clientY}px`);
+      const card = (event.target as Element | null)?.closest<HTMLElement>(
+        ".module-card, .service-panel, .progress-dashboard, .professional-grid article, .proposal-grid article, .procedure-grid article, .delegation-grid article, .ai-workflow-grid article, .template-grid article, .quality-grid article, .glossary-card, .finance-calculator",
+      );
+      if (card) {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--card-x", `${event.clientX - rect.left}px`);
+        card.style.setProperty("--card-y", `${event.clientY - rect.top}px`);
+      }
+    };
+
+    const createSpark = (event: PointerEvent) => {
+      if (reduceMotion || event.pointerType === "touch") return;
+      const spark = document.createElement("span");
+      spark.className = "click-spark";
+      spark.style.left = `${event.clientX}px`;
+      spark.style.top = `${event.clientY}px`;
+      for (let index = 0; index < 8; index += 1) {
+        const ray = document.createElement("i");
+        ray.style.setProperty("--ray", `${index * 45}deg`);
+        spark.appendChild(ray);
+      }
+      document.body.appendChild(spark);
+      window.setTimeout(() => spark.remove(), 720);
+    };
+
+    updateScroll();
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    window.addEventListener("resize", updateScroll, { passive: true });
+    window.addEventListener("pointermove", updatePointer, { passive: true });
+    window.addEventListener("pointerdown", createSpark, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(scrollFrame);
+      revealObserver.disconnect();
+      chapterObserver.disconnect();
+      root.classList.remove("motion-ready");
+      window.removeEventListener("scroll", updateScroll);
+      window.removeEventListener("resize", updateScroll);
+      window.removeEventListener("pointermove", updatePointer);
+      window.removeEventListener("pointerdown", createSpark);
+    };
   }, []);
 
   const service = services.find((item) => item.id === activeService) ?? services[0];
@@ -506,6 +613,8 @@ export default function Home() {
 
   return (
     <main>
+      <div className="reading-progress" aria-hidden="true"><i style={{ width: `${scrollProgress}%` }} /></div>
+      <div className="cursor-glow" aria-hidden="true" />
       <header className="topbar">
         <a className="brand" href="#top" aria-label="BS IA, retour en haut"><BrandLogo /></a>
         <nav className={menuOpen ? "nav-links open" : "nav-links"}>
@@ -527,6 +636,21 @@ export default function Home() {
         <strong>VOIR LE LEADERBOARD ↗</strong>
       </a>
 
+      <aside className={quickNavOpen ? "quick-nav open" : "quick-nav"} aria-label="Navigation rapide du guide">
+        <button type="button" onClick={() => setQuickNavOpen((open) => !open)} aria-expanded={quickNavOpen} aria-label="Ouvrir la navigation des chapitres">
+          <span>{quickChapters.find((chapter) => chapter.id === activeChapter)?.number ?? "00"}</span>
+          <i>{quickNavOpen ? "×" : "⌁"}</i>
+        </button>
+        <nav>
+          <header><small>INDEX RAPIDE</small><b>Va droit à l’essentiel.</b></header>
+          {quickChapters.map((chapter) => (
+            <a className={activeChapter === chapter.id ? "active" : ""} href={`#${chapter.id}`} key={chapter.id} onClick={() => setQuickNavOpen(false)}>
+              <span>{chapter.number}</span><b>{chapter.label}</b><i>↗</i>
+            </a>
+          ))}
+        </nav>
+      </aside>
+
       <section className="guide-cover" id="top">
         <div className="guide-dots" />
         <div className="cover-shell">
@@ -544,6 +668,10 @@ export default function Home() {
               <a className="text-link" href="#objections">ALLER AUX OBJECTIONS ↓</a>
             </div>
             <div className="cover-meta"><span><b>{modules.length}</b> modules</span><span><b>{services.length}</b> services</span><span><b>{templateLibrary.length}</b> modèles</span><span><b>0</b> prérequis</span></div>
+            <div className="signal-ticker" aria-label="Les piliers de la méthode BS IA">
+              <div><span>OFFRE</span><i>✦</i><span>PREUVE</span><i>✦</i><span>CONVERSATION</span><i>✦</i><span>LIVRAISON</span><i>✦</i><span>SYSTÈME</span><i>✦</i><span>MARGE</span><i>✦</i></div>
+              <div aria-hidden="true"><span>OFFRE</span><i>✦</i><span>PREUVE</span><i>✦</i><span>CONVERSATION</span><i>✦</i><span>LIVRAISON</span><i>✦</i><span>SYSTÈME</span><i>✦</i><span>MARGE</span><i>✦</i></div>
+            </div>
           </div>
           <article className="start-panel">
             <img className="cover-logo" src="./bs-ia-logo.png" alt="Logo BS IA" />
