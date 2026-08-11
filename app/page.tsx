@@ -226,6 +226,30 @@ const marketStats = [
   },
 ];
 
+const digitalDemandSignals = [
+  { value: 70, label: "ont un projet numérique à deux ans", detail: "Les logiciels, le matériel et la présence en ligne restent les priorités principales." },
+  { value: 51, label: "obtiennent déjà des clients grâce à internet", detail: "Au moins 5 % de leurs clients proviennent du web." },
+  { value: 42, label: "ont dépensé plus de 1 000 € dans le numérique", detail: "Dépenses 2024 en matériel et logiciels, hors formation et recrutement." },
+  { value: 25, label: "n’ont consacré aucun budget au numérique", detail: "Ne confonds jamais problème visible et capacité réelle à acheter." },
+  { value: 20, label: "ont suivi une formation numérique", detail: "Le manque de temps est le premier frein à la formation pour 55 %." },
+  { value: 36, label: "ont déjà subi un incident de cybersécurité", detail: "21 % citent l’hameçonnage et 16 % un logiciel malveillant." },
+];
+
+const growthSectors = [
+  { sector: "Commerce", creations: "172 600", growth: "+11,1 %", offers: "Identité, boutique en ligne, visibilité locale, avis et fidélisation" },
+  { sector: "Services spécialisés & techniques", creations: "170 200", growth: "+6,2 %", offers: "Site de confiance, prise de rendez-vous, suivi client et automatisation" },
+  { sector: "Services administratifs & soutien", creations: "129 100", growth: "+11,7 %", offers: "Automatisation, outils de suivi, site et génération de demandes" },
+  { sector: "Information & communication", creations: "75 000", growth: "+8,2 %", offers: "Positionnement, identité premium, site et systèmes internes" },
+  { sector: "Hébergement & restauration", creations: "47 300", growth: "+6,7 %", offers: "Google local, site, réservation, NFC, menus et avis" },
+];
+
+const ecommercePulse = [
+  { value: "3,2 Md", label: "transactions en ligne", change: "+10 % en un an" },
+  { value: "62 €", label: "panier moyen", change: "−3 % en un an" },
+  { value: "+9 %", label: "croissance des services en ligne", change: "contre +4 % pour les produits" },
+  { value: "12 %", label: "du commerce de détail produit", change: "réalisé en ligne" },
+];
+
 const objections = [
   { type: "Appel", ask: "Je ne suis pas intéressé.", answer: "Je comprends. Pour ne pas vous relancer inutilement : c’est parce que le sujet n’est pas prioritaire, ou parce que vous avez déjà une solution qui fonctionne ?", next: "Identifier la vraie raison, puis proposer un diagnostic de 15 minutes seulement si un écart existe." },
   { type: "Appel", ask: "Je n’ai pas le temps.", answer: "Je vais être bref. Donnez-moi 20 secondes : si ce n’est pas pertinent, on raccroche. Aujourd’hui, comment obtenez-vous vos nouveaux clients ?", next: "Tenir réellement les 20 secondes et poser une seule question." },
@@ -842,6 +866,32 @@ export default function Home() {
                 <p>{stat.insight}</p>
               </article>
             ))}
+          </div>
+          <div className="market-radar">
+            <header><div><small>RADAR DE DEMANDE</small><h3>Budget, projets et niveau de maturité.</h3></div><a href="https://www.francenum.gouv.fr/files/2025-09/Barom%C3%A8tre%20France%20Num%202025%20-%20Rapport.pdf" target="_blank" rel="noreferrer">RAPPORT FRANCE NUM ↗</a></header>
+            <div className="market-radar-grid">
+              {digitalDemandSignals.map((signal) => (
+                <article key={signal.label}>
+                  <div><b>{signal.value} %</b><span>{signal.label}</span></div>
+                  <div className="data-bar" aria-label={`${signal.value} pour cent`}><i style={{ width: `${signal.value}%` }} /></div>
+                  <p>{signal.detail}</p>
+                </article>
+              ))}
+            </div>
+            <aside><b>LECTURE COMMERCIALE</b><span>42 % ont déjà dépensé plus de 1 000 €, mais 25 % n’ont aucun budget : qualifie les moyens avant de faire une proposition. Un besoin apparent n’est pas automatiquement un marché solvable.</span></aside>
+          </div>
+          <div className="sector-data">
+            <header><div><small>CRÉATIONS D’ENTREPRISES · INSEE 2025</small><h3>Les secteurs où de nouveaux besoins apparaissent.</h3></div><a href="https://www.insee.fr/fr/statistiques/8721354" target="_blank" rel="noreferrer">OUVRIR L’ÉTUDE ↗</a></header>
+            <div className="sector-table">
+              <div className="sector-table-head"><span>SECTEUR</span><span>CRÉATIONS</span><span>ÉVOLUTION</span><span>OFFRES À TESTER</span></div>
+              {growthSectors.map((item, index) => <div className="sector-row" key={item.sector}><span><i>{String(index + 1).padStart(2, "0")}</i><b>{item.sector}</b></span><strong>{item.creations}</strong><em>{item.growth}</em><p>{item.offers}</p></div>)}
+            </div>
+            <p>Ce classement indique un flux de nouvelles entreprises, pas leur budget ni leur survie. L’Insee estime que 69 % des créations deviennent économiquement actives dans les deux ans : vérifie toujours que l’activité a réellement démarré.</p>
+          </div>
+          <div className="ecommerce-pulse">
+            <header><div><small>E-COMMERCE FRANCE · 2025</small><h3>Plus d’achats, mais un panier moyen sous pression.</h3></div><a href="https://www.fevad.com/bilan-du-e-commerce-en-france-les-francais-ont-depense-pres-de-200-milliards-deuros-sur-internet-en-2025/" target="_blank" rel="noreferrer">SOURCE FEVAD ↗</a></header>
+            <div>{ecommercePulse.map((item) => <article key={item.label}><b>{item.value}</b><span>{item.label}</span><small>{item.change}</small></article>)}</div>
+            <aside><b>CE QUE ÇA CHANGE POUR L’OFFRE</b><p>Quand le panier baisse mais que le nombre de transactions monte, ne vends pas seulement « un beau site ». Travaille la vitesse, la clarté produit, la confiance, le taux de conversion, la fidélisation et la valeur de chaque commande.</p></aside>
           </div>
           <div className="market-method">
             <div><small>01</small><b>Lis le signal</b><span>Une tendance nationale, datée et sourcée.</span></div>
