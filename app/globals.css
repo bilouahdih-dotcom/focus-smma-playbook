@@ -327,7 +327,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: 200; pointer-eve
 .cadence span { margin-top: 9px; font-size: 16px; letter-spacing: -.02em; }
 
 /* Collision fixes for responsive headlines and the portrait brand artwork */
-.cover-logo { display: block; height: 240px; object-position: center 40%; }
+.cover-logo { display: block; width: calc(100% + 48px); max-width: none; height: 240px; object-position: center 40%; }
 .start-panel { overflow: hidden; }
 .section-title h2, .master-rule h3, .service-head h3 { overflow-wrap: anywhere; }
 
