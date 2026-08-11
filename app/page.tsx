@@ -238,6 +238,8 @@ const modules = [
   ["20", "IA pour l’agence", "Accélérer recherche, production, vente et contrôle."],
   ["21", "Bibliothèque de modèles", "Copier les documents qui font gagner du temps."],
   ["22", "Contrôle qualité", "Vérifier chaque vente et chaque livraison avant envoi."],
+  ["23", "Diagnostic terrain", "Relier un problème visible à une offre et à une preuve."],
+  ["24", "Premier projet", "Piloter les quatorze premiers jours sans improviser."],
 ];
 
 const quickChapters = [
@@ -252,6 +254,8 @@ const quickChapters = [
   { id: "ia-agence", number: "08", label: "IA agence" },
   { id: "modeles", number: "09", label: "Modèles" },
   { id: "qualite", number: "10", label: "Contrôle final" },
+  { id: "diagnostic-terrain", number: "11", label: "Cas pratiques" },
+  { id: "premier-projet", number: "12", label: "Premier projet" },
 ];
 
 const marketStats = [
@@ -547,6 +551,60 @@ const qualityGates = [
   ["Avant une hausse de prix", "Preuves, demande, qualité et capacité de livraison suffisantes."],
   ["Avant de promettre", "Résultat contrôlable, hypothèses écrites et limites expliquées."],
   ["Avant de scaler", "Acquisition répétable, marge positive, trésorerie et procédures stables."],
+];
+
+const diagnosticPlaybooks = [
+  {
+    sector: "Restaurant local",
+    signal: "Site lent ou absent, carte illisible sur mobile, peu d’avis récents, réservation uniquement par téléphone.",
+    questions: ["Combien de réservations viennent du web ?", "Quelles heures sont perdues à répondre aux mêmes questions ?", "Quelle est la valeur moyenne d’une table ?"],
+    prescription: "Site mobile + réservation + fiche Google + plaque NFC",
+    proof: "Prototype de la page d’accueil et parcours de réservation testable sur téléphone.",
+    refuse: "Refuser de promettre des réservations si l’établissement est mal noté, fermé souvent ou incapable de répondre.",
+  },
+  {
+    sector: "Artisan à forte valeur",
+    signal: "Leads reçus sans suivi, site générique, aucune preuve locale, appels manqués et devis oubliés.",
+    questions: ["Combien vaut un chantier signé ?", "Sur dix demandes, combien deviennent des devis puis des clients ?", "Qui rappelle et sous quel délai ?"],
+    prescription: "Page locale + suivi des demandes + CRM simple + automatisation de rappel",
+    proof: "Audit de cinq demandes passées et démonstration du nouveau parcours de suivi.",
+    refuse: "Ne pas vendre plus de demandes si personne ne peut les rappeler ni établir les devis.",
+  },
+  {
+    sector: "Boutique e-commerce",
+    signal: "Trafic existant mais fiches faibles, peu d’ajouts au panier, abandon élevé ou catalogue incohérent.",
+    questions: ["Quelle page perd le plus de visiteurs ?", "Quels sont les produits les plus rentables ?", "Quels motifs de retour reviennent le plus ?"],
+    prescription: "Audit du parcours + amélioration des fiches + contenus produits",
+    proof: "Avant/après sur une fiche prioritaire avec mesure des ajouts au panier et du passage au paiement.",
+    refuse: "Ne pas attribuer un problème de conversion au design sans vérifier prix, produit, livraison et qualité du trafic.",
+  },
+  {
+    sector: "Cabinet ou consultant",
+    signal: "Offre difficile à comprendre, prise de rendez-vous manuelle, demandes peu qualifiées et relances irrégulières.",
+    questions: ["Quel type de dossier est réellement rentable ?", "Quelles questions doivent être posées avant un rendez-vous ?", "Combien de rendez-vous ne se présentent pas ?"],
+    prescription: "Page d’offre + formulaire de sélection + calendrier + rappels",
+    proof: "Parcours complet : page, formulaire, réservation, confirmation et rappel de test.",
+    refuse: "Ne pas automatiser une qualification que le client lui-même n’arrive pas à expliquer.",
+  },
+  {
+    sector: "Commerce de proximité",
+    signal: "Peu visible dans Maps, avis anciens, identité incohérente et aucune collecte de contacts ou de retours.",
+    questions: ["Comment les nouveaux clients vous trouvent-ils ?", "Combien d’avis récents obtenez-vous chaque mois ?", "Quelle offre fait revenir les clients ?"],
+    prescription: "Visibilité Google + identité légère + plaque NFC + système de retour client",
+    proof: "Fiche Google corrigée, support NFC installé et tableau de suivi des scans et avis.",
+    refuse: "Ne jamais acheter de faux avis ni filtrer artificiellement les clients insatisfaits.",
+  },
+];
+
+const firstProjectSprint = [
+  { day: "J0", title: "Sécuriser", text: "Contrat signé, acompte reçu, périmètre et personne de validation confirmés.", output: "Feu vert écrit" },
+  { day: "J1", title: "Démarrer", text: "Réunion de lancement : objectif, public, contraintes, accès, calendrier et définition du succès.", output: "Compte rendu" },
+  { day: "J2–3", title: "Mesurer avant", text: "Capturer la situation de départ : chiffres, écrans, temps passé, parcours actuel et problèmes connus.", output: "Point zéro" },
+  { day: "J4–7", title: "Produire", text: "Créer la version pilote avec un seul responsable, des fichiers nommés et une liste des décisions prises.", output: "Version interne" },
+  { day: "J8", title: "Contrôler", text: "Tester les liens, le mobile, les formulaires, les données, les textes, la sécurité et les cas d’erreur.", output: "Checklist signée" },
+  { day: "J9", title: "Présenter", text: "Montrer le raisonnement et le résultat. Centraliser les retours au lieu de corriger pendant l’appel.", output: "Retours classés" },
+  { day: "J10–12", title: "Corriger", text: "Appliquer uniquement les retours compris dans le périmètre et faire valider par écrit.", output: "Version validée" },
+  { day: "J13–14", title: "Lancer & transmettre", text: "Mettre en service, vérifier les premières actions, former le client et fixer la date du premier bilan.", output: "Livraison + suite" },
 ];
 
 function CopyButton({ text, label = "Copier" }: { text: string; label?: string }) {
@@ -1230,7 +1288,40 @@ export default function Home() {
       <section className="content-section quality-section" id="qualite">
         <SectionTitle eyebrow="22 — Contrôle qualité" title="La checklist qui protège ta réputation." text="Passe chaque porte de contrôle avant d’avancer. Une minute de vérification coûte moins cher qu’une semaine de réparation." />
         <div className="quality-grid">{qualityGates.map((item, index) => <article key={item[0]}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{item[0]}</h3><p>{item[1]}</p></div><i>✓</i></article>)}</div>
-        <div className="master-rule"><small>RÈGLE FINALE</small><h3>Ne scale pas le chaos.</h3><p>Avant d’ajouter des clients, des outils ou des sous-traitants, assure-toi que l’offre est rentable, la livraison est documentée et la satisfaction est mesurée.</p><a href="#modules">REVOIR LES 22 MODULES ↑</a></div>
+      </section>
+
+      <section className="dark-section field-diagnostic-section" id="diagnostic-terrain">
+        <div className="section-wrap">
+          <SectionTitle eyebrow="23 — Diagnostic terrain" title="Du problème visible à l’offre logique." text="Ne propose pas le même service à tout le monde. Observe, questionne, mesure puis recommande la plus petite solution capable de produire une preuve." />
+          <div className="diagnostic-playbook-grid">
+            {diagnosticPlaybooks.map((item, index) => (
+              <details key={item.sector} open={index === 0}>
+                <summary><span>{String(index + 1).padStart(2, "0")}</span><div><small>CAS PRATIQUE</small><b>{item.sector}</b></div><i>+</i></summary>
+                <div className="diagnostic-playbook-body">
+                  <article><small>SIGNAUX À OBSERVER</small><p>{item.signal}</p></article>
+                  <article><small>3 QUESTIONS</small><ol>{item.questions.map(question => <li key={question}>{question}</li>)}</ol></article>
+                  <article className="prescription"><small>OFFRE À TESTER</small><strong>{item.prescription}</strong><p>{item.proof}</p></article>
+                  <aside><b>GARDE-FOU</b><span>{item.refuse}</span></aside>
+                </div>
+              </details>
+            ))}
+          </div>
+          <div className="diagnostic-rule"><b>RÈGLE DE PRESCRIPTION</b><span>Un problème confirmé + une conséquence chiffrée + une solution proportionnée + une preuve simple. S’il manque un de ces quatre éléments, continue le diagnostic avant de parler prix.</span></div>
+        </div>
+      </section>
+
+      <section className="content-section first-project-section" id="premier-projet">
+        <SectionTitle eyebrow="24 — Premier projet client" title="Les quatorze jours qui construisent ta réputation." text="Ce planning est un exemple pour une petite mission. Adapte la durée au service vendu, mais ne saute jamais le cadrage, le point de départ, le contrôle et la validation." />
+        <div className="sprint-timeline">
+          {firstProjectSprint.map((item, index) => <article key={item.day}><header><span>{item.day}</span><i>{String(index + 1).padStart(2, "0")}</i></header><h3>{item.title}</h3><p>{item.text}</p><footer><small>SORTIE ATTENDUE</small><b>{item.output}</b></footer></article>)}
+        </div>
+        <div className="project-command-center">
+          <div><small>LE CLIENT TARDE À RÉPONDRE</small><b>Documente le blocage, décale le calendrier et demande une nouvelle date de validation.</b></div>
+          <div><small>UNE DEMANDE SORT DU PÉRIMÈTRE</small><b>Explique l’écart, chiffre l’option et n’exécute rien sans accord écrit.</b></div>
+          <div><small>UNE ERREUR EST DÉCOUVERTE</small><b>Préviens vite, limite l’impact, corrige puis documente comment éviter sa répétition.</b></div>
+          <div><small>LE RÉSULTAT EST FAIBLE</small><b>Compare au point zéro, sépare faits et hypothèses, puis propose le prochain test mesurable.</b></div>
+        </div>
+        <div className="master-rule"><small>RÈGLE FINALE</small><h3>Ne développe pas le chaos.</h3><p>Avant d’ajouter des clients, des outils ou des sous-traitants, assure-toi que l’offre est rentable, la livraison est documentée et la satisfaction est mesurée.</p><a href="#modules">REVOIR LES 24 MODULES ↑</a></div>
       </section>
 
       <footer className="footer"><a aria-label="BS IA, retour en haut" className="brand" href="#top"><BrandLogo /></a><p>BS IA · SMMA Masterbook · Édition premium 2026 · Créé par Biloux.</p><a href="#top">RETOUR EN HAUT ↑</a></footer>
