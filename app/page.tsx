@@ -767,7 +767,7 @@ export default function Home() {
           <div className="timeline">
             {trainingWeeks.map(item => <article key={item[0]}><span>{item[0]}</span><div><h3>{item[1]}</h3><p>{item[2]}</p></div></article>)}
           </div>
-          <div className="resource-row"><div><b>Webflow University</b><span>Pour les sites, l’adaptation mobile et les interactions</span></div><div><b>Make Academy</b><span>Pour les automatisations et les scénarios</span></div><div><b>Figma Learn</b><span>Pour l’identité visuelle, les maquettes et les règles graphiques</span></div><div><b>Google + HubSpot</b><span>Skillshop pour la publicité, Academy pour le suivi client et la vente</span></div></div>
+          <div className="resource-row"><div><small>RESSOURCE OFFICIELLE</small><b>Webflow University</b><span>Pour les sites, l’adaptation mobile et les interactions</span><i>✦</i></div><div><small>RESSOURCE OFFICIELLE</small><b>Make Academy</b><span>Pour les automatisations et les scénarios</span><i>✦</i></div><div><small>RESSOURCE OFFICIELLE</small><b>Figma Learn</b><span>Pour l’identité visuelle, les maquettes et les règles graphiques</span><i>✦</i></div><div><small>PARCOURS COMBINÉ</small><b>Google + HubSpot</b><span>Skillshop pour la publicité, Academy pour le suivi client et la vente</span><i>✦</i></div></div>
         </div>
       </section>
 
@@ -817,7 +817,7 @@ export default function Home() {
           <SectionTitle eyebrow="07 — Appel à froid (cold call)" title="Le script sert à écouter, pas à réciter." text="Prépare l’ouverture et les questions, puis adapte les mots au prospect. L’objectif du premier appel est un rendez-vous d’analyse, pas une vente forcée." />
           <div className="script-grid">{scriptCards.slice(0, 4).map(card => <article className="script-card" key={card.title}><div><span>{card.badge}</span><h3>{card.title}</h3></div><p>{card.text}</p><CopyButton text={card.text} /></article>)}</div>
           <div className="call-flow"><span>OUVERTURE</span><i>→</i><span>PERMISSION</span><i>→</i><span>2 QUESTIONS</span><i>→</i><span>REFORMULATION</span><i>→</i><span>RENDEZ-VOUS</span></div>
-          <p className="compliance">Respecte les règles locales de démarchage, les horaires autorisés, les listes d’opposition applicables et toute demande de ne plus être contacté.</p>
+          <aside className="compliance"><span>✓</span><div><b>CADRE DE L’APPEL</b><p>Respecte les règles locales de démarchage, les horaires autorisés, les listes d’opposition applicables et toute demande de ne plus être contacté.</p></div><small>IDENTITÉ · MOTIF · RESPECT DU REFUS</small></aside>
         </div>
       </section>
 
@@ -846,7 +846,7 @@ export default function Home() {
 
       <section className="content-section objections-section" id="objections">
         <SectionTitle eyebrow="10 — Objections & réponses" title="Ne combats pas l’objection. Clarifie-la." text="Réponds en trois temps : accueillir sans te justifier, poser une question pour isoler la cause, puis proposer la prochaine étape logique." />
-        <div className="objection-method"><div><b>1. Accueillir</b><span>“Je comprends.”</span></div><div><b>2. Clarifier</b><span>“Quand vous dites…, c’est plutôt… ?”</span></div><div><b>3. Répondre</b><span>Une réponse liée au diagnostic.</span></div><div><b>4. Avancer</b><span>Question, rendez-vous ou sortie propre.</span></div></div>
+        <div className="objection-method"><div><i>01</i><b>Accueillir</b><span>“Je comprends.”</span></div><div><i>02</i><b>Clarifier</b><span>“Quand vous dites…, c’est plutôt… ?”</span></div><div><i>03</i><b>Répondre</b><span>Une réponse liée au diagnostic.</span></div><div><i>04</i><b>Avancer</b><span>Question, rendez-vous ou sortie propre.</span></div></div>
         <div className="filter-row">{["Tous", "Appel", "Terrain", "Vente"].map(item => <button className={objectionFilter === item ? "active" : ""} onClick={() => setObjectionFilter(item)} key={item} type="button">{item}</button>)}</div>
         <div className="objection-list">
           {filteredObjections.map((item, index) => <details key={item.ask} open={index === 0}><summary><span>{item.type}</span><b>“{item.ask}”</b><i>+</i></summary><div className="objection-answer"><div><small>RÉPONSE</small><p>{item.answer}</p></div><div><small>RELANCE / ACTION</small><p>{item.next}</p></div><CopyButton text={`${item.ask}\n\nRéponse : ${item.answer}\n\nSuite : ${item.next}`} /></div></details>)}
