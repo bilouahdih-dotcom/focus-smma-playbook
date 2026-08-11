@@ -687,7 +687,7 @@ export default function Home() {
           </aside>
           <div className="cover-main">
             <div className="cover-breadcrumb"><span>BS IA</span><i>•</i><span>SMMA MASTERBOOK</span><strong>DÉBUTANT → OPÉRATIONNEL</strong></div>
-            <h1>Construis une agence.<br/><em>Maîtrise le système.</em></h1>
+            <h1><span>Construis une agence.</span><em>Maîtrise le système.</em></h1>
             <p>Le guide SMMA complet pour partir de zéro, choisir un service rentable, obtenir des rendez-vous, vendre proprement et livrer une expérience client professionnelle.</p>
             <div className="cover-actions">
               <a className="gold-button" data-magnetic href="#modules">COMMENCER LE GUIDE <span>→</span></a>
