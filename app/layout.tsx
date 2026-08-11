@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   applicationName: "BS IA",
   title: "BS IA — SMMA Masterbook 2026",
   description: "Le guide SMMA premium de BS IA : 22 modules pour choisir un service, prospecter, vendre, livrer et structurer une agence depuis zéro.",
-  icons: { icon: "./bs-ia-logo.png", shortcut: "./bs-ia-logo.png" },
+  icons: { icon: "./bs-ia-logo.webp", shortcut: "./bs-ia-logo.webp" },
   openGraph: {
     siteName: "BS IA",
     title: "BS IA — SMMA Masterbook 2026",

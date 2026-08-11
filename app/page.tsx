@@ -165,13 +165,65 @@ const quickChapters = [
   { id: "top", number: "00", label: "Couverture" },
   { id: "modules", number: "01", label: "Parcours" },
   { id: "services", number: "02", label: "Services" },
-  { id: "prospection", number: "03", label: "Prospection" },
-  { id: "objections", number: "04", label: "Objections" },
-  { id: "cadre-pro", number: "05", label: "Cadre pro" },
-  { id: "finance", number: "06", label: "Finance" },
-  { id: "ia-agence", number: "07", label: "IA agence" },
-  { id: "modeles", number: "08", label: "Modèles" },
-  { id: "qualite", number: "09", label: "Contrôle final" },
+  { id: "data-marche", number: "03", label: "Data marché" },
+  { id: "prospection", number: "04", label: "Prospection" },
+  { id: "objections", number: "05", label: "Objections" },
+  { id: "cadre-pro", number: "06", label: "Cadre pro" },
+  { id: "finance", number: "07", label: "Finance" },
+  { id: "ia-agence", number: "08", label: "IA agence" },
+  { id: "modeles", number: "09", label: "Modèles" },
+  { id: "qualite", number: "10", label: "Contrôle final" },
+];
+
+const marketStats = [
+  {
+    value: "1 165 800",
+    label: "entreprises créées en France en 2025",
+    change: "+5 % en un an · nouveau record",
+    insight: "Signal commercial : les entreprises récentes doivent souvent construire leur identité, leur site et leurs premiers systèmes.",
+    source: "Insee",
+    url: "https://www.insee.fr/fr/statistiques/8721354",
+  },
+  {
+    value: "84 %",
+    label: "des TPE-PME ont une visibilité en ligne",
+    change: "site internet ou réseau social",
+    insight: "Présence ne veut pas dire performance : audite la clarté de l’offre, la prise de contact, le mobile et la visibilité locale.",
+    source: "France Num",
+    url: "https://www.francenum.gouv.fr/guides-et-conseils/strategie-numerique/comprendre-le-numerique/barometre-france-num-2025-le",
+  },
+  {
+    value: "40 %",
+    label: "voient le numérique augmenter leur chiffre d’affaires",
+    change: "bénéfice commercial déclaré",
+    insight: "Vends un impact compréhensible — demandes, rendez-vous, ventes ou temps gagné — plutôt qu’une liste de tâches.",
+    source: "France Num",
+    url: "https://www.francenum.gouv.fr/guides-et-conseils/strategie-numerique/comprendre-le-numerique/barometre-france-num-2025-le",
+  },
+  {
+    value: "26 %",
+    label: "des TPE-PME utilisent déjà l’intelligence artificielle",
+    change: "+13 points par rapport à 2024",
+    insight: "Seules 5 % déclarent automatiser des tâches : il existe un écart entre tester l’IA et l’intégrer à un vrai processus.",
+    source: "France Num",
+    url: "https://www.francenum.gouv.fr/files/2025-09/Barom%C3%A8tre%20France%20Num%202025%20-%20Infographie%20VF.pdf",
+  },
+  {
+    value: "196,4 Md€",
+    label: "de ventes en ligne en France en 2025",
+    change: "+7 % par rapport à 2024",
+    insight: "Signal commercial : boutiques, marques et commerçants ont besoin de sites rapides, de conversion, de contenu et de fidélisation.",
+    source: "Fevad",
+    url: "https://www.fevad.com/bilan-du-e-commerce-en-france-les-francais-ont-depense-pres-de-200-milliards-deuros-sur-internet-en-2025/",
+  },
+  {
+    value: "37 %",
+    label: "proposent la vente ou le paiement en ligne",
+    change: "TPE-PME françaises · données 2025",
+    insight: "Catalogue, réservation, acompte ou paiement : pars du parcours réel du client, pas de la technologie à placer.",
+    source: "France Num",
+    url: "https://www.francenum.gouv.fr/files/2025-09/Barom%C3%A8tre%20France%20Num%202025%20-%20Infographie%20VF.pdf",
+  },
 ];
 
 const objections = [
@@ -423,13 +475,13 @@ export default function Home() {
   const [lastSaved, setLastSaved] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [glossaryQuery, setGlossaryQuery] = useState("");
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [activeChapter, setActiveChapter] = useState("top");
   const [quickNavOpen, setQuickNavOpen] = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
   const [plan, setPlan] = useState({ service: "", cible: "", promesse: "", prix: "", volume: "", date: "" });
   const [economics, setEconomics] = useState({ revenue: 3000, monthlyPrice: 600, closeRate: 25, showRate: 70, bookingRate: 20 });
   const backupInput = useRef<HTMLInputElement>(null);
+  const readingProgress = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const saved = window.localStorage.getItem("focus-smma-progress");
@@ -455,7 +507,10 @@ export default function Home() {
       .filter((section): section is HTMLElement => Boolean(section));
     const footer = document.querySelector<HTMLElement>(".footer");
     let scrollFrame = 0;
+    let pointerFrame = 0;
+    let lastPointer: PointerEvent | null = null;
     let activeMagnet: HTMLElement | null = null;
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
     root.classList.add("motion-ready");
     revealTargets.forEach((section, index) => {
@@ -495,35 +550,43 @@ export default function Home() {
       cancelAnimationFrame(scrollFrame);
       scrollFrame = requestAnimationFrame(() => {
         const available = document.documentElement.scrollHeight - window.innerHeight;
-        setScrollProgress(available > 0 ? Math.min(100, Math.max(0, (window.scrollY / available) * 100)) : 0);
+        const value = available > 0 ? Math.min(1, Math.max(0, window.scrollY / available)) : 0;
+        readingProgress.current?.style.setProperty("--reading-progress", `${value}`);
       });
     };
 
     const updatePointer = (event: PointerEvent) => {
-      root.style.setProperty("--cursor-x", `${event.clientX}px`);
-      root.style.setProperty("--cursor-y", `${event.clientY}px`);
-      const card = (event.target as Element | null)?.closest<HTMLElement>(
-        ".module-card, .service-panel, .progress-dashboard, .professional-grid article, .proposal-grid article, .procedure-grid article, .delegation-grid article, .ai-workflow-grid article, .template-grid article, .quality-grid article, .glossary-card, .finance-calculator",
-      );
-      if (card) {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty("--card-x", `${event.clientX - rect.left}px`);
-        card.style.setProperty("--card-y", `${event.clientY - rect.top}px`);
-        card.style.setProperty("--tilt-x", `${(((event.clientY - rect.top) / rect.height) - .5) * -5}deg`);
-        card.style.setProperty("--tilt-y", `${(((event.clientX - rect.left) / rect.width) - .5) * 5}deg`);
-      }
+      lastPointer = event;
+      if (pointerFrame) return;
+      pointerFrame = requestAnimationFrame(() => {
+        pointerFrame = 0;
+        const point = lastPointer;
+        if (!point) return;
+        root.style.setProperty("--cursor-x", `${point.clientX}px`);
+        root.style.setProperty("--cursor-y", `${point.clientY}px`);
+        const card = (point.target as Element | null)?.closest<HTMLElement>(
+          ".module-card, .service-panel, .progress-dashboard, .market-stat, .professional-grid article, .proposal-grid article, .procedure-grid article, .delegation-grid article, .ai-workflow-grid article, .template-grid article, .quality-grid article, .glossary-card, .finance-calculator",
+        );
+        if (card) {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty("--card-x", `${point.clientX - rect.left}px`);
+          card.style.setProperty("--card-y", `${point.clientY - rect.top}px`);
+          card.style.setProperty("--tilt-x", `${(((point.clientY - rect.top) / rect.height) - .5) * -5}deg`);
+          card.style.setProperty("--tilt-y", `${(((point.clientX - rect.left) / rect.width) - .5) * 5}deg`);
+        }
 
-      const magnet = (event.target as Element | null)?.closest<HTMLElement>("[data-magnetic]") ?? null;
-      if (activeMagnet && activeMagnet !== magnet) {
-        activeMagnet.style.setProperty("--magnet-x", "0px");
-        activeMagnet.style.setProperty("--magnet-y", "0px");
-      }
-      activeMagnet = magnet;
-      if (magnet) {
-        const rect = magnet.getBoundingClientRect();
-        magnet.style.setProperty("--magnet-x", `${(event.clientX - rect.left - rect.width / 2) * .14}px`);
-        magnet.style.setProperty("--magnet-y", `${(event.clientY - rect.top - rect.height / 2) * .14}px`);
-      }
+        const magnet = (point.target as Element | null)?.closest<HTMLElement>("[data-magnetic]") ?? null;
+        if (activeMagnet && activeMagnet !== magnet) {
+          activeMagnet.style.setProperty("--magnet-x", "0px");
+          activeMagnet.style.setProperty("--magnet-y", "0px");
+        }
+        activeMagnet = magnet;
+        if (magnet) {
+          const rect = magnet.getBoundingClientRect();
+          magnet.style.setProperty("--magnet-x", `${(point.clientX - rect.left - rect.width / 2) * .14}px`);
+          magnet.style.setProperty("--magnet-y", `${(point.clientY - rect.top - rect.height / 2) * .14}px`);
+        }
+      });
     };
 
     const createSpark = (event: PointerEvent) => {
@@ -544,11 +607,14 @@ export default function Home() {
     updateScroll();
     window.addEventListener("scroll", updateScroll, { passive: true });
     window.addEventListener("resize", updateScroll, { passive: true });
-    window.addEventListener("pointermove", updatePointer, { passive: true });
-    window.addEventListener("pointerdown", createSpark, { passive: true });
+    if (finePointer && !reduceMotion) {
+      window.addEventListener("pointermove", updatePointer, { passive: true });
+      window.addEventListener("pointerdown", createSpark, { passive: true });
+    }
 
     return () => {
       cancelAnimationFrame(scrollFrame);
+      cancelAnimationFrame(pointerFrame);
       revealObserver.disconnect();
       chapterObserver.disconnect();
       footerObserver.disconnect();
@@ -557,8 +623,10 @@ export default function Home() {
       root.classList.remove("motion-ready");
       window.removeEventListener("scroll", updateScroll);
       window.removeEventListener("resize", updateScroll);
-      window.removeEventListener("pointermove", updatePointer);
-      window.removeEventListener("pointerdown", createSpark);
+      if (finePointer && !reduceMotion) {
+        window.removeEventListener("pointermove", updatePointer);
+        window.removeEventListener("pointerdown", createSpark);
+      }
     };
   }, []);
 
@@ -639,7 +707,7 @@ export default function Home() {
 
   return (
     <main>
-      <div className="reading-progress" aria-hidden="true"><i style={{ width: `${scrollProgress}%` }} /></div>
+      <div className="reading-progress" aria-hidden="true"><i ref={readingProgress} /></div>
       <div className="cursor-glow" aria-hidden="true" />
       <header className="topbar">
         <a className="brand" href="#top" aria-label="BS IA, retour en haut"><BrandLogo /></a>
@@ -700,7 +768,7 @@ export default function Home() {
             </div>
           </div>
           <article className="start-panel">
-            <img className="cover-logo" src="./bs-ia-logo.png" alt="Logo BS IA" />
+            <img className="cover-logo" src="./bs-ia-logo.webp" alt="Logo BS IA" decoding="async" fetchPriority="high" />
             <header><span>01</span><b>PROTOCOLE DE DÉPART</b><i>DÉBUTANT</i></header>
             <h2>Ta première semaine.</h2>
             <ol>
@@ -759,6 +827,33 @@ export default function Home() {
           </article>
         </div>
         <div className="decision-strip"><b>Règle de choix</b><span>Si tu ne peux pas expliquer le résultat, les livrables, les chiffres à suivre et le délai en 60 secondes, l’offre n’est pas encore prête.</span></div>
+      </section>
+
+      <section className="dark-section market-data-section" id="data-marche">
+        <div className="section-wrap">
+          <SectionTitle eyebrow="DATA MARCHÉ · FRANCE · 2025" title="Le marché existe. Voici où regarder." text="Ces chiffres nationaux donnent des directions, jamais une garantie de vente. Transforme chaque signal en hypothèse, puis vérifie-la avec des entreprises de ta zone." />
+          <div className="market-data-grid">
+            {marketStats.map((stat, index) => (
+              <article className="market-stat" key={stat.value}>
+                <header><span>{String(index + 1).padStart(2, "0")}</span><a href={stat.url} target="_blank" rel="noreferrer">{stat.source} ↗</a></header>
+                <b>{stat.value}</b>
+                <h3>{stat.label}</h3>
+                <small>{stat.change}</small>
+                <p>{stat.insight}</p>
+              </article>
+            ))}
+          </div>
+          <div className="market-method">
+            <div><small>01</small><b>Lis le signal</b><span>Une tendance nationale, datée et sourcée.</span></div>
+            <i>→</i>
+            <div><small>02</small><b>Formule une hypothèse</b><span>« Les commerces récents de ma ville ont-ils ce problème ? »</span></div>
+            <i>→</i>
+            <div><small>03</small><b>Teste sur le terrain</b><span>20 échanges ciblés avant de construire une grosse offre.</span></div>
+            <i>→</i>
+            <div><small>04</small><b>Garde les preuves</b><span>Réponses, objections, besoins et budget réel.</span></div>
+          </div>
+          <p className="market-disclaimer"><b>À retenir :</b> un pourcentage national ne prouve pas qu’une entreprise précise achètera. La demande locale, le budget, l’urgence et la qualité de ton offre doivent toujours être validés.</p>
+        </div>
       </section>
 
       <section className="cream-section" id="formation">
@@ -960,7 +1055,7 @@ export default function Home() {
 
       <section className="content-section ai-section" id="ia-agence">
         <SectionTitle eyebrow="20 — IA pour l’agence" title="L’IA accélère un système. Elle ne remplace pas le jugement." text="Utilise-la pour préparer, structurer, produire des variantes et contrôler. Le client paie toujours pour une recommandation juste et une exécution fiable." />
-        <div className="ai-principle"><img src="./bs-ia-logo.png" alt="BS IA" /><div><small>PROTOCOLE BS IA</small><h3>Contexte → consigne → contraintes → exemple → contrôle humain.</h3><p>Ne demande jamais seulement « fais-moi une stratégie ». Donne les informations du client, le résultat attendu, les limites, les sources et la grille de validation.</p></div><a href="https://lmarena.ai/leaderboard/text" target="_blank" rel="noreferrer">COMPARER LES MODÈLES ↗</a></div>
+        <div className="ai-principle"><img src="./bs-ia-logo.webp" alt="BS IA" loading="lazy" decoding="async" /><div><small>PROTOCOLE BS IA</small><h3>Contexte → consigne → contraintes → exemple → contrôle humain.</h3><p>Ne demande jamais seulement « fais-moi une stratégie ». Donne les informations du client, le résultat attendu, les limites, les sources et la grille de validation.</p></div><a href="https://lmarena.ai/leaderboard/text" target="_blank" rel="noreferrer">COMPARER LES MODÈLES ↗</a></div>
         <div className="ai-workflow-grid">{aiWorkflows.map((item, index) => <article key={item.title}><span>0{index + 1}</span><small>{item.tool}</small><h3>{item.title}</h3><p>{item.use}</p><em>CONTRÔLE · {item.guardrail}</em></article>)}</div>
         <div className="prompt-framework"><span>PROMPT DE TRAVAIL</span><CopyButton label="COPIER LE PROMPT" text="Rôle : tu es mon assistant d’agence SMMA.\nContexte client : [activité, cible, offre, zone, chiffres connus].\nObjectif : [résultat unique].\nTâche : [action précise].\nContraintes : [ton, format, limites, éléments interdits].\nSources : utilise uniquement [documents/liens fournis] et signale ce qui manque.\nSortie attendue : [structure exacte].\nContrôle final : liste les hypothèses, les risques et les points à vérifier humainement." /><pre>Rôle · Contexte client · Objectif · Tâche · Contraintes · Sources · Format · Contrôle final</pre></div>
       </section>
