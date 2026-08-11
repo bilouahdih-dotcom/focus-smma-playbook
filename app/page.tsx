@@ -714,15 +714,27 @@ Décision attendue avant le :`;
 function CopyButton({ text, label = "Copier" }: { text: string; label?: string }) {
   const [copied, setCopied] = useState(false);
   const copy = async () => {
+    let clipboardTimer = 0;
     try {
-      await navigator.clipboard.writeText(text);
+      if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable");
+      await Promise.race([
+        navigator.clipboard.writeText(text),
+        new Promise<never>((_, reject) => {
+          clipboardTimer = window.setTimeout(() => reject(new Error("Clipboard timeout")), 700);
+        }),
+      ]);
     } catch {
       const area = document.createElement("textarea");
       area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.opacity = "0";
       document.body.appendChild(area);
       area.select();
       document.execCommand("copy");
       area.remove();
+    } finally {
+      if (clipboardTimer) window.clearTimeout(clipboardTimer);
     }
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1500);
