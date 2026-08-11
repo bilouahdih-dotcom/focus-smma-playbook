@@ -426,6 +426,7 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeChapter, setActiveChapter] = useState("top");
   const [quickNavOpen, setQuickNavOpen] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
   const [plan, setPlan] = useState({ service: "", cible: "", promesse: "", prix: "", volume: "", date: "" });
   const [economics, setEconomics] = useState({ revenue: 3000, monthlyPrice: 600, closeRate: 25, showRate: 70, bookingRate: 20 });
   const backupInput = useRef<HTMLInputElement>(null);
@@ -452,7 +453,9 @@ export default function Home() {
     const chapterTargets = quickChapters
       .map(({ id }) => document.getElementById(id))
       .filter((section): section is HTMLElement => Boolean(section));
+    const footer = document.querySelector<HTMLElement>(".footer");
     let scrollFrame = 0;
+    let activeMagnet: HTMLElement | null = null;
 
     root.classList.add("motion-ready");
     revealTargets.forEach((section, index) => {
@@ -482,6 +485,12 @@ export default function Home() {
     );
     chapterTargets.forEach((section) => chapterObserver.observe(section));
 
+    const footerObserver = new IntersectionObserver(
+      ([entry]) => setFooterVisible(Boolean(entry?.isIntersecting)),
+      { threshold: 0.08 },
+    );
+    if (footer) footerObserver.observe(footer);
+
     const updateScroll = () => {
       cancelAnimationFrame(scrollFrame);
       scrollFrame = requestAnimationFrame(() => {
@@ -500,6 +509,20 @@ export default function Home() {
         const rect = card.getBoundingClientRect();
         card.style.setProperty("--card-x", `${event.clientX - rect.left}px`);
         card.style.setProperty("--card-y", `${event.clientY - rect.top}px`);
+        card.style.setProperty("--tilt-x", `${(((event.clientY - rect.top) / rect.height) - .5) * -5}deg`);
+        card.style.setProperty("--tilt-y", `${(((event.clientX - rect.left) / rect.width) - .5) * 5}deg`);
+      }
+
+      const magnet = (event.target as Element | null)?.closest<HTMLElement>("[data-magnetic]") ?? null;
+      if (activeMagnet && activeMagnet !== magnet) {
+        activeMagnet.style.setProperty("--magnet-x", "0px");
+        activeMagnet.style.setProperty("--magnet-y", "0px");
+      }
+      activeMagnet = magnet;
+      if (magnet) {
+        const rect = magnet.getBoundingClientRect();
+        magnet.style.setProperty("--magnet-x", `${(event.clientX - rect.left - rect.width / 2) * .14}px`);
+        magnet.style.setProperty("--magnet-y", `${(event.clientY - rect.top - rect.height / 2) * .14}px`);
       }
     };
 
@@ -528,6 +551,9 @@ export default function Home() {
       cancelAnimationFrame(scrollFrame);
       revealObserver.disconnect();
       chapterObserver.disconnect();
+      footerObserver.disconnect();
+      activeMagnet?.style.removeProperty("--magnet-x");
+      activeMagnet?.style.removeProperty("--magnet-y");
       root.classList.remove("motion-ready");
       window.removeEventListener("scroll", updateScroll);
       window.removeEventListener("resize", updateScroll);
@@ -636,15 +662,15 @@ export default function Home() {
         <strong>VOIR LE LEADERBOARD ↗</strong>
       </a>
 
-      <aside className={quickNavOpen ? "quick-nav open" : "quick-nav"} aria-label="Navigation rapide du guide">
-        <button type="button" onClick={() => setQuickNavOpen((open) => !open)} aria-expanded={quickNavOpen} aria-label="Ouvrir la navigation des chapitres">
+      <aside className={`quick-nav${quickNavOpen ? " open" : ""}${footerVisible ? " footer-visible" : ""}`} aria-label="Navigation rapide du guide">
+        <button data-magnetic type="button" onClick={() => setQuickNavOpen((open) => !open)} aria-expanded={quickNavOpen} aria-label="Ouvrir la navigation des chapitres">
           <span>{quickChapters.find((chapter) => chapter.id === activeChapter)?.number ?? "00"}</span>
-          <i>{quickNavOpen ? "×" : "⌁"}</i>
+          <span className="quick-nav-icon" aria-hidden="true"><i /><i /><i /></span>
         </button>
         <nav>
           <header><small>INDEX RAPIDE</small><b>Va droit à l’essentiel.</b></header>
           {quickChapters.map((chapter) => (
-            <a className={activeChapter === chapter.id ? "active" : ""} href={`#${chapter.id}`} key={chapter.id} onClick={() => setQuickNavOpen(false)}>
+              <a data-magnetic className={activeChapter === chapter.id ? "active" : ""} href={`#${chapter.id}`} key={chapter.id} onClick={() => setQuickNavOpen(false)}>
               <span>{chapter.number}</span><b>{chapter.label}</b><i>↗</i>
             </a>
           ))}
@@ -664,7 +690,7 @@ export default function Home() {
             <h1>Construis une agence.<br/><em>Maîtrise le système.</em></h1>
             <p>Le guide SMMA complet pour partir de zéro, choisir un service rentable, obtenir des rendez-vous, vendre proprement et livrer une expérience client professionnelle.</p>
             <div className="cover-actions">
-              <a className="gold-button" href="#modules">COMMENCER LE GUIDE <span>→</span></a>
+              <a className="gold-button" data-magnetic href="#modules">COMMENCER LE GUIDE <span>→</span></a>
               <a className="text-link" href="#objections">ALLER AUX OBJECTIONS ↓</a>
             </div>
             <div className="cover-meta"><span><b>{modules.length}</b> modules</span><span><b>{services.length}</b> services</span><span><b>{templateLibrary.length}</b> modèles</span><span><b>0</b> prérequis</span></div>
