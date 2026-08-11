@@ -134,6 +134,84 @@ const services: Service[] = [
     tools: ["Google Ads", "Keyword Planner", "Google Tag Manager", "GA4", "CallRail", "Looker Studio"],
     price: "Setup 200–400 € · Gestion 250–500 €/mois · Budget média payé par le client",
   },
+  {
+    id: "ecommerce-cro",
+    name: "Optimisation e-commerce",
+    result: "Transformer davantage de visites en achats sans reconstruire toute la boutique.",
+    clients: "Boutiques Shopify ou WooCommerce ayant déjà du trafic, des ventes et un catalogue actif, mais une conversion faible ou beaucoup d’abandons.",
+    learn: "Comprendre le parcours d’achat, la fiche produit, les preuves, les frais, le panier, le paiement, la vitesse mobile et l’analyse des comportements. Apprendre à prioriser les corrections selon leur impact et leur difficulté.",
+    deliverables: ["Audit du parcours d’achat", "Plan d’actions priorisé", "Amélioration de 3 à 8 écrans", "Mesure avant/après"],
+    kpis: "Ajouts au panier, passage au paiement, conversion, panier moyen et revenu par visite",
+    start: "Audit de cinq pages clés puis sprint de correction sur le principal point de fuite",
+    level: "Intermédiaire",
+    tools: ["Shopify ou WooCommerce", "GA4", "Microsoft Clarity", "PageSpeed Insights", "Figma", "VWO ou AB Tasty", "Google Tag Manager"],
+    price: "Audit 200–350 € · Sprint 450–800 € · Suivi 200–400 €/mois",
+  },
+  {
+    id: "ai-assistant",
+    name: "Assistant IA & chatbot",
+    result: "Répondre plus vite aux questions répétitives et orienter les visiteurs vers la bonne action.",
+    clients: "E-commerce, organismes de formation, agences, cabinets, services clients et entreprises recevant régulièrement les mêmes questions.",
+    learn: "Structurer une base de connaissances, rédiger les règles de réponse, configurer les limites, connecter une prise de contact et tester les cas où l’assistant doit passer la main à un humain.",
+    deliverables: ["Base de réponses validée", "Assistant intégré au site", "Parcours de qualification", "Tests, limites + documentation"],
+    kpis: "Questions résolues, transfert vers un humain, demandes qualifiées, erreurs et satisfaction",
+    start: "Assistant FAQ limité à vingt questions fréquentes avec transfert humain obligatoire",
+    level: "Intermédiaire",
+    tools: ["Voiceflow", "Chatbase", "Intercom ou Crisp", "OpenAI ou Claude", "Make ou n8n", "Notion", "Tally"],
+    price: "FAQ simple 250–500 € · Assistant connecté 700–1 500 € · Suivi 80–200 €/mois",
+  },
+  {
+    id: "dashboard",
+    name: "Tableau de bord & données",
+    result: "Rassembler les chiffres importants pour permettre au dirigeant de décider sans ouvrir cinq outils.",
+    clients: "Agences, e-commerce, organismes de formation, commerces multi-sites et entreprises utilisant déjà un CRM, un tableur ou plusieurs canaux d’acquisition.",
+    learn: "Définir les bonnes questions, nettoyer les données, relier les sources, créer des indicateurs compréhensibles et documenter la fréquence de mise à jour.",
+    deliverables: ["Carte des sources", "Tableau de bord", "Définitions des chiffres", "Formation + contrôle des données"],
+    kpis: "Fraîcheur des données, erreurs, temps de préparation économisé et décisions prises",
+    start: "Un tableau de bord hebdomadaire limité à cinq chiffres commerciaux",
+    level: "Intermédiaire",
+    tools: ["Looker Studio", "Google Sheets", "Airtable", "GA4", "HubSpot", "Make ou n8n", "Metabase"],
+    price: "Une source 250–450 € · Multi-sources 600–1 000 € · Automatisé 1 000–1 500 €",
+  },
+  {
+    id: "booking",
+    name: "Réservation & paiement",
+    result: "Permettre au client final de réserver, payer un acompte et recevoir les bonnes informations sans échange inutile.",
+    clients: "Consultants, coachs, cabinets, photographes, salons, artisans, formateurs, locations et prestations sur rendez-vous.",
+    learn: "Cartographier les créneaux, durées, capacités, annulations, acomptes, formulaires et rappels. Tester le parcours complet sur téléphone avant livraison.",
+    deliverables: ["Calendrier configuré", "Formulaire de préparation", "Acompte ou paiement", "Rappels + tableau de suivi"],
+    kpis: "Réservations, présence, annulations, paiements réussis et temps administratif économisé",
+    start: "Un service, un calendrier, un formulaire et un acompte testés de bout en bout",
+    level: "Débutant +",
+    tools: ["Calendly ou Cal.com", "Tally", "Stripe", "Planity ou Reservio", "Google Calendar", "Make", "Twilio"],
+    price: "Installation 150–300 € · Parcours complet 350–650 € · Automatisé 700–1 200 €",
+  },
+  {
+    id: "product-content",
+    name: "Contenus produits e-commerce",
+    result: "Rendre un catalogue plus clair, désirable et cohérent pour faciliter la décision d’achat.",
+    clients: "Marques Shopify, créateurs de produits, boutiques mode, beauté, maison, accessoires et vendeurs lançant une nouvelle collection.",
+    learn: "Hiérarchiser les bénéfices, écrire une fiche produit, préparer les prises de vue, produire des variations visuelles, respecter l’identité et vérifier chaque information commerciale.",
+    deliverables: ["Fiches produits réécrites", "Visuels et déclinaisons", "Scripts vidéo ou UGC", "Guide de cohérence catalogue"],
+    kpis: "Conversion des fiches, ajouts au panier, retours produit, temps passé et panier moyen",
+    start: "Refonte de dix fiches sur les produits les plus visités ou les plus rentables",
+    level: "Débutant +",
+    tools: ["Shopify", "Figma ou Canva", "GPT Image 2", "Recraft", "Photoroom", "CapCut", "Claude ou Codex"],
+    price: "10 fiches 250–450 € · Pack visuels 350–700 € · Pack lancement 700–1 200 €",
+  },
+  {
+    id: "social-local",
+    name: "Réseaux sociaux locaux",
+    result: "Maintenir une présence régulière qui montre le métier, les preuves et les offres du moment.",
+    clients: "Restaurants, commerces, salles de sport, instituts, artisans, agences immobilières et entreprises locales déjà présentes mais irrégulières.",
+    learn: "Construire des rubriques, planifier, produire en lot, écrire simplement, adapter les formats et mesurer les visites de profil, appels et demandes plutôt que les likes seuls.",
+    deliverables: ["Calendrier mensuel", "8 à 12 contenus", "Programmation", "Bilan orienté demandes"],
+    kpis: "Régularité, portée locale, visites du profil, clics, appels et demandes entrantes",
+    start: "Un mois pilote autour de quatre rubriques : expertise, preuve, coulisses et offre",
+    level: "Débutant",
+    tools: ["Canva", "CapCut", "Meta Business Suite", "Buffer ou Metricool", "Notion", "Google Drive", "GPT Image 2"],
+    price: "8 publications 250–450 €/mois · 12 contenus 450–700 €/mois · Avec tournage 700–1 000 €/mois",
+  },
 ];
 
 const modules = [
@@ -248,6 +326,15 @@ const ecommercePulse = [
   { value: "62 €", label: "panier moyen", change: "−3 % en un an" },
   { value: "+9 %", label: "croissance des services en ligne", change: "contre +4 % pour les produits" },
   { value: "12 %", label: "du commerce de détail produit", change: "réalisé en ligne" },
+];
+
+const dataBackedOffers = [
+  { metric: "66 %", fact: "ont un compte sur un réseau social", gap: "Seulement 46 % des entreprises présentes publient au moins chaque semaine.", offer: "Réseaux sociaux locaux", angle: "Remettre de la régularité et relier le contenu aux demandes réelles." },
+  { metric: "17 %", fact: "possèdent un véritable site marchand", gap: "La vente en ligne représente environ 20 % du chiffre d’affaires des entreprises équipées.", offer: "Optimisation e-commerce", angle: "Améliorer la conversion d’une boutique active avant de proposer une refonte." },
+  { metric: "14 %", fact: "utilisent un chatbot ou un assistant IA", gap: "L’usage existe, mais reste minoritaire et demande une base de réponses fiable.", offer: "Assistant IA & chatbot", angle: "Commencer petit : FAQ, orientation et transfert vers un humain." },
+  { metric: "69 %", fact: "utilisent un logiciel de facturation", gap: "Les outils sont présents, mais pas toujours reliés au suivi client ou au pilotage.", offer: "Réservation, paiement & outils", angle: "Fluidifier le parcours sans remplacer l’expert-comptable ni donner de conseil juridique." },
+  { metric: "70 %", fact: "ont un projet numérique dans les deux ans", gap: "Un projet ne veut pas dire cahier des charges clair, budget validé ou priorité immédiate.", offer: "Tableau de bord & automatisation", angle: "Vendre d’abord un diagnostic court qui transforme l’idée en plan mesurable." },
+  { metric: "3,2 Md", fact: "de transactions e-commerce en 2025", gap: "Le volume augmente de 10 %, tandis que le panier moyen baisse de 3 %.", offer: "Contenus produits e-commerce", angle: "Travailler confiance, clarté et valeur de commande, pas seulement l’esthétique." },
 ];
 
 const objections = [
@@ -837,7 +924,7 @@ export default function Home() {
       </section>
 
       <section className="content-section" id="services">
-        <SectionTitle eyebrow="02 — Choisir un service" title="Neuf services réellement vendables." text="Commence avec un seul service principal. Pour chacun, tu trouveras la cible, les outils, la formation, les livrables et une fourchette de prix indicative." />
+        <SectionTitle eyebrow="02 — Choisir un service" title="Quinze services réellement vendables." text="Commence avec un seul service principal. Pour chacun, tu trouveras la cible, les outils, la formation, les livrables et une fourchette de prix indicative." />
         <div className="pricing-context"><b>POSITIONNEMENT DÉBUTANT · FRANCE</b><span>Ces prix correspondent à une offre bien cadrée avec peu de références. Ils sont indicatifs, généralement hors achats, hébergement, impression, logiciels et budget publicitaire. Après 3 à 5 preuves solides, augmente progressivement tes tarifs.</span></div>
         <div className="service-layout">
           <div className="service-tabs" role="tablist">
@@ -892,6 +979,11 @@ export default function Home() {
             <header><div><small>E-COMMERCE FRANCE · 2025</small><h3>Plus d’achats, mais un panier moyen sous pression.</h3></div><a href="https://www.fevad.com/bilan-du-e-commerce-en-france-les-francais-ont-depense-pres-de-200-milliards-deuros-sur-internet-en-2025/" target="_blank" rel="noreferrer">SOURCE FEVAD ↗</a></header>
             <div>{ecommercePulse.map((item) => <article key={item.label}><b>{item.value}</b><span>{item.label}</span><small>{item.change}</small></article>)}</div>
             <aside><b>CE QUE ÇA CHANGE POUR L’OFFRE</b><p>Quand le panier baisse mais que le nombre de transactions monte, ne vends pas seulement « un beau site ». Travaille la vitesse, la clarté produit, la confiance, le taux de conversion, la fidélisation et la valeur de chaque commande.</p></aside>
+          </div>
+          <div className="data-offer-matrix">
+            <header><div><small>DATA → BESOIN → SERVICE</small><h3>Six offres supplémentaires validées par des signaux réels.</h3></div><a href="https://www.francenum.gouv.fr/files/2025-09/Barom%C3%A8tre%20France%20Num%202025%20-%20Rapport.pdf" target="_blank" rel="noreferrer">SOURCE FRANCE NUM ↗</a></header>
+            <div>{dataBackedOffers.map((item, index) => <article key={item.offer}><header><span>{String(index + 1).padStart(2, "0")}</span><b>{item.metric}</b></header><p>{item.fact}</p><div><small>ÉCART À RÉSOUDRE</small><span>{item.gap}</span></div><footer><small>SERVICE À TESTER</small><strong>{item.offer}</strong><em>{item.angle}</em></footer></article>)}</div>
+            <aside><b>IMPORTANT</b><span>Ces chiffres servent à choisir un angle de recherche. Ils ne prouvent jamais qu’un prospect précis a le problème, le budget ou l’envie d’acheter. Vérifie toujours par un diagnostic et une conversation.</span></aside>
           </div>
           <div className="market-method">
             <div><small>01</small><b>Lis le signal</b><span>Une tendance nationale, datée et sourcée.</span></div>
