@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #f8f6ff;
-  --paper: #100b1b;
-  --white: #07060d;
-  --gold: #a64dff;
-  --gold-dark: #cf82ff;
-  --line: #302440;
-  --muted: #aaa1b8;
-  --green: #8b5cf6;
-  --blue: #6d39ff;
+  --ink: #faf8ff;
+  --paper: #0c0816;
+  --white: #05040b;
+  --gold: #8233ff;
+  --gold-dark: #c66cff;
+  --line: #2b1d3e;
+  --muted: #a89db7;
+  --green: #7840ff;
+  --blue: #5127ff;
+  --brand-violet: #7d2fff;
+  --brand-blue: #4d28ff;
+  --brand-magenta: #bd4cff;
+  --brand-lilac: #e1b8ff;
+  --brand-gradient: linear-gradient(135deg,#4d28ff 0%,#782dff 42%,#b747ff 76%,#d98cff 115%);
+  --brand-gradient-deep: linear-gradient(135deg,#3518a6 0%,#6322d9 46%,#9d36e4 100%);
   --font-geist-sans: "Segoe UI Variable", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-geist-mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
 }
@@ -330,6 +336,35 @@ body::before { content: ""; position: fixed; inset: 0; z-index: 200; pointer-eve
 .cover-logo { display: block; width: calc(100% + 48px); max-width: none; height: 240px; object-position: center 40%; }
 .start-panel { overflow: hidden; }
 .section-title h2, .master-rule h3, .service-head h3 { overflow-wrap: anywhere; }
+
+/* Palette sampled from the BS IA artwork: blue-violet, electric violet, cool magenta, lilac */
+.gold-button, .arena-top-banner > strong, .quick-nav > button { background: var(--brand-gradient); }
+.module-card.done, .service-tabs button.active, .filter-row button.active { background: var(--brand-gradient-deep); border-color: #a452ff; }
+.formula, .closing-line { color: white; background: var(--brand-gradient-deep); border: 1px solid #a252ff; box-shadow: 0 16px 40px rgba(73,29,183,.2); }
+.formula span, .formula b, .closing-line b, .closing-line p { color: white; }
+.closing-line .copy-button { color: white; border-color: rgba(255,255,255,.28); }
+.prospect-toolkit aside { color: white; background: var(--brand-gradient-deep); border: 1px solid #a252ff; }
+.prospect-toolkit aside b, .prospect-toolkit aside p { color: white; }
+.legal-alert { background: var(--brand-gradient-deep); border-color: #a85aff; box-shadow: 0 18px 48px rgba(75,30,176,.24); }
+.proposal-rules, .master-rule { background: var(--brand-gradient-deep); border-color: #a85aff; }
+.delegation-grid article.featured { background: var(--brand-gradient-deep); border-color: #b967ff; }
+
+.rhythm-note { position: relative; overflow: hidden; color: white; background: linear-gradient(145deg,#0d0917,#10091d 68%,#140a25); border: 1px solid #322044; box-shadow: inset 0 1px rgba(255,255,255,.025); }
+.rhythm-note::after { content: ""; position: absolute; width: 280px; height: 180px; right: -100px; top: -105px; pointer-events: none; border-radius: 50%; background: radial-gradient(circle,rgba(126,47,255,.26),transparent 68%); }
+.rhythm-note b { position: relative; z-index: 1; color: var(--brand-lilac); }
+.rhythm-note p { position: relative; z-index: 1; color: #b6acc4; }
+
+.ninety-grid article { color: var(--ink); background: linear-gradient(180deg,#0e0a17,#09070f); border-color: #2e203d; }
+.ninety-grid header { min-height: 165px; justify-content: center; background: linear-gradient(145deg,#120c1d,#09070f); border-bottom: 1px solid #2e203d; }
+.ninety-grid header span { color: #b85cff; }
+.ninety-grid header b { color: white; }
+.ninety-grid .gold-plan { overflow: hidden; background: radial-gradient(circle at 50% 0,rgba(105,38,218,.16),transparent 42%),linear-gradient(180deg,#10091b,#09070f); border-color: #7737dc; box-shadow: 0 24px 55px rgba(52,19,125,.24); }
+.ninety-grid .gold-plan header { position: relative; overflow: hidden; color: white; background: var(--brand-gradient-deep); border-bottom-color: #8d45e4; }
+.ninety-grid .gold-plan header::after { content: ""; position: absolute; width: 260px; height: 180px; right: -90px; top: -100px; pointer-events: none; border-radius: 50%; background: radial-gradient(circle,rgba(229,189,255,.3),transparent 68%); }
+.ninety-grid .gold-plan header span { position: relative; z-index: 1; color: #e3c3ff; }
+.ninety-grid .gold-plan header b { position: relative; z-index: 1; color: white; }
+.ninety-grid li { color: #aea3bb; }
+.ninety-grid footer { color: #f7f2ff; border-top-color: #2e203d; }
 
 .click-spark { position: fixed; z-index: 250; width: 1px; height: 1px; pointer-events: none; }
 .click-spark i { --ray: 0deg; position: absolute; left: 0; top: 0; width: 2px; height: 13px; border-radius: 999px; background: linear-gradient(#fff,#be62ff,transparent); box-shadow: 0 0 9px #b24dff; transform-origin: 50% 0; transform: rotate(var(--ray)) translateY(4px) scaleY(0); animation: spark-out .66s cubic-bezier(.17,.84,.44,1) forwards; }
