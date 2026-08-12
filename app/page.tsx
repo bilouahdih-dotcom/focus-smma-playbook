@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 
 type Service = {
@@ -28,7 +27,7 @@ const services: Service[] = [
     kpis: "Demandes reçues, appels, conversion des formulaires, vitesse et positions locales",
     start: "Audit puis concept de page d’accueil avec un hero fort et une interaction signature",
     level: "Débutant +",
-    tools: ["LMArena", "Claude", "Codex", "v0", "21st.dev", "HorizonX", "Figma", "Relume", "Framer ou Webflow", "React Bits", "shadcn/ui", "Aceternity UI", "Magic UI", "Motion", "GSAP", "Rive", "Spline", "Three.js", "Awwwards", "Godly", "Mobbin", "GitHub", "Vercel", "PageSpeed Insights", "Lighthouse", "Microsoft Clarity", "Search Console"],
+    tools: ["Claude", "Codex", "Arena.ai", "21st.dev", "HorizonX", "Figma", "Framer ou Webflow", "shadcn/ui", "Aceternity UI", "Magic UI", "Motion", "GSAP", "Rive", "Spline", "Three.js", "Awwwards", "Godly", "Mobbin", "GitHub", "PageSpeed Insights"],
     price: "One page 300–500 € · Vitrine 600–1 000 € · E-commerce starter 1 200–2 000 €",
   },
   {
@@ -41,7 +40,7 @@ const services: Service[] = [
     kpis: "Scans, clics, nouveaux avis, note moyenne et taux de conversion de la page",
     start: "Démonstration physique puis pack pilote sur un établissement",
     level: "Débutant",
-    tools: ["NFC Tools", "NXP TagWriter", "Puces NTAG213/215/216", "Canva ou Figma", "Carrd ou Framer", "Tally", "Google Business Profile", "QR Code Monkey", "Bitly ou Dub.co", "Google Sheets", "Looker Studio"],
+    tools: ["NFC Tools", "Puce NTAG215/216", "Canva ou Figma", "Carrd ou Framer", "Google Business Profile", "Bitly ou Dub.co"],
     price: "Plaque standard 40–60 € · Personnalisée 70–120 € · Pack de 5 : 180–300 €",
   },
   {
@@ -54,7 +53,7 @@ const services: Service[] = [
     kpis: "Cohérence des supports, délai de production, utilisation du kit et perception client",
     start: "Un pack défini par les supports réellement nécessaires : logo, charte, flyer et modèles",
     level: "Intermédiaire",
-    tools: ["Figma", "Illustrator ou Affinity", "Canva Pro", "GPT Image 2", "Recraft", "Ideogram", "Adobe Firefly", "Krea", "Coolors", "Fontshare", "Google Fonts", "Typewolf", "Milanote", "Pinterest", "Mockuuups Studio", "Artboard Studio", "Unsplash", "Pexels", "LMArena"],
+    tools: ["Figma", "Illustrator ou Affinity", "Canva Pro", "GPT Image 2", "Recraft ou Ideogram", "Adobe Firefly", "Coolors", "Fontshare", "Arena.ai"],
     price: "Logo seul 80–200 € · Identité visuelle 250–500 € · Pack charte + supports 500–900 €",
   },
   {
@@ -67,7 +66,7 @@ const services: Service[] = [
     kpis: "Heures économisées, erreurs évitées, délai de traitement et taux de réussite des scénarios",
     start: "Analyse puis proposition à trois niveaux : scénario simple, processus métier ou système complet",
     level: "Intermédiaire",
-    tools: ["Make", "n8n", "Zapier", "Airtable", "Notion", "Google Workspace", "Tally", "Fillout", "Supabase", "Baserow", "Retool", "Postman", "Sentry", "Slack ou Teams", "Loom"],
+    tools: ["Make", "Zapier ou n8n", "Airtable", "Notion", "Google Workspace", "Loom"],
     price: "Scénario simple 150–300 € · Processus métier 500–900 € · Système complet 1 200–1 500 €",
   },
   {
@@ -80,7 +79,7 @@ const services: Service[] = [
     kpis: "Taux de conversion, coût par demande, présence au rendez-vous et ventes",
     start: "Sprint de 7 jours sur une seule offre",
     level: "Débutant +",
-    tools: ["Framer ou Webflow", "Systeme.io", "v0", "React Bits", "Figma", "Tally ou Fillout", "Calendly ou Cal.com", "Stripe", "Google Tag Manager", "GA4", "Microsoft Clarity", "PageSpeed Insights", "Looker Studio"],
+    tools: ["Framer ou Webflow", "Systeme.io", "Tally", "Calendly", "Google Tag Manager", "Microsoft Clarity"],
     price: "Template adapté 250–400 € · Sur-mesure 450–800 € · Petit tunnel 800–1 200 €",
   },
   {
@@ -93,7 +92,7 @@ const services: Service[] = [
     kpis: "Appels, itinéraires, clics site, positions locales et nouveaux avis",
     start: "Mise à niveau en 14 jours puis suivi mensuel",
     level: "Débutant",
-    tools: ["Google Business Profile", "Local Falcon", "Localo", "BrightLocal", "Whitespark", "Google Search Console", "PlePer", "Google Maps", "Canva", "NFC Tools", "GA4", "Looker Studio"],
+    tools: ["Google Business Profile", "Local Falcon ou Localo", "Google Search Console", "PlePer", "Canva", "Looker Studio"],
     price: "Optimisation 150–250 € · Avec système d’avis 250–400 € · Suivi 79–199 €/mois",
   },
   {
@@ -106,7 +105,7 @@ const services: Service[] = [
     kpis: "Contacts joints, rendez-vous, taux de retour, ventes et revenu réactivé",
     start: "Sprint de 10 jours sur un segment dormant",
     level: "Intermédiaire",
-    tools: ["HubSpot", "Pipedrive", "Folk ou Attio", "Airtable", "Notion", "Dropcontact", "Clay", "Aircall ou Ringover", "Twilio", "Calendly", "Make ou n8n", "Looker Studio"],
+    tools: ["HubSpot ou Pipedrive", "Airtable", "Aircall", "Twilio", "Calendly", "Make"],
     price: "Pipeline 200–400 € · Sprint réactivation 350–700 € · Suivi 150–300 €/mois",
   },
   {
@@ -119,7 +118,7 @@ const services: Service[] = [
     kpis: "Rétention, portée locale, visites du profil et demandes entrantes",
     start: "Pack de 8 vidéos tournées en une demi-journée",
     level: "Débutant",
-    tools: ["Smartphone", "DJI Mic ou Rode", "Blackmagic Camera", "CapCut", "DaVinci Resolve", "Premiere Pro", "Descript", "OpusClip", "Canva", "Frame.io", "Metricool", "Notion", "Google Drive", "Artlist ou Epidemic Sound"],
+    tools: ["Smartphone", "DJI Mic ou Rode", "CapCut ou Premiere Pro", "Canva", "Notion", "Google Drive"],
     price: "4 vidéos 200–350 € · 8 vidéos 400–700 € · 12 vidéos 700–1 100 €",
   },
   {
@@ -132,86 +131,8 @@ const services: Service[] = [
     kpis: "Coût par appel, taux de conversion, part d’impressions et ventes attribuées",
     start: "Audit + campagne sur une zone et un service précis",
     level: "Intermédiaire",
-    tools: ["Google Ads", "Keyword Planner", "Google Trends", "Google Search Console", "Google Tag Manager", "GA4", "CallRail", "Microsoft Clarity", "PageSpeed Insights", "Looker Studio", "Google Sheets"],
+    tools: ["Google Ads", "Keyword Planner", "Google Tag Manager", "GA4", "CallRail", "Looker Studio"],
     price: "Setup 200–400 € · Gestion 250–500 €/mois · Budget média payé par le client",
-  },
-  {
-    id: "ecommerce-cro",
-    name: "Optimisation e-commerce",
-    result: "Transformer davantage de visites en achats sans reconstruire toute la boutique.",
-    clients: "Boutiques Shopify ou WooCommerce ayant déjà du trafic, des ventes et un catalogue actif, mais une conversion faible ou beaucoup d’abandons.",
-    learn: "Comprendre le parcours d’achat, la fiche produit, les preuves, les frais, le panier, le paiement, la vitesse mobile et l’analyse des comportements. Apprendre à prioriser les corrections selon leur impact et leur difficulté.",
-    deliverables: ["Audit du parcours d’achat", "Plan d’actions priorisé", "Amélioration de 3 à 8 écrans", "Mesure avant/après"],
-    kpis: "Ajouts au panier, passage au paiement, conversion, panier moyen et revenu par visite",
-    start: "Audit de cinq pages clés puis sprint de correction sur le principal point de fuite",
-    level: "Intermédiaire",
-    tools: ["Shopify ou WooCommerce", "Shopify Analytics", "Replo ou PageFly", "Figma", "GA4", "Microsoft Clarity", "PageSpeed Insights", "Search Console", "Google Tag Manager", "VWO ou AB Tasty", "Judge.me", "Gorgias", "Looker Studio"],
-    price: "Audit 200–350 € · Sprint 450–800 € · Suivi 200–400 €/mois",
-  },
-  {
-    id: "ai-assistant",
-    name: "Assistant IA & chatbot",
-    result: "Répondre plus vite aux questions répétitives et orienter les visiteurs vers la bonne action.",
-    clients: "E-commerce, organismes de formation, agences, cabinets, services clients et entreprises recevant régulièrement les mêmes questions.",
-    learn: "Structurer une base de connaissances, rédiger les règles de réponse, configurer les limites, connecter une prise de contact et tester les cas où l’assistant doit passer la main à un humain.",
-    deliverables: ["Base de réponses validée", "Assistant intégré au site", "Parcours de qualification", "Tests, limites + documentation"],
-    kpis: "Questions résolues, transfert vers un humain, demandes qualifiées, erreurs et satisfaction",
-    start: "Assistant FAQ limité à vingt questions fréquentes avec transfert humain obligatoire",
-    level: "Intermédiaire",
-    tools: ["LMArena", "Voiceflow", "Botpress", "Chatbase", "Intercom ou Crisp", "OpenAI", "Claude", "Gemini", "Make ou n8n", "Notion", "Airtable", "Tally", "Langfuse", "Loom"],
-    price: "FAQ simple 250–500 € · Assistant connecté 700–1 500 € · Suivi 80–200 €/mois",
-  },
-  {
-    id: "dashboard",
-    name: "Tableau de bord & données",
-    result: "Rassembler les chiffres importants pour permettre au dirigeant de décider sans ouvrir cinq outils.",
-    clients: "Agences, e-commerce, organismes de formation, commerces multi-sites et entreprises utilisant déjà un CRM, un tableur ou plusieurs canaux d’acquisition.",
-    learn: "Définir les bonnes questions, nettoyer les données, relier les sources, créer des indicateurs compréhensibles et documenter la fréquence de mise à jour.",
-    deliverables: ["Carte des sources", "Tableau de bord", "Définitions des chiffres", "Formation + contrôle des données"],
-    kpis: "Fraîcheur des données, erreurs, temps de préparation économisé et décisions prises",
-    start: "Un tableau de bord hebdomadaire limité à cinq chiffres commerciaux",
-    level: "Intermédiaire",
-    tools: ["Looker Studio", "Google Sheets", "Airtable", "GA4", "HubSpot", "Make ou n8n", "Metabase", "BigQuery", "PostHog", "Plausible", "Microsoft Clarity", "Supermetrics", "Coupler.io"],
-    price: "Une source 250–450 € · Multi-sources 600–1 000 € · Automatisé 1 000–1 500 €",
-  },
-  {
-    id: "booking",
-    name: "Réservation & paiement",
-    result: "Permettre au client final de réserver, payer un acompte et recevoir les bonnes informations sans échange inutile.",
-    clients: "Consultants, coachs, cabinets, photographes, salons, artisans, formateurs, locations et prestations sur rendez-vous.",
-    learn: "Cartographier les créneaux, durées, capacités, annulations, acomptes, formulaires et rappels. Tester le parcours complet sur téléphone avant livraison.",
-    deliverables: ["Calendrier configuré", "Formulaire de préparation", "Acompte ou paiement", "Rappels + tableau de suivi"],
-    kpis: "Réservations, présence, annulations, paiements réussis et temps administratif économisé",
-    start: "Un service, un calendrier, un formulaire et un acompte testés de bout en bout",
-    level: "Débutant +",
-    tools: ["Calendly ou Cal.com", "Tally ou Fillout", "Stripe", "Planity ou Reservio", "Google Calendar", "Make ou n8n", "Twilio", "Yousign", "HubSpot", "Notion", "Looker Studio"],
-    price: "Installation 150–300 € · Parcours complet 350–650 € · Automatisé 700–1 200 €",
-  },
-  {
-    id: "product-content",
-    name: "Contenus produits e-commerce",
-    result: "Rendre un catalogue plus clair, désirable et cohérent pour faciliter la décision d’achat.",
-    clients: "Marques Shopify, créateurs de produits, boutiques mode, beauté, maison, accessoires et vendeurs lançant une nouvelle collection.",
-    learn: "Hiérarchiser les bénéfices, écrire une fiche produit, préparer les prises de vue, produire des variations visuelles, respecter l’identité et vérifier chaque information commerciale.",
-    deliverables: ["Fiches produits réécrites", "Visuels et déclinaisons", "Scripts vidéo ou UGC", "Guide de cohérence catalogue"],
-    kpis: "Conversion des fiches, ajouts au panier, retours produit, temps passé et panier moyen",
-    start: "Refonte de dix fiches sur les produits les plus visités ou les plus rentables",
-    level: "Débutant +",
-    tools: ["Shopify", "Figma ou Canva", "GPT Image 2", "Recraft", "Ideogram", "Adobe Firefly", "Krea", "Photoroom", "Pixelcut", "CapCut", "Descript", "Claude ou Codex", "Google Sheets"],
-    price: "10 fiches 250–450 € · Pack visuels 350–700 € · Pack lancement 700–1 200 €",
-  },
-  {
-    id: "social-local",
-    name: "Réseaux sociaux locaux",
-    result: "Maintenir une présence régulière qui montre le métier, les preuves et les offres du moment.",
-    clients: "Restaurants, commerces, salles de sport, instituts, artisans, agences immobilières et entreprises locales déjà présentes mais irrégulières.",
-    learn: "Construire des rubriques, planifier, produire en lot, écrire simplement, adapter les formats et mesurer les visites de profil, appels et demandes plutôt que les likes seuls.",
-    deliverables: ["Calendrier mensuel", "8 à 12 contenus", "Programmation", "Bilan orienté demandes"],
-    kpis: "Régularité, portée locale, visites du profil, clics, appels et demandes entrantes",
-    start: "Un mois pilote autour de quatre rubriques : expertise, preuve, coulisses et offre",
-    level: "Débutant",
-    tools: ["Canva ou Adobe Express", "GPT Image 2", "CapCut", "DaVinci Resolve", "Descript", "Meta Business Suite", "Buffer ou Metricool", "Later", "Frame.io", "Notion", "Google Drive", "Google Sheets", "Looker Studio"],
-    price: "8 publications 250–450 €/mois · 12 contenus 450–700 €/mois · Avec tournage 700–1 000 €/mois",
   },
 ];
 
@@ -230,124 +151,6 @@ const modules = [
   ["12", "Glossaire débutant", "Comprendre les mots utilisés dans le business et les outils."],
   ["13", "Plan 90 jours", "Construire les premières preuves et signer."],
   ["14", "Mon agence", "Remplir et copier son plan d’exécution."],
-  ["15", "Cadre professionnel", "Statut, devis, facture, contrat et conformité."],
-  ["16", "Proposition commerciale", "Présenter une recommandation claire et signable."],
-  ["17", "Finance d’agence", "Calculer marge, capacité et objectif commercial."],
-  ["18", "Systèmes & procédures", "Livrer avec une méthode répétable et documentée."],
-  ["19", "Sous-traitance", "Déléguer sans perdre la qualité ni la relation client."],
-  ["20", "IA pour l’agence", "Accélérer recherche, production, vente et contrôle."],
-  ["21", "Bibliothèque de modèles", "Copier les documents qui font gagner du temps."],
-  ["22", "Contrôle qualité", "Vérifier chaque vente et chaque livraison avant envoi."],
-  ["23", "Diagnostic terrain", "Relier un problème visible à une offre et à une preuve."],
-  ["24", "Premier projet", "Piloter les quatorze premiers jours sans improviser."],
-  ["25", "Audit express", "Analyser une entreprise avec une grille simple et factuelle."],
-  ["26", "Preuve & portfolio", "Montrer sa compétence sans inventer de résultats."],
-  ["27", "Renouvellement", "Fidéliser, recommander et développer seulement ce qui est utile."],
-  ["28", "Boîte à outils", "Choisir une stack simple pour produire, vendre, mesurer et livrer."],
-];
-
-const quickChapters = [
-  { id: "top", number: "00", label: "Couverture" },
-  { id: "modules", number: "01", label: "Parcours" },
-  { id: "services", number: "02", label: "Services" },
-  { id: "data-marche", number: "03", label: "Data marché" },
-  { id: "prospection", number: "04", label: "Prospection" },
-  { id: "objections", number: "05", label: "Objections" },
-  { id: "cadre-pro", number: "06", label: "Cadre pro" },
-  { id: "finance", number: "07", label: "Finance" },
-  { id: "ia-agence", number: "08", label: "IA agence" },
-  { id: "modeles", number: "09", label: "Modèles" },
-  { id: "qualite", number: "10", label: "Contrôle final" },
-  { id: "diagnostic-terrain", number: "11", label: "Cas pratiques" },
-  { id: "premier-projet", number: "12", label: "Premier projet" },
-  { id: "audit-express", number: "13", label: "Audit express" },
-  { id: "preuve-portfolio", number: "14", label: "Preuve" },
-  { id: "renouvellement", number: "15", label: "Renouvellement" },
-  { id: "boite-outils", number: "16", label: "Boîte à outils" },
-];
-
-const marketStats = [
-  {
-    value: "1 165 800",
-    label: "entreprises créées en France en 2025",
-    change: "+5 % en un an · nouveau record",
-    insight: "Signal commercial : les entreprises récentes doivent souvent construire leur identité, leur site et leurs premiers systèmes.",
-    source: "Insee",
-    url: "https://www.insee.fr/fr/statistiques/8721354",
-  },
-  {
-    value: "84 %",
-    label: "des TPE-PME ont une visibilité en ligne",
-    change: "site internet ou réseau social",
-    insight: "Présence ne veut pas dire performance : audite la clarté de l’offre, la prise de contact, le mobile et la visibilité locale.",
-    source: "France Num",
-    url: "https://www.francenum.gouv.fr/guides-et-conseils/strategie-numerique/comprendre-le-numerique/barometre-france-num-2025-le",
-  },
-  {
-    value: "40 %",
-    label: "voient le numérique augmenter leur chiffre d’affaires",
-    change: "bénéfice commercial déclaré",
-    insight: "Vends un impact compréhensible — demandes, rendez-vous, ventes ou temps gagné — plutôt qu’une liste de tâches.",
-    source: "France Num",
-    url: "https://www.francenum.gouv.fr/guides-et-conseils/strategie-numerique/comprendre-le-numerique/barometre-france-num-2025-le",
-  },
-  {
-    value: "26 %",
-    label: "des TPE-PME utilisent déjà l’intelligence artificielle",
-    change: "+13 points par rapport à 2024",
-    insight: "Seules 5 % déclarent automatiser des tâches : il existe un écart entre tester l’IA et l’intégrer à un vrai processus.",
-    source: "France Num",
-    url: "https://www.francenum.gouv.fr/files/2025-09/Barom%C3%A8tre%20France%20Num%202025%20-%20Infographie%20VF.pdf",
-  },
-  {
-    value: "196,4 Md€",
-    label: "de ventes en ligne en France en 2025",
-    change: "+7 % par rapport à 2024",
-    insight: "Signal commercial : boutiques, marques et commerçants ont besoin de sites rapides, de conversion, de contenu et de fidélisation.",
-    source: "Fevad",
-    url: "https://www.fevad.com/bilan-du-e-commerce-en-france-les-francais-ont-depense-pres-de-200-milliards-deuros-sur-internet-en-2025/",
-  },
-  {
-    value: "27 %",
-    label: "disposent d’au moins une solution de vente en ligne",
-    change: "dont 17 % avec un site marchand · France Num 2025",
-    insight: "Catalogue, réservation, acompte ou paiement : pars du parcours réel du client, pas de la technologie à placer.",
-    source: "France Num",
-    url: "https://www.francenum.gouv.fr/files/2025-09/Barom%C3%A8tre%20France%20Num%202025%20-%20Infographie%20VF.pdf",
-  },
-];
-
-const digitalDemandSignals = [
-  { value: 70, label: "ont un projet numérique à deux ans", detail: "Les logiciels, le matériel et la présence en ligne restent les priorités principales." },
-  { value: 51, label: "obtiennent déjà des clients grâce à internet", detail: "Au moins 5 % de leurs clients proviennent du web." },
-  { value: 42, label: "ont dépensé plus de 1 000 € dans le numérique", detail: "Dépenses 2024 en matériel et logiciels, hors formation et recrutement." },
-  { value: 25, label: "n’ont consacré aucun budget au numérique", detail: "Ne confonds jamais problème visible et capacité réelle à acheter." },
-  { value: 20, label: "ont suivi une formation numérique", detail: "Le manque de temps est le premier frein à la formation pour 55 %." },
-  { value: 36, label: "ont déjà subi un incident de cybersécurité", detail: "21 % citent l’hameçonnage et 16 % un logiciel malveillant." },
-];
-
-const growthSectors = [
-  { sector: "Commerce", creations: "172 600", growth: "+11,1 %", offers: "Identité, boutique en ligne, visibilité locale, avis et fidélisation" },
-  { sector: "Services spécialisés & techniques", creations: "170 200", growth: "+6,2 %", offers: "Site de confiance, prise de rendez-vous, suivi client et automatisation" },
-  { sector: "Services administratifs & soutien", creations: "129 100", growth: "+11,7 %", offers: "Automatisation, outils de suivi, site et génération de demandes" },
-  { sector: "Information & communication", creations: "75 000", growth: "+8,2 %", offers: "Positionnement, identité premium, site et systèmes internes" },
-  { sector: "Hébergement & restauration", creations: "47 300", growth: "+6,7 %", offers: "Google local, site, réservation, NFC, menus et avis" },
-];
-
-const ecommercePulse = [
-  { value: "3,2 Md", label: "transactions en ligne", change: "+10 % en un an" },
-  { value: "62 €", label: "panier moyen", change: "−3 % en un an" },
-  { value: "+9 %", label: "croissance des services en ligne", change: "contre +4 % pour les produits" },
-  { value: "12 %", label: "du commerce de détail produit", change: "réalisé en ligne" },
-];
-
-const dataBackedOffers = [
-  { metric: "66 %", fact: "ont un compte sur un réseau social", gap: "Seulement 46 % des entreprises présentes publient au moins chaque semaine.", offer: "Réseaux sociaux locaux", angle: "Remettre de la régularité et relier le contenu aux demandes réelles." },
-  { metric: "17 %", fact: "possèdent un véritable site marchand", gap: "La vente en ligne représente environ 20 % du chiffre d’affaires des entreprises équipées.", offer: "Optimisation e-commerce", angle: "Améliorer la conversion d’une boutique active avant de proposer une refonte." },
-  { metric: "14 %", fact: "utilisent un chatbot ou un assistant IA", gap: "L’usage existe, mais reste minoritaire et demande une base de réponses fiable.", offer: "Assistant IA & chatbot", angle: "Commencer petit : FAQ, orientation et transfert vers un humain." },
-  { metric: "69 %", fact: "utilisent un logiciel de facturation", gap: "Les outils sont présents, mais pas toujours reliés au suivi client ou au pilotage.", offer: "Réservation, paiement & outils", angle: "Fluidifier le parcours sans remplacer l’expert-comptable ni donner de conseil juridique." },
-  { metric: "70 %", fact: "ont un projet numérique dans les deux ans", gap: "Un projet ne veut pas dire cahier des charges clair, budget validé ou priorité immédiate.", offer: "Tableau de bord & automatisation", angle: "Vendre d’abord un diagnostic court qui transforme l’idée en plan mesurable." },
-  { metric: "3,2 Md", fact: "de transactions e-commerce en 2025", gap: "Le volume augmente de 10 %, tandis que le panier moyen baisse de 3 %.", offer: "Contenus produits e-commerce", angle: "Travailler confiance, clarté et valeur de commande, pas seulement l’esthétique." },
 ];
 
 const objections = [
@@ -367,14 +170,6 @@ const objections = [
   { type: "Vente", ask: "Un concurrent propose moins cher.", answer: "C’est possible. Comparons ce qui est inclus : volume produit, suivi, mesure, délais et accompagnement. Si tout est identique, choisissez l’offre la plus logique pour vous.", next: "Rendre la différence visible sans dénigrer le concurrent." },
   { type: "Vente", ask: "Ce n’est pas le bon moment.", answer: "Qu’est-ce qui doit changer pour que le moment devienne bon : la saison, l’équipe, le budget ou une autre priorité ?", next: "Transformer le flou en condition et en date de suivi précise." },
   { type: "Vente", ask: "Faites une proposition et on verra.", answer: "Je peux la préparer après avoir validé trois éléments : l’objectif chiffré, le fonctionnement actuel et qui participe à la décision. Sinon elle serait trop générale.", next: "Terminer l’analyse et programmer la présentation de la proposition." },
-  { type: "Vente", ask: "Vous n’avez pas assez de références.", answer: "Vous avez raison de vérifier. Je ne vais pas inventer d’expérience : je peux vous montrer précisément la méthode, le cas test réalisé et commencer par une mission limitée avec des critères de réussite écrits.", next: "Remplacer la réputation manquante par de la transparence, une démonstration et un risque limité." },
-  { type: "Vente", ask: "Vous êtes seul ?", answer: "Oui, je reste votre interlocuteur direct. Pour les compétences complémentaires, je travaille uniquement avec des spécialistes identifiés et je reste responsable du résultat livré.", next: "Expliquer qui fait quoi. Ne jamais faire croire à une grande équipe inexistante." },
-  { type: "Vente", ask: "Faites-le gratuitement pour prouver.", answer: "Je peux offrir un diagnostic ou une démonstration limitée. En revanche, une production exploitable demande du temps et engage ma responsabilité : elle est donc facturée, même sous forme de petit pilote.", next: "Offrir de la réflexion, pas des semaines de production gratuite." },
-  { type: "Vente", ask: "On paie uniquement au résultat.", answer: "Une partie variable peut parfois compléter un prix fixe si le suivi des ventes est fiable. Mais je ne contrôle pas votre offre, vos stocks, vos équipes ni votre vitesse de rappel : le travail de production reste donc rémunéré.", next: "N’accepter du variable que si la mesure, l’attribution et les responsabilités sont écrites." },
-  { type: "Vente", ask: "Pourquoi vous plutôt qu’un autre ?", answer: "Je ne suis peut-être pas le meilleur choix pour tout le monde. Ma différence ici est [spécialisation], [méthode] et [niveau de suivi]. Comparons surtout les éléments inclus et la manière dont le résultat sera mesuré.", next: "Répondre avec trois différences vérifiables, pas avec des adjectifs vagues." },
-  { type: "Vente", ask: "Je ne veux pas de contrat long.", answer: "Je comprends. On peut commencer par une période pilote avec une date de fin, des livrables précis et une décision de poursuite prévue à l’avance.", next: "Réduire l’engagement initial sans rendre la mission impossible à mesurer." },
-  { type: "Vente", ask: "Notre secteur est particulier.", answer: "C’est justement ce que le diagnostic doit vérifier. Je maîtrise la méthode, mais je dois comprendre votre cycle de vente, vos contraintes et la valeur d’un client avant de recommander quoi que ce soit.", next: "Demander trois spécificités du secteur et montrer comment la méthode sera adaptée." },
-  { type: "Vente", ask: "On veut tout valider avant publication.", answer: "C’est possible si le circuit reste simple. Je propose un seul responsable, un délai de retour et un nombre de corrections inclus. Sans cela, le calendrier et le budget deviennent imprévisibles.", next: "Écrire la procédure de validation dans la proposition et le contrat." },
 ];
 
 const scriptCards = [
@@ -468,374 +263,20 @@ const glossary = [
   { term: "Copywriting", category: "Web", meaning: "Écrire des textes qui rendent une offre claire et donnent envie d’agir, sans mentir.", example: "Un titre centré sur le problème du client et un bouton de prise de rendez-vous." },
   { term: "Budget média", category: "Publicité", meaning: "L’argent versé directement à la plateforme publicitaire, séparé de tes honoraires.", example: "Le client paie 500 € à Google et 300 € pour ta gestion." },
   { term: "Charte graphique", category: "Branding", meaning: "Le document qui explique comment utiliser le logo, les couleurs, les polices et les éléments visuels.", example: "Elle garantit que les flyers, le site et les réseaux gardent le même style." },
-  { term: "Périmètre / scope", category: "Livraison", meaning: "La limite exacte de ce qui est inclus dans la mission.", example: "Cinq pages, deux séries de corrections et une mise en ligne sont incluses ; les photos ne le sont pas." },
-  { term: "Acompte", category: "Finance", meaning: "Une partie du prix payée avant le début du travail et déduite de la facture finale.", example: "Le client verse 40 % à la signature puis le solde avant la mise en ligne." },
-  { term: "Marge", category: "Finance", meaning: "Ce qu’il reste après avoir retiré les coûts directement liés à la mission.", example: "Sur 800 € facturés, 200 € de sous-traitance et 50 € d’outils laissent 550 € avant les autres charges." },
-  { term: "Trésorerie", category: "Finance", meaning: "L’argent réellement disponible sur le compte de l’entreprise à un moment donné.", example: "Une facture signée mais non payée n’est pas encore de la trésorerie." },
-  { term: "Sous-traitance", category: "Agence", meaning: "Confier une partie précise de la production à un autre professionnel tout en restant responsable vis-à-vis du client.", example: "Un monteur réalise les vidéos selon ton brief et tu vérifies avant livraison." },
-  { term: "SOP / procédure", category: "Agence", meaning: "Un document qui décrit comment réaliser une tâche toujours de la même manière.", example: "La procédure de démarrage indique qui crée le dossier, récupère les accès et confirme le calendrier." },
-  { term: "Attribution", category: "Résultats", meaning: "La méthode utilisée pour relier une demande ou une vente au canal qui l’a générée.", example: "Le formulaire indique que le prospect vient de Google Maps." },
-  { term: "CAC", category: "Résultats", meaning: "Coût d’acquisition client : montant dépensé en moyenne pour obtenir un nouveau client.", example: "1 000 € dépensés pour 5 nouveaux clients donnent un CAC de 200 €." },
-  { term: "LTV / valeur client", category: "Résultats", meaning: "Montant total qu’un client rapporte en moyenne pendant toute la relation.", example: "Un client à 300 € par mois qui reste 8 mois représente 2 400 € de chiffre d’affaires." },
-  { term: "CPL / coût par demande", category: "Publicité", meaning: "Budget dépensé en moyenne pour obtenir une demande de contact.", example: "300 € de publicité pour 10 formulaires donnent un coût par demande de 30 €." },
-  { term: "CPC / coût par clic", category: "Publicité", meaning: "Prix moyen payé chaque fois qu’une personne clique sur une publicité.", example: "100 € dépensés pour 200 clics donnent un CPC de 0,50 €." },
-  { term: "CTR / taux de clic", category: "Publicité", meaning: "Pourcentage des personnes exposées qui cliquent sur l’annonce ou le lien.", example: "50 clics pour 5 000 affichages représentent un CTR de 1 %." },
-  { term: "ROAS", category: "Publicité", meaning: "Chiffre d’affaires attribué à la publicité divisé par le budget publicitaire.", example: "2 000 € de ventes attribuées pour 500 € de publicité donnent un ROAS de 4." },
-  { term: "Pixel de suivi", category: "Outils", meaning: "Petit code placé sur un site pour mesurer certaines actions, sous réserve des règles de consentement applicables.", example: "Mesurer l’envoi d’un formulaire après une campagne." },
-  { term: "NFC", category: "Outils", meaning: "Technologie sans contact qui ouvre un lien lorsqu’un téléphone compatible est approché d’une plaque ou d’une carte.", example: "Une plaque posée à la caisse ouvre directement la page d’avis Google." },
-  { term: "QR code", category: "Outils", meaning: "Carré à scanner avec l’appareil photo d’un téléphone pour ouvrir une page ou une action.", example: "Le QR code de secours ouvre le même lien que la puce NFC." },
-  { term: "GA4 / Google Analytics 4", category: "Mesure", meaning: "Outil de Google qui aide à comprendre les visites et les actions réalisées sur un site, avec un paramétrage respectueux du consentement.", example: "Mesurer combien de visiteurs atteignent la page de réservation." },
-  { term: "Google Tag Manager", category: "Mesure", meaning: "Outil qui centralise l’installation de balises de mesure sans modifier le code du site à chaque changement.", example: "Ajouter une mesure de formulaire après validation technique et juridique." },
-  { term: "UGC", category: "Contenu", meaning: "Contenu créé dans un style naturel par un client, un créateur ou un utilisateur pour présenter un produit.", example: "Une courte vidéo montrant l’ouverture et l’utilisation d’un produit." },
-  { term: "Chatbot / assistant conversationnel", category: "IA", meaning: "Interface qui répond à des questions à partir de règles ou de documents définis.", example: "Un assistant répond aux questions fréquentes puis transmet les demandes complexes à une personne." },
-  { term: "Prompt / consigne IA", category: "IA", meaning: "Instruction donnée à un modèle d’intelligence artificielle avec le contexte, le résultat attendu et les limites.", example: "Résume ces avis clients sans inventer de faits et classe les problèmes par fréquence." },
 ];
-
-const professionalSteps = [
-  { number: "01", title: "Exister légalement", text: "Choisir un statut adapté, obtenir les identifiants nécessaires et séparer les dépenses personnelles de celles de l’activité.", proof: "Statut actif · compte dédié si nécessaire · assurance étudiée" },
-  { number: "02", title: "Cadrer avant de vendre", text: "Écrire ce qui est inclus, exclu, livré, mesuré et validé. Une phrase floue aujourd’hui devient un conflit demain.", proof: "Périmètre · calendrier · responsabilités · limites" },
-  { number: "03", title: "Faire signer", text: "Utiliser une proposition et un contrat cohérents. La signature doit arriver avant la production, avec les conditions de paiement.", proof: "Proposition acceptée · contrat · acompte" },
-  { number: "04", title: "Facturer proprement", text: "Numéroter les factures, conserver les pièces et inclure les mentions applicables à ton statut et à la transaction.", proof: "Facture complète · échéance · pénalités · archivage" },
-  { number: "05", title: "Protéger les données", text: "Collecter seulement les données utiles, limiter les accès, expliquer l’usage et respecter toute opposition à la prospection.", proof: "Source · finalité · durée · suppression · liste d’opposition" },
-  { number: "06", title: "Éviter les fausses promesses", text: "Garantir la méthode, la qualité et les livrables contrôlables. Ne jamais garantir un chiffre d’affaires que tu ne contrôles pas.", proof: "Hypothèses écrites · responsabilités partagées · aucun résultat inventé" },
-];
-
-const proposalBlocks = [
-  ["01", "Contexte", "Reprendre la situation avec les mots du client et les faits observés."],
-  ["02", "Objectif", "Définir un résultat prioritaire, mesurable et relié à une date."],
-  ["03", "Diagnostic", "Montrer les deux ou trois causes principales, sans noyer le client."],
-  ["04", "Recommandation", "Expliquer le plan choisi et pourquoi il est plus logique que les alternatives."],
-  ["05", "Périmètre", "Lister précisément livrables, quantité, calendrier, corrections et exclusions."],
-  ["06", "Mesure", "Fixer le point de départ, les chiffres suivis et la fréquence du bilan."],
-  ["07", "Investissement", "Séparer honoraires, outils, achats, budget média et options."],
-  ["08", "Décision", "Ajouter validité, date de démarrage, signature, acompte et prochaine réunion."],
-];
-
-const operatingProcedures = [
-  { title: "Vente → production", trigger: "Contrat signé + acompte reçu", steps: ["Créer le dossier client", "Envoyer le formulaire de démarrage", "Planifier la réunion", "Confirmer le calendrier"] },
-  { title: "Demande → rendez-vous", trigger: "Nouveau formulaire ou appel", steps: ["Enregistrer la source", "Répondre rapidement", "Poser les questions de sélection", "Confirmer le rendez-vous"] },
-  { title: "Création → validation", trigger: "Premier livrable prêt", steps: ["Contrôle interne", "Présentation avec contexte", "Retour centralisé", "Correction puis validation écrite"] },
-  { title: "Incident → résolution", trigger: "Erreur, retard ou résultat anormal", steps: ["Documenter le fait", "Prévenir sans cacher", "Proposer un plan", "Confirmer la résolution"] },
-  { title: "Mois → bilan", trigger: "Date de revue mensuelle", steps: ["Rassembler les chiffres", "Expliquer les écarts", "Décider le prochain test", "Envoyer le résumé"] },
-  { title: "Fin → recommandation", trigger: "Mission terminée ou résultat obtenu", steps: ["Documenter avant/après", "Demander un témoignage", "Proposer la suite utile", "Demander une introduction"] },
-];
-
-const aiWorkflows = [
-  { title: "Recherche prospect", tool: "ChatGPT, Claude ou Perplexity", use: "Résumer l’entreprise, le marché, les avis et préparer cinq questions.", guardrail: "Toujours vérifier les faits sur les sources originales." },
-  { title: "Audit", tool: "Claude, ChatGPT ou Gemini", use: "Transformer des captures, pages et chiffres en observations structurées.", guardrail: "L’IA propose des hypothèses : toi seul valides le diagnostic." },
-  { title: "Scripts", tool: "ChatGPT ou Claude", use: "Créer plusieurs ouvertures puis les adapter au langage naturel du vendeur.", guardrail: "Lire à voix haute et supprimer toute phrase robotique." },
-  { title: "Proposition", tool: "Claude, ChatGPT + modèle maison", use: "Organiser les notes du rendez-vous dans une proposition cohérente.", guardrail: "Ne jamais laisser l’IA inventer prix, références ou résultats." },
-  { title: "Production web", tool: "Codex, Claude Code, v0 ou 21st.dev", use: "Créer, corriger et tester plus vite une interface à partir d’une maquette.", guardrail: "Contrôler mobile, accessibilité, vitesse et sécurité avant livraison." },
-  { title: "Création visuelle", tool: "GPT Image 2, Recraft, Ideogram ou Firefly", use: "Explorer des directions, produire des éléments et préparer des variantes.", guardrail: "Vérifier droits, cohérence de marque, textes et détails visuels." },
-  { title: "Automatisation", tool: "Make, n8n ou Zapier + assistant IA", use: "Construire le scénario, documenter les champs et prévoir les erreurs.", guardrail: "Tester avec de fausses données avant de connecter le compte client." },
-  { title: "Contrôle qualité", tool: "Deux modèles différents + contrôle humain", use: "Faire relire une proposition, un script ou une procédure avec une grille fixe.", guardrail: "Le second modèle détecte des risques, il ne remplace pas la validation." },
-];
-
-const toolboxLevels = [
-  { level: "NIVEAU 01", title: "Démarrer", text: "Un outil principal par besoin, les versions gratuites et un tableur pour suivre le travail." },
-  { level: "NIVEAU 02", title: "Structurer", text: "Un CRM, des modèles, des automatisations simples et un espace client propre." },
-  { level: "NIVEAU 03", title: "Accélérer", text: "Des outils spécialisés seulement quand le volume, la marge ou le risque les justifient." },
-];
-
-const toolboxCategories = [
-  {
-    number: "01",
-    title: "IA, recherche & contrôle",
-    mission: "Comparer les modèles, préparer un audit, produire une première version et contrôler le résultat.",
-    starter: ["LMArena", "ChatGPT", "Claude", "Gemini", "Perplexity", "NotebookLM"],
-    advanced: ["Codex", "Claude Code", "OpenAI Playground", "Google AI Studio", "Mistral Le Chat", "Langfuse"],
-    workflow: "Comparer sur LMArena → tester le même vrai cas dans deux modèles → vérifier les sources → garder le meilleur processus.",
-    guardrail: "N’envoie jamais de secrets, mots de passe ou données client sensibles. Une réponse IA est un brouillon à vérifier, pas une preuve.",
-    links: [{ name: "LMArena", url: "https://lmarena.ai/leaderboard/text" }, { name: "NotebookLM", url: "https://notebooklm.google/" }],
-  },
-  {
-    number: "02",
-    title: "Sites, interfaces & effet wow",
-    mission: "Concevoir, développer, animer, publier puis vérifier un site rapide et adapté au téléphone.",
-    starter: ["Figma", "Framer", "Webflow", "v0", "21st.dev", "React Bits", "shadcn/ui", "GitHub", "Vercel"],
-    advanced: ["HorizonX", "Relume", "Aceternity UI", "Magic UI", "Motion", "GSAP", "Rive", "Spline", "Three.js", "Lenis", "Storybook"],
-    workflow: "Inspiration → maquette Figma → structure → composants → une interaction signature → mobile → vitesse → mise en ligne.",
-    guardrail: "Awwwards, Godly et Mobbin servent à analyser. Ne copie ni le design ni les textes. Coupe tout effet qui ralentit ou gêne la lecture.",
-    links: [{ name: "React Bits", url: "https://www.reactbits.dev/" }, { name: "PageSpeed", url: "https://pagespeed.web.dev/" }],
-  },
-  {
-    number: "03",
-    title: "Branding, image & supports",
-    mission: "Créer une identité cohérente puis la décliner en logo, charte, flyers, cartes, contenus et présentations.",
-    starter: ["Figma", "Canva", "Affinity Designer", "GPT Image 2", "Recraft", "Coolors", "Google Fonts"],
-    advanced: ["Illustrator", "Adobe Firefly", "Ideogram", "Krea", "Milanote", "Typewolf", "Fontshare", "Mockuuups Studio", "Artboard Studio", "Photoroom"],
-    workflow: "Brief → recherche → moodboard → pistes → système visuel → déclinaisons → exports → guide d’utilisation.",
-    guardrail: "Vérifie licences, droits d’image, lisibilité, orthographe et cohérence. L’IA explore des pistes ; elle ne remplace pas une direction artistique.",
-    links: [{ name: "Figma", url: "https://www.figma.com/" }, { name: "Coolors", url: "https://coolors.co/" }],
-  },
-  {
-    number: "04",
-    title: "Automatisation & opérations",
-    mission: "Relier les outils, enlever les tâches répétitives et documenter un processus fiable.",
-    starter: ["Make", "n8n", "Zapier", "Airtable", "Notion", "Tally", "Google Workspace"],
-    advanced: ["Fillout", "Supabase", "Baserow", "Retool", "Postman", "Sentry", "Slack", "Microsoft Teams", "Loom"],
-    workflow: "Dessiner le processus → choisir le déclencheur → tester avec de fausses données → gérer les erreurs → documenter → former.",
-    guardrail: "Commence manuellement. Automatise seulement un processus compris, stable et utile. Limite les accès et prépare une procédure de secours.",
-    links: [{ name: "Make", url: "https://www.make.com/" }, { name: "n8n", url: "https://n8n.io/" }],
-  },
-  {
-    number: "05",
-    title: "Prospection & données B2B",
-    mission: "Trouver des entreprises pertinentes, vérifier les informations et construire une liste réellement appelable.",
-    starter: ["Google Maps", "PagesJaunes", "Pappers", "Société.com", "Amapulse", "Google Sheets", "HubSpot Free"],
-    advanced: ["INSEE SIRENE", "LinkedIn Sales Navigator", "Kompass", "Apify", "Outscraper", "PhantomBuster", "Instant Data Scraper", "Kaspr", "Dropcontact", "Clay", "BuiltWith"],
-    workflow: "Secteur + ville → extraction raisonnable → dédoublonnage → vérification manuelle → angle personnalisé → appel → suivi dans le CRM.",
-    guardrail: "Travaille en B2B avec des coordonnées professionnelles, respecte les conditions des sources et toute opposition. Une donnée publique n’est pas sans règles.",
-    links: [{ name: "Pappers", url: "https://www.pappers.fr/" }, { name: "Annuaire SIRENE", url: "https://annuaire-entreprises.data.gouv.fr/" }],
-  },
-  {
-    number: "06",
-    title: "Vente, CRM & espace client",
-    mission: "Suivre les conversations, obtenir les validations, signer et livrer avec une trace claire.",
-    starter: ["HubSpot", "Pipedrive", "Folk", "Attio", "Calendly", "Cal.com", "Tally", "Google Drive"],
-    advanced: ["Aircall", "Ringover", "PandaDoc", "Yousign", "Stripe", "Qonto", "Pennylane", "Loom", "Frame.io", "Notion"],
-    workflow: "Prospect → échange → rendez-vous → proposition → signature → acompte → démarrage → bilan → recommandation.",
-    guardrail: "Un CRM ne vend pas à ta place. Définis d’abord les étapes et la prochaine action obligatoire, puis configure l’outil.",
-    links: [{ name: "HubSpot CRM", url: "https://www.hubspot.com/products/crm" }, { name: "Yousign", url: "https://yousign.com/fr-fr" }],
-  },
-  {
-    number: "07",
-    title: "Contenu, vidéo & publication",
-    mission: "Préparer, tourner, monter, valider et publier du contenu sans perdre les fichiers ni les retours.",
-    starter: ["Smartphone", "Canva", "CapCut", "DaVinci Resolve", "Notion", "Google Drive", "Meta Business Suite"],
-    advanced: ["DJI Mic", "Rode", "Blackmagic Camera", "Premiere Pro", "Descript", "OpusClip", "Frame.io", "Metricool", "Buffer", "Later", "Artlist"],
-    workflow: "Rubriques → scripts → tournage en lot → montage → validation centralisée → programmation → bilan des demandes obtenues.",
-    guardrail: "Mesure les prises de contact et le temps de visionnage, pas seulement les vues. Utilise uniquement des musiques et médias autorisés.",
-    links: [{ name: "DaVinci Resolve", url: "https://www.blackmagicdesign.com/products/davinciresolve" }, { name: "Metricool", url: "https://metricool.com/" }],
-  },
-  {
-    number: "08",
-    title: "Mesure, SEO & optimisation",
-    mission: "Comprendre ce qui se passe avant de recommander une refonte, une publicité ou une nouvelle dépense.",
-    starter: ["GA4", "Search Console", "PageSpeed Insights", "Lighthouse", "Microsoft Clarity", "Looker Studio", "Google Sheets"],
-    advanced: ["Google Tag Manager", "Plausible", "PostHog", "Metabase", "BigQuery", "Supermetrics", "Coupler.io", "Local Falcon", "BrightLocal", "CallRail"],
-    workflow: "Question commerciale → point de départ → source fiable → tableau simple → observation → test → comparaison avant/après.",
-    guardrail: "Définis chaque chiffre en français simple. Vérifie le consentement, exclue le trafic interne et ne confonds jamais corrélation et cause.",
-    links: [{ name: "Microsoft Clarity", url: "https://clarity.microsoft.com/" }, { name: "Search Console", url: "https://search.google.com/search-console/about" }],
-  },
-  {
-    number: "09",
-    title: "E-commerce & catalogue",
-    mission: "Construire ou améliorer une boutique, ses fiches, ses preuves, son support et son parcours d’achat.",
-    starter: ["Shopify", "WooCommerce", "Figma", "Canva", "Photoroom", "Judge.me", "Microsoft Clarity"],
-    advanced: ["Replo", "PageFly", "Gorgias", "VWO", "AB Tasty", "Krea", "Pixelcut", "GA4", "Search Console", "PageSpeed Insights"],
-    workflow: "Produit rentable → fiche prioritaire → preuve → mobile → panier → paiement → support → mesure → prochain test.",
-    guardrail: "Le design ne corrige pas un mauvais produit, un prix incohérent, une livraison floue ou un trafic non qualifié.",
-    links: [{ name: "Shopify", url: "https://www.shopify.com/fr" }, { name: "WooCommerce", url: "https://woocommerce.com/" }],
-  },
-];
-
-const templateLibrary = [
-  { category: "Prospection", title: "Fiche prospect", body: "Entreprise :\nDécideur :\nProblème visible :\nPreuve observée :\nValeur probable d’un client :\nCanal actuel :\nAngle d’appel :\nProchaine action :" },
-  { category: "Prospection", title: "Préparation d’appel", body: "Objectif de l’appel : obtenir un rendez-vous de 20 minutes.\nObservation personnalisée :\nQuestion 1 : comment obtenez-vous vos clients aujourd’hui ?\nQuestion 2 : où perdez-vous le plus de demandes ?\nDeux créneaux à proposer :" },
-  { category: "Vente", title: "Compte rendu de diagnostic", body: "Situation actuelle :\nObjectif prioritaire :\nBlocage principal :\nImpact estimé :\nDécideurs :\nBudget ou contrainte :\nSolution recommandée :\nProchaine décision et date :" },
-  { category: "Vente", title: "Relance après rendez-vous", body: "Bonjour [Prénom], merci pour l’échange. Je retiens trois points : [objectif], [blocage], [urgence]. La prochaine étape convenue est [action] le [date]. Dites-moi si un élément doit être corrigé avant que je prépare la suite." },
-  { category: "Vente", title: "Structure de proposition", body: "1. Contexte\n2. Objectif\n3. Diagnostic\n4. Recommandation\n5. Livrables et exclusions\n6. Calendrier\n7. Mesure\n8. Prix et conditions\n9. Signature et démarrage" },
-  { category: "Client", title: "Formulaire de démarrage", body: "Objectif à 90 jours :\nOffre prioritaire :\nClient idéal :\nAccès nécessaires :\nResponsable de validation :\nDélai de retour :\nContraintes légales ou de marque :\nRésultat à ne surtout pas promettre :" },
-  { category: "Client", title: "Résumé hebdomadaire", body: "Fait cette semaine :\nChiffre important :\nCe que nous avons appris :\nBlocage éventuel :\nAction suivante :\nDécision attendue du client :" },
-  { category: "Client", title: "Bilan mensuel", body: "Objectif du mois :\nPoint de départ :\nRésultat :\nÉcart :\nExplication :\nTests réalisés :\nDécision pour le mois suivant :\nResponsable et date :" },
-  { category: "Qualité", title: "Compte rendu d’incident", body: "Fait observé :\nDate et impact :\nCause confirmée ou hypothèse :\nAction immédiate :\nCorrection durable :\nPersonne informée :\nDate de vérification :" },
-  { category: "Agence", title: "Procédure interne", body: "Nom de la procédure :\nDéclencheur :\nResponsable :\nOutils :\nÉtapes numérotées :\nContrôle final :\nQue faire en cas d’erreur :\nDernière mise à jour :" },
-  { category: "Agence", title: "Brief sous-traitant", body: "Contexte client :\nRésultat attendu :\nLivrables :\nExemples de qualité :\nÉléments interdits :\nDélai :\nFormat de remise :\nContrôle avant validation :" },
-  { category: "Agence", title: "Demande de témoignage", body: "Bonjour [Prénom], nous avons terminé [mission]. Pour aider de futurs clients à comprendre le travail, accepteriez-vous de répondre à trois questions : quelle était la situation avant, qu’avons-nous changé, et quel résultat ou progrès avez-vous observé ?" },
-];
-
-const qualityGates = [
-  ["Avant l’appel", "Entreprise vérifiée, décideur probable, problème visible, angle pertinent."],
-  ["Avant le rendez-vous", "Agenda envoyé, participants confirmés, questions préparées, durée claire."],
-  ["Avant la proposition", "Objectif, budget, décideur, calendrier et problème réellement compris."],
-  ["Avant la signature", "Livrables, exclusions, corrections, paiement et responsabilités écrits."],
-  ["Avant la production", "Acompte reçu, accès disponibles, personne de validation nommée."],
-  ["Avant chaque livraison", "Mobile, liens, orthographe, données, sécurité et cohérence vérifiés."],
-  ["Avant le bilan", "Chiffres comparés au point de départ et reliés à une décision."],
-  ["Avant de déléguer", "Brief complet, exemple attendu, délai et contrôle final définis."],
-  ["Avant un témoignage", "Résultat réel documenté et autorisation du client obtenue."],
-  ["Avant une hausse de prix", "Preuves, demande, qualité et capacité de livraison suffisantes."],
-  ["Avant de promettre", "Résultat contrôlable, hypothèses écrites et limites expliquées."],
-  ["Avant de scaler", "Acquisition répétable, marge positive, trésorerie et procédures stables."],
-];
-
-const diagnosticPlaybooks = [
-  {
-    sector: "Restaurant local",
-    signal: "Site lent ou absent, carte illisible sur mobile, peu d’avis récents, réservation uniquement par téléphone.",
-    questions: ["Combien de réservations viennent du web ?", "Quelles heures sont perdues à répondre aux mêmes questions ?", "Quelle est la valeur moyenne d’une table ?"],
-    prescription: "Site mobile + réservation + fiche Google + plaque NFC",
-    proof: "Prototype de la page d’accueil et parcours de réservation testable sur téléphone.",
-    refuse: "Refuser de promettre des réservations si l’établissement est mal noté, fermé souvent ou incapable de répondre.",
-  },
-  {
-    sector: "Artisan à forte valeur",
-    signal: "Leads reçus sans suivi, site générique, aucune preuve locale, appels manqués et devis oubliés.",
-    questions: ["Combien vaut un chantier signé ?", "Sur dix demandes, combien deviennent des devis puis des clients ?", "Qui rappelle et sous quel délai ?"],
-    prescription: "Page locale + suivi des demandes + CRM simple + automatisation de rappel",
-    proof: "Audit de cinq demandes passées et démonstration du nouveau parcours de suivi.",
-    refuse: "Ne pas vendre plus de demandes si personne ne peut les rappeler ni établir les devis.",
-  },
-  {
-    sector: "Boutique e-commerce",
-    signal: "Trafic existant mais fiches faibles, peu d’ajouts au panier, abandon élevé ou catalogue incohérent.",
-    questions: ["Quelle page perd le plus de visiteurs ?", "Quels sont les produits les plus rentables ?", "Quels motifs de retour reviennent le plus ?"],
-    prescription: "Audit du parcours + amélioration des fiches + contenus produits",
-    proof: "Avant/après sur une fiche prioritaire avec mesure des ajouts au panier et du passage au paiement.",
-    refuse: "Ne pas attribuer un problème de conversion au design sans vérifier prix, produit, livraison et qualité du trafic.",
-  },
-  {
-    sector: "Cabinet ou consultant",
-    signal: "Offre difficile à comprendre, prise de rendez-vous manuelle, demandes peu qualifiées et relances irrégulières.",
-    questions: ["Quel type de dossier est réellement rentable ?", "Quelles questions doivent être posées avant un rendez-vous ?", "Combien de rendez-vous ne se présentent pas ?"],
-    prescription: "Page d’offre + formulaire de sélection + calendrier + rappels",
-    proof: "Parcours complet : page, formulaire, réservation, confirmation et rappel de test.",
-    refuse: "Ne pas automatiser une qualification que le client lui-même n’arrive pas à expliquer.",
-  },
-  {
-    sector: "Commerce de proximité",
-    signal: "Peu visible dans Maps, avis anciens, identité incohérente et aucune collecte de contacts ou de retours.",
-    questions: ["Comment les nouveaux clients vous trouvent-ils ?", "Combien d’avis récents obtenez-vous chaque mois ?", "Quelle offre fait revenir les clients ?"],
-    prescription: "Visibilité Google + identité légère + plaque NFC + système de retour client",
-    proof: "Fiche Google corrigée, support NFC installé et tableau de suivi des scans et avis.",
-    refuse: "Ne jamais acheter de faux avis ni filtrer artificiellement les clients insatisfaits.",
-  },
-];
-
-const firstProjectSprint = [
-  { day: "J0", title: "Sécuriser", text: "Contrat signé, acompte reçu, périmètre et personne de validation confirmés.", output: "Feu vert écrit" },
-  { day: "J1", title: "Démarrer", text: "Réunion de lancement : objectif, public, contraintes, accès, calendrier et définition du succès.", output: "Compte rendu" },
-  { day: "J2–3", title: "Mesurer avant", text: "Capturer la situation de départ : chiffres, écrans, temps passé, parcours actuel et problèmes connus.", output: "Point zéro" },
-  { day: "J4–7", title: "Produire", text: "Créer la version pilote avec un seul responsable, des fichiers nommés et une liste des décisions prises.", output: "Version interne" },
-  { day: "J8", title: "Contrôler", text: "Tester les liens, le mobile, les formulaires, les données, les textes, la sécurité et les cas d’erreur.", output: "Checklist signée" },
-  { day: "J9", title: "Présenter", text: "Montrer le raisonnement et le résultat. Centraliser les retours au lieu de corriger pendant l’appel.", output: "Retours classés" },
-  { day: "J10–12", title: "Corriger", text: "Appliquer uniquement les retours compris dans le périmètre et faire valider par écrit.", output: "Version validée" },
-  { day: "J13–14", title: "Lancer & transmettre", text: "Mettre en service, vérifier les premières actions, former le client et fixer la date du premier bilan.", output: "Livraison + suite" },
-];
-
-const auditScorecard = [
-  { area: "Offre", zero: "On ne comprend pas ce qui est vendu.", one: "L’offre existe mais reste générale.", two: "Public, résultat et prochaine action sont clairs.", proof: "Titre, prestations, prix ou demande de devis" },
-  { area: "Confiance", zero: "Aucune preuve vérifiable.", one: "Quelques avis ou réalisations anciennes.", two: "Avis récents, cas, photos et informations cohérentes.", proof: "Avis, réalisations, mentions, coordonnées" },
-  { area: "Mobile", zero: "Le parcours est cassé ou illisible.", one: "Le site fonctionne mais demande des efforts.", two: "Lecture, navigation et action sont simples au téléphone.", proof: "Test sur un vrai téléphone, pas seulement une maquette" },
-  { area: "Visibilité", zero: "L’entreprise est difficile à trouver.", one: "Présence irrégulière ou mal renseignée.", two: "Fiches, pages et contenus correspondent aux recherches utiles.", proof: "Google, Maps, réseaux, recherches locales" },
-  { area: "Prise de contact", zero: "Aucun chemin évident.", one: "Un formulaire ou numéro peu visible.", two: "Une action principale claire, courte et testée.", proof: "Appel, formulaire, réservation ou visite" },
-  { area: "Vitesse de réponse", zero: "Les demandes restent sans réponse.", one: "Le suivi dépend d’une personne et de sa mémoire.", two: "Responsable, délai et rappels sont définis.", proof: "Test réel, historique CRM ou appels manqués" },
-  { area: "Vente", zero: "Aucun suivi après le premier échange.", one: "Relances manuelles et irrégulières.", two: "Étapes, prochaines actions et raisons de perte sont suivies.", proof: "Tableau, CRM, devis et relances" },
-  { area: "Mesure", zero: "Aucun chiffre de départ.", one: "Des chiffres existent mais ne guident pas les décisions.", two: "Quelques chiffres fiables sont revus à date fixe.", proof: "Demandes, rendez-vous, ventes, temps ou satisfaction" },
-];
-
-const proofLadder = [
-  { level: "01", name: "Exercice", status: "Sans client", action: "Reproduire un cas réaliste sur une entreprise fictive et expliquer chaque choix.", canSay: "Projet d’entraînement", neverSay: "Travail réalisé pour une vraie marque" },
-  { level: "02", name: "Audit public", status: "Sans accès privé", action: "Analyser uniquement ce qui est visible et distinguer les faits des hypothèses.", canSay: "Audit externe non commandé", neverSay: "J’ai identifié la cause certaine" },
-  { level: "03", name: "Démonstration", status: "Prototype", action: "Créer une petite version testable : page, automatisation, tableau ou identité.", canSay: "Concept conçu pour montrer la méthode", neverSay: "Résultat commercial obtenu" },
-  { level: "04", name: "Pilote", status: "Périmètre limité", action: "Travailler avec un vrai utilisateur, une durée courte, un objectif et des limites écrites.", canSay: "Pilote réalisé dans ce cadre", neverSay: "Résultat généralisable à tous" },
-  { level: "05", name: "Étude de cas", status: "Résultat documenté", action: "Comparer le point de départ, les actions, le résultat et les facteurs extérieurs.", canSay: "Résultat observé sur la période", neverSay: "Résultat garanti pour le prochain client" },
-  { level: "06", name: "Recommandation", status: "Confiance transférée", action: "Obtenir l’autorisation de citer le client, son témoignage et les éléments vérifiables.", canSay: "Témoignage authentique et autorisé", neverSay: "Logo ou citation utilisés sans accord" },
-];
-
-const renewalRhythm = [
-  { moment: "J7", title: "Rassurer", action: "Montrer ce qui a été fait, ce qui bloque et la prochaine étape.", decision: "Le projet suit-il le bon cap ?" },
-  { moment: "J30", title: "Apprendre", action: "Comparer au point de départ et expliquer les premiers signaux sans surinterpréter.", decision: "Que faut-il garder, corriger ou arrêter ?" },
-  { moment: "J60", title: "Consolider", action: "Documenter ce qui fonctionne, corriger les faiblesses et simplifier la livraison.", decision: "La méthode devient-elle fiable ?" },
-  { moment: "J90", title: "Décider", action: "Présenter résultats, limites, apprentissages et trois options honnêtes pour la suite.", decision: "Arrêter, maintenir ou développer ?" },
-];
-
-const expansionRules = [
-  { trigger: "Le site reçoit des visites mais peu de demandes", next: "Amélioration du parcours ou page d’offre", condition: "Le trafic est pertinent et mesuré" },
-  { trigger: "Les demandes arrivent mais sont oubliées", next: "CRM simple, rappels ou automatisation", condition: "Le processus de vente est défini" },
-  { trigger: "Les clients locaux sont satisfaits mais la preuve manque", next: "Fiche Google, collecte d’avis ou plaque NFC", condition: "La collecte respecte les règles et reste honnête" },
-  { trigger: "La marque est incohérente sur tous les supports", next: "Identité, charte et modèles de production", condition: "Le positionnement et les supports prioritaires sont clairs" },
-  { trigger: "Une boutique vend mais perd au panier", next: "Audit du parcours et amélioration e-commerce", condition: "Les données et le volume permettent une analyse" },
-  { trigger: "L’équipe répète les mêmes tâches chaque semaine", next: "Cartographie puis automatisation ciblée", condition: "La tâche est stable, documentée et rentable à automatiser" },
-];
-
-const auditTemplate = `AUDIT EXPRESS — [ENTREPRISE]
-
-Objectif déclaré :
-Public prioritaire :
-Action principale attendue :
-
-OFFRE : 0 / 1 / 2 — preuve observée :
-CONFIANCE : 0 / 1 / 2 — preuve observée :
-MOBILE : 0 / 1 / 2 — preuve observée :
-VISIBILITÉ : 0 / 1 / 2 — preuve observée :
-PRISE DE CONTACT : 0 / 1 / 2 — preuve observée :
-VITESSE DE RÉPONSE : 0 / 1 / 2 — preuve observée :
-VENTE : 0 / 1 / 2 — preuve observée :
-MESURE : 0 / 1 / 2 — preuve observée :
-
-Score indicatif : /16
-Priorité n°1 :
-Conséquence probable :
-Information manquante à demander :
-Petite action recommandée :
-Preuve attendue après l’action :
-
-Note : ce score organise les observations. Il ne prouve pas à lui seul la cause d’un problème.`;
-
-const caseStudyTemplate = `ÉTUDE DE CAS HONNÊTE
-
-Client et contexte autorisés :
-Période observée :
-Situation de départ vérifiable :
-Objectif convenu :
-Contraintes importantes :
-Travail réellement réalisé :
-Éléments fournis par le client :
-Résultat observé :
-Ce que nous pouvons attribuer au travail :
-Ce que nous ne pouvons pas attribuer :
-Ce qui n’a pas fonctionné :
-Prochaine amélioration recommandée :
-Autorisation de publication obtenue le :`;
-
-const renewalTemplate = `BILAN ET DÉCISION DE SUITE
-
-Objectif de la période :
-Point de départ :
-Résultat observé :
-Ce qui a progressé :
-Ce qui bloque encore :
-Décisions prises :
-
-OPTION 1 — ARRÊTER
-Ce qui est transmis et clôturé :
-
-OPTION 2 — MAINTENIR
-Périmètre, rythme et prix :
-
-OPTION 3 — DÉVELOPPER
-Nouveau problème confirmé :
-Preuve qui justifie l’extension :
-Périmètre, durée et prix :
-
-Décision attendue avant le :`;
 
 function CopyButton({ text, label = "Copier" }: { text: string; label?: string }) {
   const [copied, setCopied] = useState(false);
   const copy = async () => {
-    let clipboardTimer = 0;
     try {
-      if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable");
-      await Promise.race([
-        navigator.clipboard.writeText(text),
-        new Promise<never>((_, reject) => {
-          clipboardTimer = window.setTimeout(() => reject(new Error("Clipboard timeout")), 700);
-        }),
-      ]);
+      await navigator.clipboard.writeText(text);
     } catch {
       const area = document.createElement("textarea");
       area.value = text;
-      area.setAttribute("readonly", "");
-      area.style.position = "fixed";
-      area.style.opacity = "0";
       document.body.appendChild(area);
       area.select();
       document.execCommand("copy");
       area.remove();
-    } finally {
-      if (clipboardTimer) window.clearTimeout(clipboardTimer);
     }
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1500);
@@ -855,9 +296,9 @@ function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title: string
 
 function BrandLogo() {
   return (
-    <span className="brand-lockup bs-brand-lockup">
-      <span className="bs-monogram">BS</span>
-      <span className="bs-wordmark">BS <b>IA</b><small>BUSINESS SYSTEMS</small></span>
+    <span className="brand-lockup">
+      <span className="focus-wordmark">Focus</span>
+      <span className="brand-signature">PROPULSÉ PAR <b>BILOUX</b></span>
     </span>
   );
 }
@@ -869,167 +310,22 @@ export default function Home() {
   const [lastSaved, setLastSaved] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [glossaryQuery, setGlossaryQuery] = useState("");
-  const [activeChapter, setActiveChapter] = useState("top");
-  const [quickNavOpen, setQuickNavOpen] = useState(false);
-  const [footerVisible, setFooterVisible] = useState(false);
   const [plan, setPlan] = useState({ service: "", cible: "", promesse: "", prix: "", volume: "", date: "" });
-  const [economics, setEconomics] = useState({ revenue: 3000, monthlyPrice: 600, closeRate: 25, showRate: 70, bookingRate: 20 });
   const backupInput = useRef<HTMLInputElement>(null);
-  const readingProgress = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    queueMicrotask(() => {
-      try {
-        const saved = window.localStorage.getItem("focus-smma-progress");
-        const savedPlan = window.localStorage.getItem("focus-smma-plan");
-        const savedAt = window.localStorage.getItem("focus-smma-last-saved");
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          const previousChecked = Array.isArray(parsed) ? parsed : parsed.checked ?? [];
-          const migratedChecked = !Array.isArray(parsed) && parsed.version >= 3 ? previousChecked : previousChecked.map((index: number) => index >= 11 ? index + 1 : index);
-          setChecked(migratedChecked);
-          window.localStorage.setItem("focus-smma-progress", JSON.stringify({ version: 3, checked: migratedChecked }));
-        }
-        if (savedPlan) setPlan(JSON.parse(savedPlan));
-        if (savedAt) setLastSaved(savedAt);
-      } catch {
-        window.localStorage.removeItem("focus-smma-progress");
-        window.localStorage.removeItem("focus-smma-plan");
-        window.localStorage.removeItem("focus-smma-last-saved");
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    const root = document.documentElement;
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("main > section"));
-    const chapterTargets = quickChapters
-      .map(({ id }) => document.getElementById(id))
-      .filter((section): section is HTMLElement => Boolean(section));
-    const footer = document.querySelector<HTMLElement>(".footer");
-    let scrollFrame = 0;
-    let pointerFrame = 0;
-    let lastPointer: PointerEvent | null = null;
-    let activeMagnet: HTMLElement | null = null;
-    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-    root.classList.add("motion-ready");
-    revealTargets.forEach((section, index) => {
-      section.classList.add("reveal-ready");
-      if (index === 0 || reduceMotion) section.classList.add("in-view");
-    });
-
-    const revealObserver = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-          revealObserver.unobserve(entry.target);
-        }
-      }),
-      { threshold: 0.06, rootMargin: "0px 0px -9%" },
-    );
-    if (!reduceMotion) revealTargets.slice(1).forEach((section) => revealObserver.observe(section));
-
-    const chapterObserver = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActiveChapter(visible.target.id);
-      },
-      { threshold: [0.08, 0.2, 0.45], rootMargin: "-18% 0px -62%" },
-    );
-    chapterTargets.forEach((section) => chapterObserver.observe(section));
-
-    const footerObserver = new IntersectionObserver(
-      ([entry]) => setFooterVisible(Boolean(entry?.isIntersecting)),
-      { threshold: 0.08 },
-    );
-    if (footer) footerObserver.observe(footer);
-
-    const updateScroll = () => {
-      cancelAnimationFrame(scrollFrame);
-      scrollFrame = requestAnimationFrame(() => {
-        const available = document.documentElement.scrollHeight - window.innerHeight;
-        const value = available > 0 ? Math.min(1, Math.max(0, window.scrollY / available)) : 0;
-        readingProgress.current?.style.setProperty("--reading-progress", `${value}`);
-      });
-    };
-
-    const updatePointer = (event: PointerEvent) => {
-      lastPointer = event;
-      if (pointerFrame) return;
-      pointerFrame = requestAnimationFrame(() => {
-        pointerFrame = 0;
-        const point = lastPointer;
-        if (!point) return;
-        root.style.setProperty("--cursor-x", `${point.clientX}px`);
-        root.style.setProperty("--cursor-y", `${point.clientY}px`);
-        const card = (point.target as Element | null)?.closest<HTMLElement>(
-          ".module-card, .service-panel, .progress-dashboard, .market-stat, .professional-grid article, .proposal-grid article, .procedure-grid article, .delegation-grid article, .ai-workflow-grid article, .template-grid article, .quality-grid article, .glossary-card, .finance-calculator",
-        );
-        if (card) {
-          const rect = card.getBoundingClientRect();
-          card.style.setProperty("--card-x", `${point.clientX - rect.left}px`);
-          card.style.setProperty("--card-y", `${point.clientY - rect.top}px`);
-          card.style.setProperty("--tilt-x", `${(((point.clientY - rect.top) / rect.height) - .5) * -5}deg`);
-          card.style.setProperty("--tilt-y", `${(((point.clientX - rect.left) / rect.width) - .5) * 5}deg`);
-        }
-
-        const magnet = (point.target as Element | null)?.closest<HTMLElement>("[data-magnetic]") ?? null;
-        if (activeMagnet && activeMagnet !== magnet) {
-          activeMagnet.style.setProperty("--magnet-x", "0px");
-          activeMagnet.style.setProperty("--magnet-y", "0px");
-        }
-        activeMagnet = magnet;
-        if (magnet) {
-          const rect = magnet.getBoundingClientRect();
-          magnet.style.setProperty("--magnet-x", `${(point.clientX - rect.left - rect.width / 2) * .14}px`);
-          magnet.style.setProperty("--magnet-y", `${(point.clientY - rect.top - rect.height / 2) * .14}px`);
-        }
-      });
-    };
-
-    const createSpark = (event: PointerEvent) => {
-      if (reduceMotion || event.pointerType === "touch") return;
-      const spark = document.createElement("span");
-      spark.className = "click-spark";
-      spark.style.left = `${event.clientX}px`;
-      spark.style.top = `${event.clientY}px`;
-      for (let index = 0; index < 8; index += 1) {
-        const ray = document.createElement("i");
-        ray.style.setProperty("--ray", `${index * 45}deg`);
-        spark.appendChild(ray);
-      }
-      document.body.appendChild(spark);
-      window.setTimeout(() => spark.remove(), 720);
-    };
-
-    updateScroll();
-    window.addEventListener("scroll", updateScroll, { passive: true });
-    window.addEventListener("resize", updateScroll, { passive: true });
-    if (finePointer && !reduceMotion) {
-      window.addEventListener("pointermove", updatePointer, { passive: true });
-      window.addEventListener("pointerdown", createSpark, { passive: true });
+    const saved = window.localStorage.getItem("focus-smma-progress");
+    const savedPlan = window.localStorage.getItem("focus-smma-plan");
+    const savedAt = window.localStorage.getItem("focus-smma-last-saved");
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      const previousChecked = Array.isArray(parsed) ? parsed : parsed.checked ?? [];
+      const migratedChecked = !Array.isArray(parsed) && parsed.version >= 3 ? previousChecked : previousChecked.map((index: number) => index >= 11 ? index + 1 : index);
+      setChecked(migratedChecked);
+      window.localStorage.setItem("focus-smma-progress", JSON.stringify({ version: 3, checked: migratedChecked }));
     }
-
-    return () => {
-      cancelAnimationFrame(scrollFrame);
-      cancelAnimationFrame(pointerFrame);
-      revealObserver.disconnect();
-      chapterObserver.disconnect();
-      footerObserver.disconnect();
-      activeMagnet?.style.removeProperty("--magnet-x");
-      activeMagnet?.style.removeProperty("--magnet-y");
-      root.classList.remove("motion-ready");
-      window.removeEventListener("scroll", updateScroll);
-      window.removeEventListener("resize", updateScroll);
-      if (finePointer && !reduceMotion) {
-        window.removeEventListener("pointermove", updatePointer);
-        window.removeEventListener("pointerdown", createSpark);
-      }
-    };
+    if (savedPlan) setPlan(JSON.parse(savedPlan));
+    if (savedAt) setLastSaved(savedAt);
   }, []);
 
   const service = services.find((item) => item.id === activeService) ?? services[0];
@@ -1044,10 +340,6 @@ export default function Home() {
   }, [glossaryQuery]);
   const progress = Math.round((checked.length / modules.length) * 100);
   const nextModule = modules.find((_, index) => !checked.includes(index));
-  const clientsNeeded = Math.max(1, Math.ceil(economics.revenue / Math.max(1, economics.monthlyPrice)));
-  const proposalsNeeded = Math.ceil(clientsNeeded / Math.max(.01, economics.closeRate / 100));
-  const appointmentsNeeded = Math.ceil(proposalsNeeded / Math.max(.01, economics.showRate / 100));
-  const conversationsNeeded = Math.ceil(appointmentsNeeded / Math.max(.01, economics.bookingRate / 100));
 
   const markSaved = () => {
     const timestamp = new Date().toISOString();
@@ -1105,75 +397,51 @@ export default function Home() {
     markSaved();
   };
 
-  const planText = `MON PLAN D'AGENCE — BS IA\n\nService : ${plan.service || "À définir"}\nCible : ${plan.cible || "À définir"}\nPromesse : ${plan.promesse || "À définir"}\nPrix pilote : ${plan.prix || "À définir"}\nVolume hebdomadaire : ${plan.volume || "À définir"}\nDate de lancement : ${plan.date || "À définir"}\n\nRègle : une offre, une cible, 90 jours d'exécution.`;
+  const planText = `MON PLAN D'AGENCE — FOCUS\n\nService : ${plan.service || "À définir"}\nCible : ${plan.cible || "À définir"}\nPromesse : ${plan.promesse || "À définir"}\nPrix pilote : ${plan.prix || "À définir"}\nVolume hebdomadaire : ${plan.volume || "À définir"}\nDate de lancement : ${plan.date || "À définir"}\n\nRègle : une offre, une cible, 90 jours d'exécution.`;
 
   return (
-    <>
-      <a className="skip-link" href="#main-content">Aller directement au contenu</a>
-      <main id="main-content" tabIndex={-1}>
-      <div className="reading-progress" aria-hidden="true"><i ref={readingProgress} /></div>
-      <div className="cursor-glow" aria-hidden="true" />
+    <main>
       <header className="topbar">
-        <a className="brand" href="#top" aria-label="BS IA, retour en haut"><BrandLogo /></a>
-        <nav aria-label="Navigation principale" className={menuOpen ? "nav-links open" : "nav-links"} id="primary-navigation">
+        <a className="brand" href="#top" aria-label="Focus, propulsé par Biloux, retour en haut"><BrandLogo /></a>
+        <nav className={menuOpen ? "nav-links open" : "nav-links"}>
           <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
           <a href="#prospection" onClick={() => setMenuOpen(false)}>Prospection</a>
           <a href="#objections" onClick={() => setMenuOpen(false)}>Objections</a>
           <a href="#glossaire" onClick={() => setMenuOpen(false)}>Glossaire</a>
-          <a href="#modeles" onClick={() => setMenuOpen(false)}>Modèles</a>
+          <a href="#plan90" onClick={() => setMenuOpen(false)}>Plan 90 jours</a>
         </nav>
         <div className="header-actions">
-          <a className="progress-pill" href="#modules"><span>{progress}%</span><em> complété</em></a>
-          <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-controls="primary-navigation" aria-expanded={menuOpen} aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"} type="button">☰</button>
+          <a className="progress-pill" href="#modules"><span>{progress}%</span> complété</a>
+          <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Ouvrir le menu" type="button">☰</button>
         </div>
       </header>
 
-      <a className="arena-top-banner" href="https://lmarena.ai/leaderboard/text" target="_blank" rel="noreferrer" aria-label="Ouvrir le classement des modèles IA sur LMArena">
+      <a className="arena-top-banner" href="https://arena.ai/leaderboard" target="_blank" rel="noreferrer" aria-label="Ouvrir le classement des modèles IA sur Arena.ai">
         <span className="arena-live"><i /> CLASSEMENT EN DIRECT</span>
-        <span className="arena-title"><b>LMARENA</b><em>Compare les modèles IA du moment avant de choisir un outil pour ton agence.</em></span>
+        <span className="arena-title"><b>ARENA.AI</b><em>Compare les meilleurs modèles IA du moment pour le texte, le code, l’image et la vision.</em></span>
         <strong>VOIR LE LEADERBOARD ↗</strong>
       </a>
-
-      <aside className={`quick-nav${quickNavOpen ? " open" : ""}${footerVisible ? " footer-visible" : ""}`} aria-label="Navigation rapide du guide">
-        <button data-magnetic type="button" onClick={() => setQuickNavOpen((open) => !open)} aria-controls="quick-navigation" aria-expanded={quickNavOpen} aria-label={quickNavOpen ? "Fermer la navigation des chapitres" : "Ouvrir la navigation des chapitres"}>
-          <span>{quickChapters.find((chapter) => chapter.id === activeChapter)?.number ?? "00"}</span>
-          <span className="quick-nav-icon" aria-hidden="true"><i /><i /><i /></span>
-        </button>
-        <nav id="quick-navigation" aria-hidden={!quickNavOpen}>
-          <header><small>INDEX RAPIDE</small><b>Va droit à l’essentiel.</b></header>
-          {quickChapters.map((chapter) => (
-              <a data-magnetic className={activeChapter === chapter.id ? "active" : ""} href={`#${chapter.id}`} key={chapter.id} onClick={() => setQuickNavOpen(false)}>
-              <span>{chapter.number}</span><b>{chapter.label}</b><i>↗</i>
-            </a>
-          ))}
-        </nav>
-      </aside>
 
       <section className="guide-cover" id="top">
         <div className="guide-dots" />
         <div className="cover-shell">
           <aside className="cover-spine" aria-label="Informations du guide">
-            <span>BS IA</span>
-            <strong>SMMA<br/>MASTERBOOK</strong>
-            <small>ÉDITION PREMIUM · 2026</small>
+            <span>FOCUS</span>
+            <strong>PLAYBOOK<br/>SMMA</strong>
+            <small>ÉDITION 2026 · FR</small>
           </aside>
           <div className="cover-main">
-            <div className="cover-breadcrumb"><span>BS IA</span><i>•</i><span>SMMA MASTERBOOK</span><strong>DÉBUTANT → OPÉRATIONNEL</strong></div>
-            <h1><span>Construis une agence.</span><em>Maîtrise le système.</em></h1>
-            <p>Le guide SMMA complet pour partir de zéro, choisir un service rentable, obtenir des rendez-vous, vendre proprement et livrer une expérience client professionnelle.</p>
+            <div className="cover-breadcrumb"><span>FOCUS</span><i>•</i><span>GUIDE SMMA</span><strong>SPÉCIAL DÉBUTANTS</strong></div>
+            <h1>Construis une agence<br/><em>qui sait vendre.</em></h1>
+            <p>Un guide conçu pour les débutants, sans prérequis : chaque service, outil et étape est expliqué depuis zéro pour apprendre à prospecter, vendre et livrer proprement.</p>
             <div className="cover-actions">
-              <a className="gold-button" data-magnetic href="#modules">COMMENCER LE GUIDE <span>→</span></a>
+              <a className="gold-button" href="#modules">COMMENCER LE GUIDE <span>→</span></a>
               <a className="text-link" href="#objections">ALLER AUX OBJECTIONS ↓</a>
             </div>
-            <div className="cover-meta"><span><b>{modules.length}</b> modules</span><span><b>{services.length}</b> services</span><span><b>{templateLibrary.length}</b> modèles</span><span><b>0</b> prérequis</span></div>
-            <div className="signal-ticker" aria-label="Les piliers de la méthode BS IA" role="group">
-              <div><span>OFFRE</span><i>✦</i><span>PREUVE</span><i>✦</i><span>CONVERSATION</span><i>✦</i><span>LIVRAISON</span><i>✦</i><span>SYSTÈME</span><i>✦</i><span>MARGE</span><i>✦</i></div>
-              <div aria-hidden="true"><span>OFFRE</span><i>✦</i><span>PREUVE</span><i>✦</i><span>CONVERSATION</span><i>✦</i><span>LIVRAISON</span><i>✦</i><span>SYSTÈME</span><i>✦</i><span>MARGE</span><i>✦</i></div>
-            </div>
+            <div className="cover-meta"><span><b>{modules.length}</b> modules</span><span><b>{services.length}</b> services</span><span><b>{glossary.length}</b> définitions</span><span><b>0</b> prérequis</span></div>
           </div>
           <article className="start-panel">
-            <Image className="cover-logo" src="/bs-ia-logo.webp" alt="Logo BS IA" width={1254} height={1254} priority sizes="(max-width: 680px) 100vw, 390px" />
-            <header><span>01</span><b>PROTOCOLE DE DÉPART</b><i>DÉBUTANT</i></header>
+            <header><span>01</span><b>COMMENCE ICI</b><i>DÉBUTANT</i></header>
             <h2>Ta première semaine.</h2>
             <ol>
               <li><span>01</span><p><b>Choisis un seul service</b><small>Celui que tu peux apprendre et montrer.</small></p></li>
@@ -1187,12 +455,12 @@ export default function Home() {
       </section>
 
       <section className="content-section intro" id="modules">
-        <SectionTitle eyebrow="00 — Mode d’emploi" title="Un système complet, pas une collection d’astuces." text="Aucun prérequis : avance dans l’ordre, utilise les modèles, applique les exercices et coche chaque module après l’avoir réellement exécuté. Ta progression reste enregistrée sur cet appareil." />
+        <SectionTitle eyebrow="00 — Mode d’emploi pour débutants" title="Le chemin le plus court vers une agence vendable." text="Aucun prérequis : avance dans l’ordre, applique les exemples et coche chaque module après l’avoir compris. Ta progression reste enregistrée sur cet appareil." />
         <div className="progress-dashboard">
           <div className="progress-ring" style={{ background: `conic-gradient(var(--gold) ${progress * 3.6}deg, #292929 0deg)` }}><div><strong>{progress}%</strong><span>COMPLÉTÉ</span></div></div>
           <div className="progress-summary"><small>SAUVEGARDE AUTOMATIQUE ACTIVE</small><h3>{progress === 100 ? "Playbook terminé." : nextModule ? `Prochaine étape : ${nextModule[1]}` : "Choisis ta prochaine étape."}</h3><p>{lastSaved ? `Dernière sauvegarde : ${new Date(lastSaved).toLocaleString("fr-FR", { dateStyle: "medium", timeStyle: "short" })}` : "Ta progression sera sauvegardée dès que tu valides un module."}</p><div className="progress-track"><div style={{ width: `${progress}%` }} /></div></div>
           <div className="progress-stats"><div><b>{checked.length}</b><span>TERMINÉS</span></div><div><b>{modules.length - checked.length}</b><span>RESTANTS</span></div></div>
-          <div className="progress-actions"><button onClick={exportBackup} type="button">TÉLÉCHARGER LA SAUVEGARDE ↓</button><button onClick={() => backupInput.current?.click()} type="button">RESTAURER ↑</button><button className="reset-progress" onClick={resetProgress} type="button">RÉINITIALISER</button><input ref={backupInput} onChange={importBackup} type="file" accept="application/json,.json" aria-label="Importer une sauvegarde JSON" hidden /></div>
+          <div className="progress-actions"><button onClick={exportBackup} type="button">TÉLÉCHARGER LA SAUVEGARDE ↓</button><button onClick={() => backupInput.current?.click()} type="button">RESTAURER ↑</button><button className="reset-progress" onClick={resetProgress} type="button">RÉINITIALISER</button><input ref={backupInput} onChange={importBackup} type="file" accept="application/json,.json" hidden /></div>
         </div>
         <div className="module-grid">
           {modules.map((item, index) => (
@@ -1217,13 +485,13 @@ export default function Home() {
       </section>
 
       <section className="content-section" id="services">
-        <SectionTitle eyebrow="02 — Choisir un service" title="Quinze services réellement vendables." text="Commence avec un seul service principal. Pour chacun, tu trouveras la cible, les outils, la formation, les livrables et une fourchette de prix indicative." />
-        <div className="pricing-context"><b>POSITIONNEMENT DÉBUTANT · FRANCE · AOÛT 2026</b><span>Ces repères éditoriaux BS IA correspondent à une offre bien cadrée avec peu de références. Ils sont indicatifs, généralement hors achats, hébergement, impression, logiciels et budget publicitaire. Compare toujours trois offres proches dans ta niche et ta ville avant de fixer ton prix.</span></div>
+        <SectionTitle eyebrow="02 — Choisir un service" title="Neuf services réellement vendables." text="Commence avec un seul service principal. Pour chacun, tu trouveras la cible, les outils, la formation, les livrables et une fourchette de prix indicative." />
+        <div className="pricing-context"><b>POSITIONNEMENT DÉBUTANT · FRANCE</b><span>Ces prix correspondent à une offre bien cadrée avec peu de références. Ils sont indicatifs, généralement hors achats, hébergement, impression, logiciels et budget publicitaire. Après 3 à 5 preuves solides, augmente progressivement tes tarifs.</span></div>
         <div className="service-layout">
-          <div className="service-tabs" role="tablist" aria-label="Choisir un service SMMA">
-            {services.map((item, index) => <button aria-controls="service-panel" aria-selected={activeService === item.id} className={activeService === item.id ? "active" : ""} id={`service-tab-${item.id}`} key={item.id} onClick={() => setActiveService(item.id)} role="tab" tabIndex={activeService === item.id ? 0 : -1} type="button"><span>{String(index + 1).padStart(2, "0")}</span>{item.name}</button>)}
+          <div className="service-tabs" role="tablist">
+            {services.map((item, index) => <button className={activeService === item.id ? "active" : ""} key={item.id} onClick={() => setActiveService(item.id)} type="button"><span>0{index + 1}</span>{item.name}</button>)}
           </div>
-          <article aria-labelledby={`service-tab-${service.id}`} className="service-panel" id="service-panel" role="tabpanel" tabIndex={0}>
+          <article className="service-panel">
             <div className="service-head"><div><span>Niveau · {service.level}</span><h3>{service.name}</h3></div><div className="service-price"><small>PRIX CONSEILLÉS POUR DÉMARRER</small><b>{service.price}</b></div></div>
             <p className="service-result">“{service.result}”</p>
             <div className="detail-grid"><div><small>À QUI LE VENDRE</small><p>{service.clients}</p></div><div><small>COMMENT SE FORMER</small><p>{service.learn}</p></div><div><small>OUTILS À UTILISER</small><div className="tool-list">{service.tools.map(item => <span key={item}>{item}</span>)}</div></div><div><small>PREMIÈRE OFFRE À PROPOSER</small><p>{service.start}</p></div><div><small>LIVRABLES</small><ul>{service.deliverables.map(item => <li key={item}>{item}</li>)}</ul></div><div><small>CHIFFRES À SUIVRE</small><p>{service.kpis}</p></div></div>
@@ -1233,71 +501,13 @@ export default function Home() {
         <div className="decision-strip"><b>Règle de choix</b><span>Si tu ne peux pas expliquer le résultat, les livrables, les chiffres à suivre et le délai en 60 secondes, l’offre n’est pas encore prête.</span></div>
       </section>
 
-      <section className="dark-section market-data-section" id="data-marche">
-        <div className="section-wrap">
-          <SectionTitle eyebrow="DATA MARCHÉ · FRANCE · 2025" title="Le marché existe. Voici où regarder." text="Ces chiffres nationaux donnent des directions, jamais une garantie de vente. Transforme chaque signal en hypothèse, puis vérifie-la avec des entreprises de ta zone." />
-          <div className="market-data-grid">
-            {marketStats.map((stat, index) => (
-              <article className="market-stat" key={stat.value}>
-                <header><span>{String(index + 1).padStart(2, "0")}</span><a href={stat.url} target="_blank" rel="noreferrer">{stat.source} ↗</a></header>
-                <b>{stat.value}</b>
-                <h3>{stat.label}</h3>
-                <small>{stat.change}</small>
-                <p>{stat.insight}</p>
-              </article>
-            ))}
-          </div>
-          <div className="market-radar">
-            <header><div><small>RADAR DE DEMANDE</small><h3>Budget, projets et niveau de maturité.</h3></div><a href="https://www.francenum.gouv.fr/files/2025-09/Barom%C3%A8tre%20France%20Num%202025%20-%20Rapport.pdf" target="_blank" rel="noreferrer">RAPPORT FRANCE NUM ↗</a></header>
-            <div className="market-radar-grid">
-              {digitalDemandSignals.map((signal) => (
-                <article key={signal.label}>
-                  <div><b>{signal.value} %</b><span>{signal.label}</span></div>
-                  <div className="data-bar" aria-label={`${signal.value} pour cent`} role="img"><i style={{ width: `${signal.value}%` }} /></div>
-                  <p>{signal.detail}</p>
-                </article>
-              ))}
-            </div>
-            <aside><b>LECTURE COMMERCIALE</b><span>42 % ont déjà dépensé plus de 1 000 €, mais 25 % n’ont aucun budget : qualifie les moyens avant de faire une proposition. Un besoin apparent n’est pas automatiquement un marché solvable.</span></aside>
-          </div>
-          <div className="sector-data">
-            <header><div><small>CRÉATIONS D’ENTREPRISES · INSEE 2025</small><h3>Les secteurs où de nouveaux besoins apparaissent.</h3></div><a href="https://www.insee.fr/fr/statistiques/8721354" target="_blank" rel="noreferrer">OUVRIR L’ÉTUDE ↗</a></header>
-            <div className="sector-table">
-              <div className="sector-table-head"><span>SECTEUR</span><span>CRÉATIONS</span><span>ÉVOLUTION</span><span>OFFRES À TESTER</span></div>
-              {growthSectors.map((item, index) => <div className="sector-row" key={item.sector}><span><i>{String(index + 1).padStart(2, "0")}</i><b>{item.sector}</b></span><strong>{item.creations}</strong><em>{item.growth}</em><p>{item.offers}</p></div>)}
-            </div>
-            <p>Ce classement indique un flux de nouvelles entreprises, pas leur budget ni leur survie. L’Insee estime que 69 % des créations deviennent économiquement actives dans les deux ans : vérifie toujours que l’activité a réellement démarré.</p>
-          </div>
-          <div className="ecommerce-pulse">
-            <header><div><small>E-COMMERCE FRANCE · 2025</small><h3>Plus d’achats, mais un panier moyen sous pression.</h3></div><a href="https://www.fevad.com/bilan-du-e-commerce-en-france-les-francais-ont-depense-pres-de-200-milliards-deuros-sur-internet-en-2025/" target="_blank" rel="noreferrer">SOURCE FEVAD ↗</a></header>
-            <div>{ecommercePulse.map((item) => <article key={item.label}><b>{item.value}</b><span>{item.label}</span><small>{item.change}</small></article>)}</div>
-            <aside><b>CE QUE ÇA CHANGE POUR L’OFFRE</b><p>Quand le panier baisse mais que le nombre de transactions monte, ne vends pas seulement « un beau site ». Travaille la vitesse, la clarté produit, la confiance, le taux de conversion, la fidélisation et la valeur de chaque commande.</p></aside>
-          </div>
-          <div className="data-offer-matrix">
-            <header><div><small>DATA → BESOIN → SERVICE</small><h3>Six offres supplémentaires validées par des signaux réels.</h3></div><a href="https://www.francenum.gouv.fr/files/2025-09/Barom%C3%A8tre%20France%20Num%202025%20-%20Rapport.pdf" target="_blank" rel="noreferrer">SOURCE FRANCE NUM ↗</a></header>
-            <div>{dataBackedOffers.map((item, index) => <article key={item.offer}><header><span>{String(index + 1).padStart(2, "0")}</span><b>{item.metric}</b></header><p>{item.fact}</p><div><small>ÉCART À RÉSOUDRE</small><span>{item.gap}</span></div><footer><small>SERVICE À TESTER</small><strong>{item.offer}</strong><em>{item.angle}</em></footer></article>)}</div>
-            <aside><b>IMPORTANT</b><span>Ces chiffres servent à choisir un angle de recherche. Ils ne prouvent jamais qu’un prospect précis a le problème, le budget ou l’envie d’acheter. Vérifie toujours par un diagnostic et une conversation.</span></aside>
-          </div>
-          <div className="market-method">
-            <div><small>01</small><b>Lis le signal</b><span>Une tendance nationale, datée et sourcée.</span></div>
-            <i>→</i>
-            <div><small>02</small><b>Formule une hypothèse</b><span>« Les commerces récents de ma ville ont-ils ce problème ? »</span></div>
-            <i>→</i>
-            <div><small>03</small><b>Teste sur le terrain</b><span>20 échanges ciblés avant de construire une grosse offre.</span></div>
-            <i>→</i>
-            <div><small>04</small><b>Garde les preuves</b><span>Réponses, objections, besoins et budget réel.</span></div>
-          </div>
-          <p className="market-disclaimer"><b>À retenir :</b> un pourcentage national ne prouve pas qu’une entreprise précise achètera. La demande locale, le budget, l’urgence et la qualité de ton offre doivent toujours être validés.</p>
-        </div>
-      </section>
-
       <section className="cream-section" id="formation">
         <div className="section-wrap">
           <SectionTitle eyebrow="03 — Se former sérieusement" title="Six semaines pour devenir opérationnel." text="Une formation utile alterne ressource officielle, exercice concret, analyse et répétition. Pas besoin d’attendre d’être expert pour créer une première preuve encadrée." />
           <div className="timeline">
             {trainingWeeks.map(item => <article key={item[0]}><span>{item[0]}</span><div><h3>{item[1]}</h3><p>{item[2]}</p></div></article>)}
           </div>
-          <div className="resource-row"><div><small>RESSOURCE OFFICIELLE</small><b>Webflow University</b><span>Pour les sites, l’adaptation mobile et les interactions</span><i>✦</i></div><div><small>RESSOURCE OFFICIELLE</small><b>Make Academy</b><span>Pour les automatisations et les scénarios</span><i>✦</i></div><div><small>RESSOURCE OFFICIELLE</small><b>Figma Learn</b><span>Pour l’identité visuelle, les maquettes et les règles graphiques</span><i>✦</i></div><div><small>PARCOURS COMBINÉ</small><b>Google + HubSpot</b><span>Skillshop pour la publicité, Academy pour le suivi client et la vente</span><i>✦</i></div></div>
+          <div className="resource-row"><div><b>Webflow University</b><span>Pour les sites, l’adaptation mobile et les interactions</span></div><div><b>Make Academy</b><span>Pour les automatisations et les scénarios</span></div><div><b>Figma Learn</b><span>Pour l’identité visuelle, les maquettes et les règles graphiques</span></div><div><b>Google + HubSpot</b><span>Skillshop pour la publicité, Academy pour le suivi client et la vente</span></div></div>
         </div>
       </section>
 
@@ -1347,7 +557,7 @@ export default function Home() {
           <SectionTitle eyebrow="07 — Appel à froid (cold call)" title="Le script sert à écouter, pas à réciter." text="Prépare l’ouverture et les questions, puis adapte les mots au prospect. L’objectif du premier appel est un rendez-vous d’analyse, pas une vente forcée." />
           <div className="script-grid">{scriptCards.slice(0, 4).map(card => <article className="script-card" key={card.title}><div><span>{card.badge}</span><h3>{card.title}</h3></div><p>{card.text}</p><CopyButton text={card.text} /></article>)}</div>
           <div className="call-flow"><span>OUVERTURE</span><i>→</i><span>PERMISSION</span><i>→</i><span>2 QUESTIONS</span><i>→</i><span>REFORMULATION</span><i>→</i><span>RENDEZ-VOUS</span></div>
-          <aside className="compliance"><span>✓</span><div><b>CADRE DE L’APPEL</b><p>Respecte les règles locales de démarchage, les horaires autorisés, les listes d’opposition applicables et toute demande de ne plus être contacté.</p></div><small>IDENTITÉ · MOTIF · RESPECT DU REFUS</small></aside>
+          <p className="compliance">Respecte les règles locales de démarchage, les horaires autorisés, les listes d’opposition applicables et toute demande de ne plus être contacté.</p>
         </div>
       </section>
 
@@ -1376,7 +586,7 @@ export default function Home() {
 
       <section className="content-section objections-section" id="objections">
         <SectionTitle eyebrow="10 — Objections & réponses" title="Ne combats pas l’objection. Clarifie-la." text="Réponds en trois temps : accueillir sans te justifier, poser une question pour isoler la cause, puis proposer la prochaine étape logique." />
-        <div className="objection-method"><div><i>01</i><b>Accueillir</b><span>“Je comprends.”</span></div><div><i>02</i><b>Clarifier</b><span>“Quand vous dites…, c’est plutôt… ?”</span></div><div><i>03</i><b>Répondre</b><span>Une réponse liée au diagnostic.</span></div><div><i>04</i><b>Avancer</b><span>Question, rendez-vous ou sortie propre.</span></div></div>
+        <div className="objection-method"><div><b>1. Accueillir</b><span>“Je comprends.”</span></div><div><b>2. Clarifier</b><span>“Quand vous dites…, c’est plutôt… ?”</span></div><div><b>3. Répondre</b><span>Une réponse liée au diagnostic.</span></div><div><b>4. Avancer</b><span>Question, rendez-vous ou sortie propre.</span></div></div>
         <div className="filter-row">{["Tous", "Appel", "Terrain", "Vente"].map(item => <button className={objectionFilter === item ? "active" : ""} onClick={() => setObjectionFilter(item)} key={item} type="button">{item}</button>)}</div>
         <div className="objection-list">
           {filteredObjections.map((item, index) => <details key={item.ask} open={index === 0}><summary><span>{item.type}</span><b>“{item.ask}”</b><i>+</i></summary><div className="objection-answer"><div><small>RÉPONSE</small><p>{item.answer}</p></div><div><small>RELANCE / ACTION</small><p>{item.next}</p></div><CopyButton text={`${item.ask}\n\nRéponse : ${item.answer}\n\nSuite : ${item.next}`} /></div></details>)}
@@ -1388,7 +598,7 @@ export default function Home() {
         <div className="section-wrap">
           <SectionTitle eyebrow="11 — Livrer & fidéliser" title="La fidélisation commence le premier jour." text="Un client reste quand il sait ce qui se passe, voit les progrès et comprend les prochaines décisions." />
           <div className="delivery-grid"><article><span>J0–J2</span><h3>Démarrage client</h3><p>Objectif, accès, interlocuteurs, délais, validation et responsabilités.</p></article><article><span>SEMAINE 1</span><h3>Point de départ chiffré</h3><p>Photo des chiffres avant intervention et plan d’action classé par priorité.</p></article><article><span>CHAQUE SEMAINE</span><h3>Résumé court</h3><p>Fait, chiffre, apprentissage, blocage et action suivante.</p></article><article><span>CHAQUE MOIS</span><h3>Bilan commercial</h3><p>Résultats, qualité des demandes, tests et recommandation du mois.</p></article></div>
-          <div aria-label="Tableau des chiffres à suivre selon le service" className="kpi-table" role="region" tabIndex={0}><div className="table-head"><span>TYPE DE SERVICE</span><span>CHIFFRE MARKETING À REGARDER</span><span>RÉSULTAT COMMERCIAL À REGARDER</span></div><div><b>Publicité payante</b><span>Coût par demande</span><span>Rendez-vous + ventes obtenues</span></div><div><b>Contenu vidéo</b><span>Temps de visionnage + portée locale</span><span>Demandes entrantes</span></div><div><b>Visibilité locale</b><span>Positions + actions sur la fiche</span><span>Appels + demandes d’itinéraire</span></div><div><b>Réactivation</b><span>Pourcentage de contacts joints</span><span>Rendez-vous + revenu récupéré</span></div><div><b>Page de vente + suivi</b><span>Pourcentage de visiteurs qui contactent</span><span>Présence aux rendez-vous + ventes</span></div></div>
+          <div className="kpi-table"><div className="table-head"><span>TYPE DE SERVICE</span><span>CHIFFRE MARKETING À REGARDER</span><span>RÉSULTAT COMMERCIAL À REGARDER</span></div><div><b>Publicité payante</b><span>Coût par demande</span><span>Rendez-vous + ventes obtenues</span></div><div><b>Contenu vidéo</b><span>Temps de visionnage + portée locale</span><span>Demandes entrantes</span></div><div><b>Visibilité locale</b><span>Positions + actions sur la fiche</span><span>Appels + demandes d’itinéraire</span></div><div><b>Réactivation</b><span>Pourcentage de contacts joints</span><span>Rendez-vous + revenu récupéré</span></div><div><b>Page de vente + suivi</b><span>Pourcentage de visiteurs qui contactent</span><span>Présence aux rendez-vous + ventes</span></div></div>
         </div>
       </section>
 
@@ -1435,166 +645,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-section premium-section" id="cadre-pro">
-        <SectionTitle eyebrow="15 — Cadre professionnel" title="Une agence sérieuse protège les deux côtés." text="Le statut, les contrats et la conformité ne servent pas à faire joli. Ils empêchent les malentendus, les impayés et les promesses impossibles." />
-        <div className="legal-alert"><span>MISE À JOUR · 11 AOÛT 2026</span><p>Ce guide enseigne une prospection ciblée <b>entre professionnels</b>. En France, appeler un consommateur sans consentement préalable est interdit depuis le 11 août 2026, sauf exceptions liées à un contrat en cours. Ne mélange jamais fichiers B2B et particuliers.</p></div>
-        <div className="professional-grid">{professionalSteps.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p><small>{item.proof}</small></article>)}</div>
-        <div className="official-links">
-          <b>SOURCES OFFICIELLES À CONSERVER</b>
-          <a href="https://www.cnil.fr/fr/prospection-commerciale-par-telephone-hors-automate-dappel-quelles-sont-les-regles" target="_blank" rel="noreferrer">CNIL · Prospection téléphonique B2B et opposition ↗</a>
-          <a href="https://www.legifrance.gouv.fr/codes/id/LEGIARTI000051830285/2026-08-11" target="_blank" rel="noreferrer">Légifrance · Appels aux consommateurs depuis le 11/08/2026 ↗</a>
-          <a href="https://www.service-public.fr/entreprendre/vosdroits/F31808" target="_blank" rel="noreferrer">Service Public · Mentions obligatoires sur une facture ↗</a>
-          <a href="https://entreprendre.service-public.fr/actualites/A15683" target="_blank" rel="noreferrer">Service Public · Calendrier de la facture électronique ↗</a>
-        </div>
-        <p className="legal-note">Cette partie est pédagogique et ne remplace pas un conseil juridique, fiscal ou comptable adapté à ta situation.</p>
-      </section>
-
-      <section className="dark-section premium-dark" id="proposition">
-        <div className="section-wrap">
-          <SectionTitle eyebrow="16 — Proposition commerciale" title="Le document doit faciliter une décision, pas impressionner." text="Une proposition premium est courte, spécifique et cohérente avec le diagnostic. Le client doit comprendre ce qui change, ce qui est inclus et ce qu’il doit décider." />
-          <div className="proposal-grid">{proposalBlocks.map(item => <article key={item[0]}><span>{item[0]}</span><h3>{item[1]}</h3><p>{item[2]}</p></article>)}</div>
-          <div className="proposal-rules"><b>LES 5 RÈGLES NON NÉGOCIABLES</b><span>Une offre principale</span><span>Une option maximum</span><span>Aucun résultat inventé</span><span>Un calendrier réaliste</span><span>Une prochaine étape datée</span></div>
-        </div>
-      </section>
-
-      <section className="content-section finance-section" id="finance">
-        <SectionTitle eyebrow="17 — Finance d’agence" title="Pars de l’objectif et remonte jusqu’aux conversations." text="Ce calculateur ne promet aucun résultat. Il transforme simplement ton objectif mensuel en volume commercial à tester, puis à remplacer par tes vrais ratios." />
-        <div className="finance-calculator">
-          <div className="finance-inputs">
-            <label>Objectif mensuel (€)<input type="number" min="100" step="100" value={economics.revenue} onChange={e => setEconomics({ ...economics, revenue: Number(e.target.value) })} /></label>
-            <label>Prix mensuel moyen (€)<input type="number" min="50" step="50" value={economics.monthlyPrice} onChange={e => setEconomics({ ...economics, monthlyPrice: Number(e.target.value) })} /></label>
-            <label>Propositions signées (%)<input type="number" min="1" max="100" value={economics.closeRate} onChange={e => setEconomics({ ...economics, closeRate: Number(e.target.value) })} /></label>
-            <label>Présence aux rendez-vous (%)<input type="number" min="1" max="100" value={economics.showRate} onChange={e => setEconomics({ ...economics, showRate: Number(e.target.value) })} /></label>
-            <label>Échanges transformés en RDV (%)<input type="number" min="1" max="100" value={economics.bookingRate} onChange={e => setEconomics({ ...economics, bookingRate: Number(e.target.value) })} /></label>
-          </div>
-          <div className="finance-output"><small>OBJECTIF INDICATIF PAR MOIS</small><div><article><b>{clientsNeeded}</b><span>nouveaux clients</span></article><i>←</i><article><b>{proposalsNeeded}</b><span>propositions</span></article><i>←</i><article><b>{appointmentsNeeded}</b><span>RDV planifiés</span></article><i>←</i><article><b>{conversationsNeeded}</b><span>vrais échanges</span></article></div><p>Ajoute ensuite tes coûts, le temps de production, les outils, les charges, les impayés possibles et une marge de sécurité. Le chiffre d’affaires n’est pas ton bénéfice.</p></div>
-        </div>
-        <div className="margin-formula"><span>PRIX MINIMUM INTERNE</span><b>Temps de production + gestion client + outils + sous-traitance + charges + marge de sécurité</b></div>
-      </section>
-
-      <section className="cream-section procedures-section" id="procedures">
-        <div className="section-wrap">
-          <SectionTitle eyebrow="18 — Systèmes & procédures" title="Si tu ne peux pas l’expliquer, tu ne peux pas le répéter." text="Une procédure simple transforme une bonne exécution isolée en qualité régulière. Commence avec les six parcours qui touchent directement le client." />
-          <div className="procedure-grid">{operatingProcedures.map((item, index) => <article key={item.title}><header><span>PROCÉDURE 0{index + 1}</span><h3>{item.title}</h3><small>DÉCLENCHEUR · {item.trigger}</small></header><ol>{item.steps.map(step => <li key={step}>{step}</li>)}</ol></article>)}</div>
-          <div className="sop-definition"><b>UNE BONNE PROCÉDURE CONTIENT</b><span>un déclencheur</span><i>→</i><span>un responsable</span><i>→</i><span>des étapes</span><i>→</i><span>un contrôle</span><i>→</i><span>une solution en cas d’erreur</span></div>
-        </div>
-      </section>
-
-      <section className="dark-section delegation-section" id="sous-traitance">
-        <div className="section-wrap">
-          <SectionTitle eyebrow="19 — Sous-traitance" title="Délègue la production, jamais la responsabilité." text="Le client t’a choisi pour le résultat et le suivi. Un prestataire peut exécuter une partie du travail, mais tu gardes le cadrage, la vérification et la communication." />
-          <div className="delegation-grid"><article><span>À GARDER</span><h3>Relation & stratégie</h3><ul><li>Diagnostic et recommandation</li><li>Prix, contrat et calendrier</li><li>Accès et données sensibles</li><li>Présentation et décisions client</li><li>Contrôle qualité final</li></ul></article><article className="featured"><span>À DÉLÉGUER D’ABORD</span><h3>Production cadrée</h3><ul><li>Montage selon un exemple</li><li>Déclinaisons graphiques</li><li>Intégration de pages validées</li><li>Recherche et nettoyage de données</li><li>Tâches répétitives documentées</li></ul></article><article><span>À VÉRIFIER</span><h3>Marge & sécurité</h3><ul><li>Accord de confidentialité si utile</li><li>Droits sur les créations</li><li>Accès limités au strict nécessaire</li><li>Marge restante après corrections</li><li>Solution de secours</li></ul></article></div>
-          <div className="delegation-warning"><b>Interdit</b><span>Revendre un travail non vérifié · partager tous les accès · cacher un retard · dépendre d’une seule personne · confondre chiffre d’affaires et marge</span></div>
-        </div>
-      </section>
-
-      <section className="content-section ai-section" id="ia-agence">
-        <SectionTitle eyebrow="20 — IA pour l’agence" title="L’IA accélère un système. Elle ne remplace pas le jugement." text="Utilise-la pour préparer, structurer, produire des variantes et contrôler. Le client paie toujours pour une recommandation juste et une exécution fiable." />
-        <div className="ai-principle"><Image src="/bs-ia-logo.webp" alt="BS IA" width={1254} height={1254} loading="lazy" sizes="(max-width: 680px) 100vw, 190px" /><div><small>PROTOCOLE BS IA</small><h3>Contexte → consigne → contraintes → exemple → contrôle humain.</h3><p>Ne demande jamais seulement « fais-moi une stratégie ». Donne les informations du client, le résultat attendu, les limites, les sources et la grille de validation.</p></div><a href="https://lmarena.ai/leaderboard/text" target="_blank" rel="noreferrer">COMPARER LES MODÈLES ↗</a></div>
-        <div className="ai-workflow-grid">{aiWorkflows.map((item, index) => <article key={item.title}><span>0{index + 1}</span><small>{item.tool}</small><h3>{item.title}</h3><p>{item.use}</p><em>CONTRÔLE · {item.guardrail}</em></article>)}</div>
-        <div className="prompt-framework"><span>PROMPT DE TRAVAIL</span><CopyButton label="COPIER LE PROMPT" text="Rôle : tu es mon assistant d’agence SMMA.\nContexte client : [activité, cible, offre, zone, chiffres connus].\nObjectif : [résultat unique].\nTâche : [action précise].\nContraintes : [ton, format, limites, éléments interdits].\nSources : utilise uniquement [documents/liens fournis] et signale ce qui manque.\nSortie attendue : [structure exacte].\nContrôle final : liste les hypothèses, les risques et les points à vérifier humainement." /><pre>Rôle · Contexte client · Objectif · Tâche · Contraintes · Sources · Format · Contrôle final</pre></div>
-      </section>
-
-      <section className="dark-section templates-section" id="modeles">
-        <div className="section-wrap">
-          <SectionTitle eyebrow="21 — Bibliothèque de modèles" title="Douze documents prêts à adapter." text="Copie la structure, remplace chaque crochet et relis tout avant envoi. Un modèle accélère le travail ; il ne doit jamais rendre ton message générique." />
-          <div className="template-grid">{templateLibrary.map((item, index) => <article key={item.title}><header><span>{String(index + 1).padStart(2, "0")}</span><small>{item.category}</small></header><h3>{item.title}</h3><pre>{item.body}</pre><CopyButton text={item.body} label="COPIER" /></article>)}</div>
-        </div>
-      </section>
-
-      <section className="content-section quality-section" id="qualite">
-        <SectionTitle eyebrow="22 — Contrôle qualité" title="La checklist qui protège ta réputation." text="Passe chaque porte de contrôle avant d’avancer. Une minute de vérification coûte moins cher qu’une semaine de réparation." />
-        <div className="quality-grid">{qualityGates.map((item, index) => <article key={item[0]}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{item[0]}</h3><p>{item[1]}</p></div><i>✓</i></article>)}</div>
-      </section>
-
-      <section className="dark-section field-diagnostic-section" id="diagnostic-terrain">
-        <div className="section-wrap">
-          <SectionTitle eyebrow="23 — Diagnostic terrain" title="Du problème visible à l’offre logique." text="Ne propose pas le même service à tout le monde. Observe, questionne, mesure puis recommande la plus petite solution capable de produire une preuve." />
-          <div className="diagnostic-playbook-grid">
-            {diagnosticPlaybooks.map((item, index) => (
-              <details key={item.sector} open={index === 0}>
-                <summary><span>{String(index + 1).padStart(2, "0")}</span><div><small>CAS PRATIQUE</small><b>{item.sector}</b></div><i>+</i></summary>
-                <div className="diagnostic-playbook-body">
-                  <article><small>SIGNAUX À OBSERVER</small><p>{item.signal}</p></article>
-                  <article><small>3 QUESTIONS</small><ol>{item.questions.map(question => <li key={question}>{question}</li>)}</ol></article>
-                  <article className="prescription"><small>OFFRE À TESTER</small><strong>{item.prescription}</strong><p>{item.proof}</p></article>
-                  <aside><b>GARDE-FOU</b><span>{item.refuse}</span></aside>
-                </div>
-              </details>
-            ))}
-          </div>
-          <div className="diagnostic-rule"><b>RÈGLE DE PRESCRIPTION</b><span>Un problème confirmé + une conséquence chiffrée + une solution proportionnée + une preuve simple. S’il manque un de ces quatre éléments, continue le diagnostic avant de parler prix.</span></div>
-        </div>
-      </section>
-
-      <section className="content-section first-project-section" id="premier-projet">
-        <SectionTitle eyebrow="24 — Premier projet client" title="Les quatorze jours qui construisent ta réputation." text="Ce planning est un exemple pour une petite mission. Adapte la durée au service vendu, mais ne saute jamais le cadrage, le point de départ, le contrôle et la validation." />
-        <div className="sprint-timeline">
-          {firstProjectSprint.map((item, index) => <article key={item.day}><header><span>{item.day}</span><i>{String(index + 1).padStart(2, "0")}</i></header><h3>{item.title}</h3><p>{item.text}</p><footer><small>SORTIE ATTENDUE</small><b>{item.output}</b></footer></article>)}
-        </div>
-        <div className="project-command-center">
-          <div><small>LE CLIENT TARDE À RÉPONDRE</small><b>Documente le blocage, décale le calendrier et demande une nouvelle date de validation.</b></div>
-          <div><small>UNE DEMANDE SORT DU PÉRIMÈTRE</small><b>Explique l’écart, chiffre l’option et n’exécute rien sans accord écrit.</b></div>
-          <div><small>UNE ERREUR EST DÉCOUVERTE</small><b>Préviens vite, limite l’impact, corrige puis documente comment éviter sa répétition.</b></div>
-          <div><small>LE RÉSULTAT EST FAIBLE</small><b>Compare au point zéro, sépare faits et hypothèses, puis propose le prochain test mesurable.</b></div>
-        </div>
-      </section>
-
-      <section className="dark-section audit-lab-section" id="audit-express">
-        <div className="section-wrap">
-          <SectionTitle eyebrow="25 — Audit express" title="Huit contrôles. Trente minutes. Zéro diagnostic inventé." text="Cette grille aide un débutant à organiser ses observations. Note uniquement ce que tu peux vérifier, écris ce qui manque et transforme le score en questions — jamais en vérité absolue." />
-          <div className="audit-scale"><div><b>0</b><span>Absent, cassé ou impossible à vérifier</span></div><div><b>1</b><span>Présent mais faible, irrégulier ou confus</span></div><div><b>2</b><span>Clair, fonctionnel, suivi et cohérent</span></div><strong>MAXIMUM · 16 POINTS</strong></div>
-          <div className="audit-scorecard" role="table" aria-label="Grille d’audit express">
-            <div className="audit-scorecard-head" role="row"><span role="columnheader">ZONE</span><span role="columnheader">0 POINT</span><span role="columnheader">1 POINT</span><span role="columnheader">2 POINTS</span><span role="columnheader">PREUVE À REGARDER</span></div>
-            {auditScorecard.map((item, index) => <article role="row" key={item.area}><header role="cell"><i>{String(index + 1).padStart(2, "0")}</i><b>{item.area}</b></header><p role="cell" data-score="0">{item.zero}</p><p role="cell" data-score="1">{item.one}</p><p role="cell" data-score="2">{item.two}</p><small role="cell">{item.proof}</small></article>)}
-          </div>
-          <div className="audit-conclusion"><div><small>0–5</small><b>Fondations fragiles</b><span>Choisir un seul problème prioritaire.</span></div><div><small>6–11</small><b>Parcours améliorable</b><span>Vérifier où la valeur se perd vraiment.</span></div><div><small>12–16</small><b>Base structurée</b><span>Chercher les optimisations avec des données.</span></div><p>Un score élevé ne garantit pas les ventes. Un score faible ne prouve pas non plus qu’une refonte est nécessaire.</p></div>
-          <div className="copy-workbench"><div><small>MODÈLE PRÊT À REMPLIR</small><h3>Transforme l’observation en recommandation.</h3><p>Copie cette fiche, complète les preuves, puis demande les informations auxquelles tu n’as pas accès.</p></div><CopyButton label="COPIER LA FICHE D’AUDIT" text={auditTemplate} /></div>
-        </div>
-      </section>
-
-      <section className="content-section proof-section" id="preuve-portfolio">
-        <SectionTitle eyebrow="26 — Preuve & portfolio" title="Montre ton niveau sans jouer au faux expert." text="Tu peux prouver une méthode avant d’avoir beaucoup de clients. Le niveau de preuve doit simplement être nommé avec honnêteté : exercice, audit, démonstration, pilote ou résultat réel." />
-        <div className="proof-ladder">
-          {proofLadder.map((item, index) => <article key={item.level}><header><span>{item.level}</span><small>{item.status}</small></header><h3>{item.name}</h3><p>{item.action}</p><div><small>TU PEUX DIRE</small><b>“{item.canSay}”</b></div><footer><small>NE DIS JAMAIS</small><span>“{item.neverSay}”</span></footer><i style={{ width: `${((index + 1) / proofLadder.length) * 100}%` }} /></article>)}
-        </div>
-        <div className="case-study-anatomy"><header><small>ANATOMIE D’UNE BONNE ÉTUDE DE CAS</small><h3>Contexte → point de départ → travail → résultat → limites → suite.</h3></header><div><span><b>01</b>Nommer la période et les données utilisées.</span><span><b>02</b>Séparer ton travail de celui du client.</span><span><b>03</b>Montrer aussi ce qui n’a pas fonctionné.</span><span><b>04</b>Obtenir l’autorisation avant publication.</span></div><CopyButton label="COPIER LE MODÈLE" text={caseStudyTemplate} /></div>
-      </section>
-
-      <section className="dark-section renewal-section" id="renouvellement">
-        <div className="section-wrap">
-          <SectionTitle eyebrow="27 — Renouvellement & développement" title="Le bon service suivant résout le prochain vrai problème." text="La fidélisation n’est pas un abonnement forcé. À chaque bilan, aide le client à choisir entre arrêter proprement, maintenir ce qui fonctionne ou développer un nouveau périmètre justifié." />
-          <div className="renewal-rhythm">{renewalRhythm.map((item, index) => <article key={item.moment}><header><span>{item.moment}</span><i>{String(index + 1).padStart(2, "0")}</i></header><h3>{item.title}</h3><p>{item.action}</p><footer><small>DÉCISION</small><b>{item.decision}</b></footer></article>)}</div>
-          <div className="expansion-map"><header><div><small>CARTE D’EXTENSION</small><h3>Propose une suite uniquement si le signal est confirmé.</h3></div><span>PROBLÈME → SERVICE → CONDITION</span></header><div>{expansionRules.map((item, index) => <article key={item.trigger}><span>{String(index + 1).padStart(2, "0")}</span><p>{item.trigger}</p><i>→</i><b>{item.next}</b><small>{item.condition}</small></article>)}</div></div>
-          <div className="renewal-options"><article><span>01</span><b>ARRÊTER</b><p>Objectif atteint, priorité changée ou mission devenue inutile. Transmettre et clôturer proprement.</p></article><article><span>02</span><b>MAINTENIR</b><p>Le système fonctionne et demande un suivi régulier clairement défini.</p></article><article className="featured"><span>03</span><b>DÉVELOPPER</b><p>Un nouveau problème rentable est prouvé et le client a la capacité de l’absorber.</p></article><CopyButton label="COPIER LE BILAN" text={renewalTemplate} /></div>
-        </div>
-      </section>
-
-      <section className="content-section toolbox-section" id="boite-outils">
-        <SectionTitle eyebrow="28 — Boîte à outils complète" title="La bonne stack fait gagner du temps. La mauvaise crée du bruit." text="Ce catalogue est une carte, pas une liste de courses. Commence avec un seul outil par besoin, maîtrise-le sur un vrai projet puis ajoute une solution uniquement si elle réduit un coût, un délai ou un risque précis." />
-        <div className="toolbox-levels">
-          {toolboxLevels.map((item) => <article key={item.level}><small>{item.level}</small><h3>{item.title}</h3><p>{item.text}</p></article>)}
-        </div>
-        <div className="toolbox-legend"><span><i className="starter-dot" />STACK DE DÉPART</span><span><i className="advanced-dot" />POUR ALLER PLUS LOIN</span><b>1 BESOIN = 1 OUTIL PRINCIPAL</b></div>
-        <div className="toolbox-grid">
-          {toolboxCategories.map((category) => (
-            <article className="toolbox-card" key={category.number}>
-              <header><span>{category.number}</span><div><small>BOÎTE À OUTILS</small><h3>{category.title}</h3></div></header>
-              <p className="toolbox-mission">{category.mission}</p>
-              <div className="toolbox-stack starter"><small>POUR DÉMARRER</small><div>{category.starter.map((tool) => <span key={tool}>{tool}</span>)}</div></div>
-              <div className="toolbox-stack advanced"><small>POUR PROGRESSER</small><div>{category.advanced.map((tool) => <span key={tool}>{tool}</span>)}</div></div>
-              <div className="toolbox-workflow"><small>ORDRE RECOMMANDÉ</small><p>{category.workflow}</p></div>
-              <aside><small>GARDE-FOU</small><p>{category.guardrail}</p></aside>
-              <footer>{category.links.map((link) => <a key={link.name} href={link.url} target="_blank" rel="noreferrer">{link.name} ↗</a>)}</footer>
-            </article>
-          ))}
-        </div>
-        <div className="toolbox-choice-rule"><span>AVANT DE PAYER UN OUTIL</span><div><b>01</b><p>Quel problème précis résout-il ?</p></div><div><b>02</b><p>Combien de temps ou d’argent économise-t-il ?</p></div><div><b>03</b><p>Qui contrôle les données et les accès ?</p></div><div><b>04</b><p>Que se passe-t-il si on l’arrête demain ?</p></div></div>
-        <div className="master-rule"><small>RÈGLE FINALE</small><h3>Ne multiplie pas le chaos.</h3><p>Avant d’ajouter des clients, des outils ou des sous-traitants, assure-toi que l’offre est rentable, la livraison est documentée et la satisfaction est mesurée.</p><a href="#modules">REVOIR LES 28 MODULES ↑</a></div>
-      </section>
-
-      <footer className="footer"><a aria-label="BS IA, retour en haut" className="brand" href="#top"><BrandLogo /></a><p>BS IA · SMMA Masterbook · Édition premium 2026 · Créé par Biloux.</p><a href="#top">RETOUR EN HAUT ↑</a></footer>
-      </main>
-    </>
+      <footer className="footer"><a className="brand" href="#top"><BrandLogo /></a><p>Guide SMMA Focus · Propulsé par Biloux · Une ressource opérationnelle, pas une promesse de résultat.</p><a href="#top">RETOUR EN HAUT ↑</a></footer>
+    </main>
   );
 }
