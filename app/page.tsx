@@ -28,7 +28,7 @@ const services: Service[] = [
     kpis: "Demandes reçues, appels, conversion des formulaires, vitesse et positions locales",
     start: "Audit puis concept de page d’accueil avec un hero fort et une interaction signature",
     level: "Débutant +",
-    tools: ["Claude", "Codex", "Arena.ai", "21st.dev", "HorizonX", "Figma", "Framer ou Webflow", "shadcn/ui", "Aceternity UI", "Magic UI", "Motion", "GSAP", "Rive", "Spline", "Three.js", "Awwwards", "Godly", "Mobbin", "GitHub", "PageSpeed Insights"],
+    tools: ["LMArena", "Claude", "Codex", "v0", "21st.dev", "HorizonX", "Figma", "Relume", "Framer ou Webflow", "React Bits", "shadcn/ui", "Aceternity UI", "Magic UI", "Motion", "GSAP", "Rive", "Spline", "Three.js", "Awwwards", "Godly", "Mobbin", "GitHub", "Vercel", "PageSpeed Insights", "Lighthouse", "Microsoft Clarity", "Search Console"],
     price: "One page 300–500 € · Vitrine 600–1 000 € · E-commerce starter 1 200–2 000 €",
   },
   {
@@ -41,7 +41,7 @@ const services: Service[] = [
     kpis: "Scans, clics, nouveaux avis, note moyenne et taux de conversion de la page",
     start: "Démonstration physique puis pack pilote sur un établissement",
     level: "Débutant",
-    tools: ["NFC Tools", "Puce NTAG215/216", "Canva ou Figma", "Carrd ou Framer", "Google Business Profile", "Bitly ou Dub.co"],
+    tools: ["NFC Tools", "NXP TagWriter", "Puces NTAG213/215/216", "Canva ou Figma", "Carrd ou Framer", "Tally", "Google Business Profile", "QR Code Monkey", "Bitly ou Dub.co", "Google Sheets", "Looker Studio"],
     price: "Plaque standard 40–60 € · Personnalisée 70–120 € · Pack de 5 : 180–300 €",
   },
   {
@@ -54,7 +54,7 @@ const services: Service[] = [
     kpis: "Cohérence des supports, délai de production, utilisation du kit et perception client",
     start: "Un pack défini par les supports réellement nécessaires : logo, charte, flyer et modèles",
     level: "Intermédiaire",
-    tools: ["Figma", "Illustrator ou Affinity", "Canva Pro", "GPT Image 2", "Recraft ou Ideogram", "Adobe Firefly", "Coolors", "Fontshare", "Arena.ai"],
+    tools: ["Figma", "Illustrator ou Affinity", "Canva Pro", "GPT Image 2", "Recraft", "Ideogram", "Adobe Firefly", "Krea", "Coolors", "Fontshare", "Google Fonts", "Typewolf", "Milanote", "Pinterest", "Mockuuups Studio", "Artboard Studio", "Unsplash", "Pexels", "LMArena"],
     price: "Logo seul 80–200 € · Identité visuelle 250–500 € · Pack charte + supports 500–900 €",
   },
   {
@@ -67,7 +67,7 @@ const services: Service[] = [
     kpis: "Heures économisées, erreurs évitées, délai de traitement et taux de réussite des scénarios",
     start: "Analyse puis proposition à trois niveaux : scénario simple, processus métier ou système complet",
     level: "Intermédiaire",
-    tools: ["Make", "Zapier ou n8n", "Airtable", "Notion", "Google Workspace", "Loom"],
+    tools: ["Make", "n8n", "Zapier", "Airtable", "Notion", "Google Workspace", "Tally", "Fillout", "Supabase", "Baserow", "Retool", "Postman", "Sentry", "Slack ou Teams", "Loom"],
     price: "Scénario simple 150–300 € · Processus métier 500–900 € · Système complet 1 200–1 500 €",
   },
   {
@@ -80,7 +80,7 @@ const services: Service[] = [
     kpis: "Taux de conversion, coût par demande, présence au rendez-vous et ventes",
     start: "Sprint de 7 jours sur une seule offre",
     level: "Débutant +",
-    tools: ["Framer ou Webflow", "Systeme.io", "Tally", "Calendly", "Google Tag Manager", "Microsoft Clarity"],
+    tools: ["Framer ou Webflow", "Systeme.io", "v0", "React Bits", "Figma", "Tally ou Fillout", "Calendly ou Cal.com", "Stripe", "Google Tag Manager", "GA4", "Microsoft Clarity", "PageSpeed Insights", "Looker Studio"],
     price: "Template adapté 250–400 € · Sur-mesure 450–800 € · Petit tunnel 800–1 200 €",
   },
   {
@@ -93,7 +93,7 @@ const services: Service[] = [
     kpis: "Appels, itinéraires, clics site, positions locales et nouveaux avis",
     start: "Mise à niveau en 14 jours puis suivi mensuel",
     level: "Débutant",
-    tools: ["Google Business Profile", "Local Falcon ou Localo", "Google Search Console", "PlePer", "Canva", "Looker Studio"],
+    tools: ["Google Business Profile", "Local Falcon", "Localo", "BrightLocal", "Whitespark", "Google Search Console", "PlePer", "Google Maps", "Canva", "NFC Tools", "GA4", "Looker Studio"],
     price: "Optimisation 150–250 € · Avec système d’avis 250–400 € · Suivi 79–199 €/mois",
   },
   {
@@ -106,7 +106,7 @@ const services: Service[] = [
     kpis: "Contacts joints, rendez-vous, taux de retour, ventes et revenu réactivé",
     start: "Sprint de 10 jours sur un segment dormant",
     level: "Intermédiaire",
-    tools: ["HubSpot ou Pipedrive", "Airtable", "Aircall", "Twilio", "Calendly", "Make"],
+    tools: ["HubSpot", "Pipedrive", "Folk ou Attio", "Airtable", "Notion", "Dropcontact", "Clay", "Aircall ou Ringover", "Twilio", "Calendly", "Make ou n8n", "Looker Studio"],
     price: "Pipeline 200–400 € · Sprint réactivation 350–700 € · Suivi 150–300 €/mois",
   },
   {
@@ -119,7 +119,7 @@ const services: Service[] = [
     kpis: "Rétention, portée locale, visites du profil et demandes entrantes",
     start: "Pack de 8 vidéos tournées en une demi-journée",
     level: "Débutant",
-    tools: ["Smartphone", "DJI Mic ou Rode", "CapCut ou Premiere Pro", "Canva", "Notion", "Google Drive"],
+    tools: ["Smartphone", "DJI Mic ou Rode", "Blackmagic Camera", "CapCut", "DaVinci Resolve", "Premiere Pro", "Descript", "OpusClip", "Canva", "Frame.io", "Metricool", "Notion", "Google Drive", "Artlist ou Epidemic Sound"],
     price: "4 vidéos 200–350 € · 8 vidéos 400–700 € · 12 vidéos 700–1 100 €",
   },
   {
@@ -132,7 +132,7 @@ const services: Service[] = [
     kpis: "Coût par appel, taux de conversion, part d’impressions et ventes attribuées",
     start: "Audit + campagne sur une zone et un service précis",
     level: "Intermédiaire",
-    tools: ["Google Ads", "Keyword Planner", "Google Tag Manager", "GA4", "CallRail", "Looker Studio"],
+    tools: ["Google Ads", "Keyword Planner", "Google Trends", "Google Search Console", "Google Tag Manager", "GA4", "CallRail", "Microsoft Clarity", "PageSpeed Insights", "Looker Studio", "Google Sheets"],
     price: "Setup 200–400 € · Gestion 250–500 €/mois · Budget média payé par le client",
   },
   {
@@ -145,7 +145,7 @@ const services: Service[] = [
     kpis: "Ajouts au panier, passage au paiement, conversion, panier moyen et revenu par visite",
     start: "Audit de cinq pages clés puis sprint de correction sur le principal point de fuite",
     level: "Intermédiaire",
-    tools: ["Shopify ou WooCommerce", "GA4", "Microsoft Clarity", "PageSpeed Insights", "Figma", "VWO ou AB Tasty", "Google Tag Manager"],
+    tools: ["Shopify ou WooCommerce", "Shopify Analytics", "Replo ou PageFly", "Figma", "GA4", "Microsoft Clarity", "PageSpeed Insights", "Search Console", "Google Tag Manager", "VWO ou AB Tasty", "Judge.me", "Gorgias", "Looker Studio"],
     price: "Audit 200–350 € · Sprint 450–800 € · Suivi 200–400 €/mois",
   },
   {
@@ -158,7 +158,7 @@ const services: Service[] = [
     kpis: "Questions résolues, transfert vers un humain, demandes qualifiées, erreurs et satisfaction",
     start: "Assistant FAQ limité à vingt questions fréquentes avec transfert humain obligatoire",
     level: "Intermédiaire",
-    tools: ["Voiceflow", "Chatbase", "Intercom ou Crisp", "OpenAI ou Claude", "Make ou n8n", "Notion", "Tally"],
+    tools: ["LMArena", "Voiceflow", "Botpress", "Chatbase", "Intercom ou Crisp", "OpenAI", "Claude", "Gemini", "Make ou n8n", "Notion", "Airtable", "Tally", "Langfuse", "Loom"],
     price: "FAQ simple 250–500 € · Assistant connecté 700–1 500 € · Suivi 80–200 €/mois",
   },
   {
@@ -171,7 +171,7 @@ const services: Service[] = [
     kpis: "Fraîcheur des données, erreurs, temps de préparation économisé et décisions prises",
     start: "Un tableau de bord hebdomadaire limité à cinq chiffres commerciaux",
     level: "Intermédiaire",
-    tools: ["Looker Studio", "Google Sheets", "Airtable", "GA4", "HubSpot", "Make ou n8n", "Metabase"],
+    tools: ["Looker Studio", "Google Sheets", "Airtable", "GA4", "HubSpot", "Make ou n8n", "Metabase", "BigQuery", "PostHog", "Plausible", "Microsoft Clarity", "Supermetrics", "Coupler.io"],
     price: "Une source 250–450 € · Multi-sources 600–1 000 € · Automatisé 1 000–1 500 €",
   },
   {
@@ -184,7 +184,7 @@ const services: Service[] = [
     kpis: "Réservations, présence, annulations, paiements réussis et temps administratif économisé",
     start: "Un service, un calendrier, un formulaire et un acompte testés de bout en bout",
     level: "Débutant +",
-    tools: ["Calendly ou Cal.com", "Tally", "Stripe", "Planity ou Reservio", "Google Calendar", "Make", "Twilio"],
+    tools: ["Calendly ou Cal.com", "Tally ou Fillout", "Stripe", "Planity ou Reservio", "Google Calendar", "Make ou n8n", "Twilio", "Yousign", "HubSpot", "Notion", "Looker Studio"],
     price: "Installation 150–300 € · Parcours complet 350–650 € · Automatisé 700–1 200 €",
   },
   {
@@ -197,7 +197,7 @@ const services: Service[] = [
     kpis: "Conversion des fiches, ajouts au panier, retours produit, temps passé et panier moyen",
     start: "Refonte de dix fiches sur les produits les plus visités ou les plus rentables",
     level: "Débutant +",
-    tools: ["Shopify", "Figma ou Canva", "GPT Image 2", "Recraft", "Photoroom", "CapCut", "Claude ou Codex"],
+    tools: ["Shopify", "Figma ou Canva", "GPT Image 2", "Recraft", "Ideogram", "Adobe Firefly", "Krea", "Photoroom", "Pixelcut", "CapCut", "Descript", "Claude ou Codex", "Google Sheets"],
     price: "10 fiches 250–450 € · Pack visuels 350–700 € · Pack lancement 700–1 200 €",
   },
   {
@@ -210,7 +210,7 @@ const services: Service[] = [
     kpis: "Régularité, portée locale, visites du profil, clics, appels et demandes entrantes",
     start: "Un mois pilote autour de quatre rubriques : expertise, preuve, coulisses et offre",
     level: "Débutant",
-    tools: ["Canva", "CapCut", "Meta Business Suite", "Buffer ou Metricool", "Notion", "Google Drive", "GPT Image 2"],
+    tools: ["Canva ou Adobe Express", "GPT Image 2", "CapCut", "DaVinci Resolve", "Descript", "Meta Business Suite", "Buffer ou Metricool", "Later", "Frame.io", "Notion", "Google Drive", "Google Sheets", "Looker Studio"],
     price: "8 publications 250–450 €/mois · 12 contenus 450–700 €/mois · Avec tournage 700–1 000 €/mois",
   },
 ];
@@ -243,6 +243,7 @@ const modules = [
   ["25", "Audit express", "Analyser une entreprise avec une grille simple et factuelle."],
   ["26", "Preuve & portfolio", "Montrer sa compétence sans inventer de résultats."],
   ["27", "Renouvellement", "Fidéliser, recommander et développer seulement ce qui est utile."],
+  ["28", "Boîte à outils", "Choisir une stack simple pour produire, vendre, mesurer et livrer."],
 ];
 
 const quickChapters = [
@@ -262,6 +263,7 @@ const quickChapters = [
   { id: "audit-express", number: "13", label: "Audit express" },
   { id: "preuve-portfolio", number: "14", label: "Preuve" },
   { id: "renouvellement", number: "15", label: "Renouvellement" },
+  { id: "boite-outils", number: "16", label: "Boîte à outils" },
 ];
 
 const marketStats = [
@@ -527,6 +529,105 @@ const aiWorkflows = [
   { title: "Création visuelle", tool: "GPT Image 2, Recraft, Ideogram ou Firefly", use: "Explorer des directions, produire des éléments et préparer des variantes.", guardrail: "Vérifier droits, cohérence de marque, textes et détails visuels." },
   { title: "Automatisation", tool: "Make, n8n ou Zapier + assistant IA", use: "Construire le scénario, documenter les champs et prévoir les erreurs.", guardrail: "Tester avec de fausses données avant de connecter le compte client." },
   { title: "Contrôle qualité", tool: "Deux modèles différents + contrôle humain", use: "Faire relire une proposition, un script ou une procédure avec une grille fixe.", guardrail: "Le second modèle détecte des risques, il ne remplace pas la validation." },
+];
+
+const toolboxLevels = [
+  { level: "NIVEAU 01", title: "Démarrer", text: "Un outil principal par besoin, les versions gratuites et un tableur pour suivre le travail." },
+  { level: "NIVEAU 02", title: "Structurer", text: "Un CRM, des modèles, des automatisations simples et un espace client propre." },
+  { level: "NIVEAU 03", title: "Accélérer", text: "Des outils spécialisés seulement quand le volume, la marge ou le risque les justifient." },
+];
+
+const toolboxCategories = [
+  {
+    number: "01",
+    title: "IA, recherche & contrôle",
+    mission: "Comparer les modèles, préparer un audit, produire une première version et contrôler le résultat.",
+    starter: ["LMArena", "ChatGPT", "Claude", "Gemini", "Perplexity", "NotebookLM"],
+    advanced: ["Codex", "Claude Code", "OpenAI Playground", "Google AI Studio", "Mistral Le Chat", "Langfuse"],
+    workflow: "Comparer sur LMArena → tester le même vrai cas dans deux modèles → vérifier les sources → garder le meilleur processus.",
+    guardrail: "N’envoie jamais de secrets, mots de passe ou données client sensibles. Une réponse IA est un brouillon à vérifier, pas une preuve.",
+    links: [{ name: "LMArena", url: "https://lmarena.ai/leaderboard/text" }, { name: "NotebookLM", url: "https://notebooklm.google/" }],
+  },
+  {
+    number: "02",
+    title: "Sites, interfaces & effet wow",
+    mission: "Concevoir, développer, animer, publier puis vérifier un site rapide et adapté au téléphone.",
+    starter: ["Figma", "Framer", "Webflow", "v0", "21st.dev", "React Bits", "shadcn/ui", "GitHub", "Vercel"],
+    advanced: ["HorizonX", "Relume", "Aceternity UI", "Magic UI", "Motion", "GSAP", "Rive", "Spline", "Three.js", "Lenis", "Storybook"],
+    workflow: "Inspiration → maquette Figma → structure → composants → une interaction signature → mobile → vitesse → mise en ligne.",
+    guardrail: "Awwwards, Godly et Mobbin servent à analyser. Ne copie ni le design ni les textes. Coupe tout effet qui ralentit ou gêne la lecture.",
+    links: [{ name: "React Bits", url: "https://www.reactbits.dev/" }, { name: "PageSpeed", url: "https://pagespeed.web.dev/" }],
+  },
+  {
+    number: "03",
+    title: "Branding, image & supports",
+    mission: "Créer une identité cohérente puis la décliner en logo, charte, flyers, cartes, contenus et présentations.",
+    starter: ["Figma", "Canva", "Affinity Designer", "GPT Image 2", "Recraft", "Coolors", "Google Fonts"],
+    advanced: ["Illustrator", "Adobe Firefly", "Ideogram", "Krea", "Milanote", "Typewolf", "Fontshare", "Mockuuups Studio", "Artboard Studio", "Photoroom"],
+    workflow: "Brief → recherche → moodboard → pistes → système visuel → déclinaisons → exports → guide d’utilisation.",
+    guardrail: "Vérifie licences, droits d’image, lisibilité, orthographe et cohérence. L’IA explore des pistes ; elle ne remplace pas une direction artistique.",
+    links: [{ name: "Figma", url: "https://www.figma.com/" }, { name: "Coolors", url: "https://coolors.co/" }],
+  },
+  {
+    number: "04",
+    title: "Automatisation & opérations",
+    mission: "Relier les outils, enlever les tâches répétitives et documenter un processus fiable.",
+    starter: ["Make", "n8n", "Zapier", "Airtable", "Notion", "Tally", "Google Workspace"],
+    advanced: ["Fillout", "Supabase", "Baserow", "Retool", "Postman", "Sentry", "Slack", "Microsoft Teams", "Loom"],
+    workflow: "Dessiner le processus → choisir le déclencheur → tester avec de fausses données → gérer les erreurs → documenter → former.",
+    guardrail: "Commence manuellement. Automatise seulement un processus compris, stable et utile. Limite les accès et prépare une procédure de secours.",
+    links: [{ name: "Make", url: "https://www.make.com/" }, { name: "n8n", url: "https://n8n.io/" }],
+  },
+  {
+    number: "05",
+    title: "Prospection & données B2B",
+    mission: "Trouver des entreprises pertinentes, vérifier les informations et construire une liste réellement appelable.",
+    starter: ["Google Maps", "PagesJaunes", "Pappers", "Société.com", "Amapulse", "Google Sheets", "HubSpot Free"],
+    advanced: ["INSEE SIRENE", "LinkedIn Sales Navigator", "Kompass", "Apify", "Outscraper", "PhantomBuster", "Instant Data Scraper", "Kaspr", "Dropcontact", "Clay", "BuiltWith"],
+    workflow: "Secteur + ville → extraction raisonnable → dédoublonnage → vérification manuelle → angle personnalisé → appel → suivi dans le CRM.",
+    guardrail: "Travaille en B2B avec des coordonnées professionnelles, respecte les conditions des sources et toute opposition. Une donnée publique n’est pas sans règles.",
+    links: [{ name: "Pappers", url: "https://www.pappers.fr/" }, { name: "Annuaire SIRENE", url: "https://annuaire-entreprises.data.gouv.fr/" }],
+  },
+  {
+    number: "06",
+    title: "Vente, CRM & espace client",
+    mission: "Suivre les conversations, obtenir les validations, signer et livrer avec une trace claire.",
+    starter: ["HubSpot", "Pipedrive", "Folk", "Attio", "Calendly", "Cal.com", "Tally", "Google Drive"],
+    advanced: ["Aircall", "Ringover", "PandaDoc", "Yousign", "Stripe", "Qonto", "Pennylane", "Loom", "Frame.io", "Notion"],
+    workflow: "Prospect → échange → rendez-vous → proposition → signature → acompte → démarrage → bilan → recommandation.",
+    guardrail: "Un CRM ne vend pas à ta place. Définis d’abord les étapes et la prochaine action obligatoire, puis configure l’outil.",
+    links: [{ name: "HubSpot CRM", url: "https://www.hubspot.com/products/crm" }, { name: "Yousign", url: "https://yousign.com/fr-fr" }],
+  },
+  {
+    number: "07",
+    title: "Contenu, vidéo & publication",
+    mission: "Préparer, tourner, monter, valider et publier du contenu sans perdre les fichiers ni les retours.",
+    starter: ["Smartphone", "Canva", "CapCut", "DaVinci Resolve", "Notion", "Google Drive", "Meta Business Suite"],
+    advanced: ["DJI Mic", "Rode", "Blackmagic Camera", "Premiere Pro", "Descript", "OpusClip", "Frame.io", "Metricool", "Buffer", "Later", "Artlist"],
+    workflow: "Rubriques → scripts → tournage en lot → montage → validation centralisée → programmation → bilan des demandes obtenues.",
+    guardrail: "Mesure les prises de contact et le temps de visionnage, pas seulement les vues. Utilise uniquement des musiques et médias autorisés.",
+    links: [{ name: "DaVinci Resolve", url: "https://www.blackmagicdesign.com/products/davinciresolve" }, { name: "Metricool", url: "https://metricool.com/" }],
+  },
+  {
+    number: "08",
+    title: "Mesure, SEO & optimisation",
+    mission: "Comprendre ce qui se passe avant de recommander une refonte, une publicité ou une nouvelle dépense.",
+    starter: ["GA4", "Search Console", "PageSpeed Insights", "Lighthouse", "Microsoft Clarity", "Looker Studio", "Google Sheets"],
+    advanced: ["Google Tag Manager", "Plausible", "PostHog", "Metabase", "BigQuery", "Supermetrics", "Coupler.io", "Local Falcon", "BrightLocal", "CallRail"],
+    workflow: "Question commerciale → point de départ → source fiable → tableau simple → observation → test → comparaison avant/après.",
+    guardrail: "Définis chaque chiffre en français simple. Vérifie le consentement, exclue le trafic interne et ne confonds jamais corrélation et cause.",
+    links: [{ name: "Microsoft Clarity", url: "https://clarity.microsoft.com/" }, { name: "Search Console", url: "https://search.google.com/search-console/about" }],
+  },
+  {
+    number: "09",
+    title: "E-commerce & catalogue",
+    mission: "Construire ou améliorer une boutique, ses fiches, ses preuves, son support et son parcours d’achat.",
+    starter: ["Shopify", "WooCommerce", "Figma", "Canva", "Photoroom", "Judge.me", "Microsoft Clarity"],
+    advanced: ["Replo", "PageFly", "Gorgias", "VWO", "AB Tasty", "Krea", "Pixelcut", "GA4", "Search Console", "PageSpeed Insights"],
+    workflow: "Produit rentable → fiche prioritaire → preuve → mobile → panier → paiement → support → mesure → prochain test.",
+    guardrail: "Le design ne corrige pas un mauvais produit, un prix incohérent, une livraison floue ou un trafic non qualifié.",
+    links: [{ name: "Shopify", url: "https://www.shopify.com/fr" }, { name: "WooCommerce", url: "https://woocommerce.com/" }],
+  },
 ];
 
 const templateLibrary = [
@@ -1466,8 +1567,30 @@ export default function Home() {
           <div className="renewal-rhythm">{renewalRhythm.map((item, index) => <article key={item.moment}><header><span>{item.moment}</span><i>{String(index + 1).padStart(2, "0")}</i></header><h3>{item.title}</h3><p>{item.action}</p><footer><small>DÉCISION</small><b>{item.decision}</b></footer></article>)}</div>
           <div className="expansion-map"><header><div><small>CARTE D’EXTENSION</small><h3>Propose une suite uniquement si le signal est confirmé.</h3></div><span>PROBLÈME → SERVICE → CONDITION</span></header><div>{expansionRules.map((item, index) => <article key={item.trigger}><span>{String(index + 1).padStart(2, "0")}</span><p>{item.trigger}</p><i>→</i><b>{item.next}</b><small>{item.condition}</small></article>)}</div></div>
           <div className="renewal-options"><article><span>01</span><b>ARRÊTER</b><p>Objectif atteint, priorité changée ou mission devenue inutile. Transmettre et clôturer proprement.</p></article><article><span>02</span><b>MAINTENIR</b><p>Le système fonctionne et demande un suivi régulier clairement défini.</p></article><article className="featured"><span>03</span><b>DÉVELOPPER</b><p>Un nouveau problème rentable est prouvé et le client a la capacité de l’absorber.</p></article><CopyButton label="COPIER LE BILAN" text={renewalTemplate} /></div>
-          <div className="master-rule"><small>RÈGLE FINALE</small><h3>Ne multiplie pas le chaos.</h3><p>Avant d’ajouter des clients, des outils ou des sous-traitants, assure-toi que l’offre est rentable, la livraison est documentée et la satisfaction est mesurée.</p><a href="#modules">REVOIR LES 27 MODULES ↑</a></div>
         </div>
+      </section>
+
+      <section className="content-section toolbox-section" id="boite-outils">
+        <SectionTitle eyebrow="28 — Boîte à outils complète" title="La bonne stack fait gagner du temps. La mauvaise crée du bruit." text="Ce catalogue est une carte, pas une liste de courses. Commence avec un seul outil par besoin, maîtrise-le sur un vrai projet puis ajoute une solution uniquement si elle réduit un coût, un délai ou un risque précis." />
+        <div className="toolbox-levels">
+          {toolboxLevels.map((item) => <article key={item.level}><small>{item.level}</small><h3>{item.title}</h3><p>{item.text}</p></article>)}
+        </div>
+        <div className="toolbox-legend"><span><i className="starter-dot" />STACK DE DÉPART</span><span><i className="advanced-dot" />POUR ALLER PLUS LOIN</span><b>1 BESOIN = 1 OUTIL PRINCIPAL</b></div>
+        <div className="toolbox-grid">
+          {toolboxCategories.map((category) => (
+            <article className="toolbox-card" key={category.number}>
+              <header><span>{category.number}</span><div><small>BOÎTE À OUTILS</small><h3>{category.title}</h3></div></header>
+              <p className="toolbox-mission">{category.mission}</p>
+              <div className="toolbox-stack starter"><small>POUR DÉMARRER</small><div>{category.starter.map((tool) => <span key={tool}>{tool}</span>)}</div></div>
+              <div className="toolbox-stack advanced"><small>POUR PROGRESSER</small><div>{category.advanced.map((tool) => <span key={tool}>{tool}</span>)}</div></div>
+              <div className="toolbox-workflow"><small>ORDRE RECOMMANDÉ</small><p>{category.workflow}</p></div>
+              <aside><small>GARDE-FOU</small><p>{category.guardrail}</p></aside>
+              <footer>{category.links.map((link) => <a key={link.name} href={link.url} target="_blank" rel="noreferrer">{link.name} ↗</a>)}</footer>
+            </article>
+          ))}
+        </div>
+        <div className="toolbox-choice-rule"><span>AVANT DE PAYER UN OUTIL</span><div><b>01</b><p>Quel problème précis résout-il ?</p></div><div><b>02</b><p>Combien de temps ou d’argent économise-t-il ?</p></div><div><b>03</b><p>Qui contrôle les données et les accès ?</p></div><div><b>04</b><p>Que se passe-t-il si on l’arrête demain ?</p></div></div>
+        <div className="master-rule"><small>RÈGLE FINALE</small><h3>Ne multiplie pas le chaos.</h3><p>Avant d’ajouter des clients, des outils ou des sous-traitants, assure-toi que l’offre est rentable, la livraison est documentée et la satisfaction est mesurée.</p><a href="#modules">REVOIR LES 28 MODULES ↑</a></div>
       </section>
 
       <footer className="footer"><a aria-label="BS IA, retour en haut" className="brand" href="#top"><BrandLogo /></a><p>BS IA · SMMA Masterbook · Édition premium 2026 · Créé par Biloux.</p><a href="#top">RETOUR EN HAUT ↑</a></footer>
